@@ -49,6 +49,7 @@ function npa (arg) {
     res.name = null
   }
 
+  res.rawSpec = arg
   res.spec = arg
 
   var urlparse = url.parse(arg)

@@ -8,7 +8,8 @@ require("tap").test("basic", function (t) {
       name: "foo",
       type: "range",
       spec: ">=1.2.0-0 <1.3.0-0",
-      raw: "foo@1.2"
+      raw: "foo@1.2",
+      rawSpec: "1.2"
     },
 
     "foo@1.2.3": {
@@ -22,7 +23,8 @@ require("tap").test("basic", function (t) {
       name: "foo",
       type: "version",
       spec: "1.2.3",
-      raw: "foo@=v1.2.3"
+      raw: "foo@=v1.2.3",
+      rawSpec: "=v1.2.3"
     },
 
     "git://github.com/user/foo": {

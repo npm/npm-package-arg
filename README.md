@@ -40,13 +40,13 @@ fields:
 * `name` - If known, the `name` field expected in the resulting pkg.
 * `type` - One of the following strings:
   * `git` - A git repo
+  * `github` - A github shorthand, like `user/project`
   * `tag` - A tagged version, like `"foo@latest"`
   * `version` - A specific version number, like `"foo@1.2.3"`
   * `range` - A version range, like `"foo@2.x"`
   * `local` - A local file or folder path
   * `remote` - An http url (presumably to a tgz)
 * `spec` - The "thing".  URL, the range, git repo, etc.
-* `raw` - If the spec is changed in any way (eg, if a `user/foo`
-  github shorthand is expanded to a full git url or `v1.2.3` is
-  cleaned up to just `1.2.3`) then this is the original un-modified
-  string that was provided.
+* `raw` - The original un-modified string that was provided.
+* `rawSpec` - The part after the `name@...`, as it was originally
+  provided.
