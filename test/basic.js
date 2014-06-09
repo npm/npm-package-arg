@@ -1,70 +1,82 @@
-var npa = require("./")
+var npa = require("../npa.js")
 
 require("tap").test("basic", function (t) {
+  t.setMaxListeners(999)
 
-  // Pass in the descriptor, and it'll return an object
-  // Here are several examples
+  var tests = {
+    "foo@1.2": {
+      name: "foo",
+      type: "range",
+      spec: ">=1.2.0-0 <1.3.0-0",
+      raw: "foo@1.2"
+    },
 
-  t.deepEqual(npa("foo@1.2"), {
-    name: "foo",  // The bit in front of the @
-    type: "range", // the type of descriptor this is
-    spec: "1.2" // the specifier for this descriptor
-  })
+    "foo@1.2.3": {
+      name: "foo",
+      type: "version",
+      spec: "1.2.3",
+      raw: "foo@1.2.3"
+    },
 
-  // If it doesn't have a "name@" in front, then the name
-  // field will be empty.  This is ok for URLs and files only.
+    "git://github.com/user/foo": {
+      name: null,
+      type: "git",
+      spec: "git://github.com/user/foo",
+      raw: "git://github.com/user/foo"
+    },
 
-  t.deepEqual(npa("git://github.com/user/foo"), {
-    name: null,
-    type: "git",
-    spec: "git://github.com/user/foo"
-  })
+    "/path/to/foo": {
+      name: null,
+      type: "local",
+      spec: "/path/to/foo",
+      raw: "/path/to/foo"
+    },
 
-  // Note that "local" can be either a tgz, or a folder.
-  // It's impossible to know for sure without doing some IO
-  t.deepEqual(npa("/path/to/foo"), {
-    name: null,
-    type: "local",
-    spec: "/path/to/foo"
-  })
+    "https://server.com/foo.tgz": {
+      name: null,
+      type: "remote",
+      spec: "https://server.com/foo.tgz",
+      raw: "https://server.com/foo.tgz"
+    },
 
-  t.deepEqual(npa("https://server.com/foo.tgz"), {
-    name: null,
-    type: "remote",
-    spec: "https://server.com/foo.tgz"
-  })
+    "user/foo-js": {
+      name: null,
+      type: "github",
+      spec: "user/foo-js",
+      raw: "user/foo-js"
+    },
 
-  // user/project shorthand for github git urls
-  t.deepEqual(npa("user/foo-js"), {
-    name: null,
-    type: "git",
-    spec: "git+https://github.com/user/foo-js",
-    raw: "user/foo-js"
-  })
+    "foo@user/foo-js": {
+      name: "foo",
+      type: "github",
+      spec: "user/foo-js",
+      raw: "foo@user/foo-js"
+    },
 
-  // You can always do a "name@" in front of anything
-  t.deepEqual(npa("foo@user/foo-js"), {
-    name: "foo",
-    type: "git",
-    spec: "git+https://github.com/user/foo-js"
-  })
+    "foo@latest": {
+      name: "foo",
+      type: "tag",
+      spec: "latest",
+      raw: "foo@latest"
+    },
 
-  t.deepEqual(npa("foo@latest"), {
-    name: "foo",
-    type: "tag",
-    spec: "latest"
-  })
+    "foo": {
+      name: "foo",
+      type: "range",
+      spec: "*",
+      raw: "foo"
+    }
+  }
 
-  // If there's no @, then treat as a lone name with the "" range
-  t.deepEqual(npa("foo"), {
-    name: "foo",
-    type: "range",
-    spec: ""
+  Object.keys(tests).forEach(function (arg) {
+    var res = npa(arg)
+    t.type(res, "Result")
+    t.has(res, tests[arg])
   })
 
   // Completely unreasonable invalid garbage throws an error
   t.throws(function() {
-    npa("this is not a valid package name or url")
+    npa("this is not a \0 valid package name or url")
   })
 
   t.end()
