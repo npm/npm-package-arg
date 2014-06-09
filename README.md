@@ -23,6 +23,8 @@ var parsed = npa("foo@1.2")
 // }
 
 // Completely unreasonable invalid garbage throws an error
+// Make sure you wrap this in a try/catch if you have not
+// already sanitized the inputs!
 assert.throws(function() {
   npa("this is not \0 a valid package name or url")
 })
