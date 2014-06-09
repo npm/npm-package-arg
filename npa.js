@@ -136,7 +136,7 @@ function parseUrl (res, arg, urlparse) {
       break
 
     default:
-      throw new Error('unsupported url type: ' + arg)
+      throw new Error('Unsupported URL Type: ' + arg)
       break
   }
 

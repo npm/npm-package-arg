@@ -18,6 +18,13 @@ require("tap").test("basic", function (t) {
       raw: "foo@1.2.3"
     },
 
+    "foo@=v1.2.3": {
+      name: "foo",
+      type: "version",
+      spec: "1.2.3",
+      raw: "foo@=v1.2.3"
+    },
+
     "git://github.com/user/foo": {
       name: null,
       type: "git",
@@ -78,6 +85,10 @@ require("tap").test("basic", function (t) {
   t.throws(function() {
     npa("this is not a \0 valid package name or url")
   })
+
+  t.throws(function() {
+    npa("gopher://yea right")
+  }, "Unsupported URL Type: gopher://yea right")
 
   t.end()
 })
