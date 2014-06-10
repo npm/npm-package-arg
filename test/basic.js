@@ -27,6 +27,13 @@ require("tap").test("basic", function (t) {
       rawSpec: "=v1.2.3"
     },
 
+    "git+ssh://git@github.com/user/foo#1.2.3": {
+      name: null,
+      type: "git",
+      spec: "ssh://git@github.com/user/foo#1.2.3",
+      raw: "git+ssh://git@github.com/user/foo#1.2.3",
+    },
+
     "git://github.com/user/foo": {
       name: null,
       type: "git",
