@@ -70,6 +70,14 @@ require("tap").test("basic", function (t) {
       raw: "git://github.com/user/foo"
     },
 
+    "@foo/bar@git+ssh://github.com/user/foo": {
+      name: "@foo/bar",
+      scope: "foo",
+      spec: "ssh://github.com/user/foo",
+      rawSpec: "git+ssh://github.com/user/foo",
+      raw: "@foo/bar@git+ssh://github.com/user/foo"
+    },
+
     "/path/to/foo": {
       name: null,
       type: "local",
