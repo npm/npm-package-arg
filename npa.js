@@ -38,12 +38,15 @@ function npa (arg) {
 
   var res = new Result
   res.raw = arg
+  res.scope = null
 
   // See if it's something like foo@...
   var nameparse = arg.match(nameAt)
   debug("nameparse", nameparse)
-  if (nameparse && validName(nameparse[3])) {
+  if (nameparse && validName(nameparse[3]) &&
+      (!nameparse[2] || validName(nameparse[2]))) {
     res.name = (nameparse[1] || "") + nameparse[3]
+    res.scope = nameparse[2] || null
     arg = arg.substr(nameparse[0].length)
   } else {
     res.name = null
@@ -91,10 +94,13 @@ function npa (arg) {
     }
   } else {
     var p = arg.match(parseName)
-    if (p && validName(p[2])) {
+    if (p && validName(p[2]) &&
+        (!p[1] || validName(p[1]))) {
       res.type = "range"
       res.spec = "*"
+      res.rawSpec = ""
       res.name = arg
+      res.scope = p[1] || null
     } else {
       parseLocal(res, arg)
     }

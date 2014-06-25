@@ -1,4 +1,5 @@
 var npa = require("../npa.js")
+var path = require("path")
 
 require("tap").test("basic", function (t) {
   t.setMaxListeners(999)
@@ -10,6 +11,41 @@ require("tap").test("basic", function (t) {
       spec: ">=1.2.0-0 <1.3.0-0",
       raw: "foo@1.2",
       rawSpec: "1.2"
+    },
+
+    "@foo/bar": {
+      raw: "@foo/bar",
+      name: "@foo/bar",
+      scope: "foo",
+      rawSpec: "",
+      spec: "*",
+      type: "range"
+    },
+
+    "@foo/bar@": {
+      raw: "@foo/bar@",
+      name: "@foo/bar",
+      scope: "foo",
+      rawSpec: "",
+      spec: "*",
+      type: "range"
+    },
+
+    "@foo/bar@baz": {
+      raw: "@foo/bar@baz",
+      name: "@foo/bar",
+      scope: "foo",
+      rawSpec: "baz",
+      spec: "baz",
+      type: "tag"
+    },
+
+    "@f fo o al/ a d s ;f ": {
+      raw: "@f fo o al/ a d s ;f",
+      name: null,
+      rawSpec: "@f fo o al/ a d s ;f",
+      spec: path.resolve("@f fo o al/ a d s ;f"),
+      type: "local"
     },
 
     "foo@1.2.3": {
