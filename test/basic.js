@@ -16,7 +16,7 @@ require("tap").test("basic", function (t) {
     "@foo/bar": {
       raw: "@foo/bar",
       name: "@foo/bar",
-      scope: "foo",
+      scope: "@foo",
       rawSpec: "",
       spec: "*",
       type: "range"
@@ -25,7 +25,7 @@ require("tap").test("basic", function (t) {
     "@foo/bar@": {
       raw: "@foo/bar@",
       name: "@foo/bar",
-      scope: "foo",
+      scope: "@foo",
       rawSpec: "",
       spec: "*",
       type: "range"
@@ -34,7 +34,7 @@ require("tap").test("basic", function (t) {
     "@foo/bar@baz": {
       raw: "@foo/bar@baz",
       name: "@foo/bar",
-      scope: "foo",
+      scope: "@foo",
       rawSpec: "baz",
       spec: "baz",
       type: "tag"
@@ -72,7 +72,7 @@ require("tap").test("basic", function (t) {
 
     "@foo/bar@git+ssh://github.com/user/foo": {
       name: "@foo/bar",
-      scope: "foo",
+      scope: "@foo",
       spec: "ssh://github.com/user/foo",
       rawSpec: "git+ssh://github.com/user/foo",
       raw: "@foo/bar@git+ssh://github.com/user/foo"
