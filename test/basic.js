@@ -92,6 +92,13 @@ require("tap").test("basic", function (t) {
       raw: "file:path/to/foo"
     },
 
+    "file:~/path/to/foo": {
+      name: null,
+      type: "local",
+      spec: "~/path/to/foo",
+      raw: "file:~/path/to/foo"
+    },
+
     "file:../path/to/foo": {
       name: null,
       type: "local",
