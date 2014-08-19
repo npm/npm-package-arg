@@ -133,7 +133,7 @@ function parseLocal (res, arg) {
 }
 
 function maybeGitHubShorthand (arg) {
-  return /^[^@ \/%]+\/[^@ \/%]+$/.test(arg)
+  return /^[^@ \/%]+\/[^@ \/%]+$/.test(arg) || /^[^@ \/%]+\/[^@ \/%]+[^@ #%]+[^@ \/%]+$/.test(arg)
 }
 
 function parseUrl (res, arg, urlparse) {

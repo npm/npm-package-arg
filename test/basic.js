@@ -98,6 +98,20 @@ require("tap").test("basic", function (t) {
       spec: "user/foo-js",
       raw: "user/foo-js"
     },
+    
+    "user/foo-js#bar/baz": {
+      name: null,
+      type: "github",
+      spec: "user/foo-js#bar/baz",
+      raw: "user/foo-js#bar/baz"
+    },
+    
+    "user/foo-js#bar/baz/bin": {
+      name: null,
+      type: "github",
+      spec: "user/foo-js#bar/baz/bin",
+      raw: "user/foo-js#bar/baz/bin"
+    },
 
     "foo@user/foo-js": {
       name: "foo",
