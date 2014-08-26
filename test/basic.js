@@ -98,14 +98,21 @@ require("tap").test("basic", function (t) {
       spec: "user/foo-js",
       raw: "user/foo-js"
     },
-    
+
     "user/foo-js#bar/baz": {
       name: null,
       type: "github",
       spec: "user/foo-js#bar/baz",
       raw: "user/foo-js#bar/baz"
     },
-    
+
+    "user..blerg--/..foo-js# . . . . . some . tags / / /": {
+      name: null,
+      type: "github",
+      spec: "user..blerg--/..foo-js# . . . . . some . tags / / /",
+      raw: "user..blerg--/..foo-js# . . . . . some . tags / / /"
+    },
+
     "user/foo-js#bar/baz/bin": {
       name: null,
       type: "github",
