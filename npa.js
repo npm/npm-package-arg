@@ -159,7 +159,6 @@ function parseUrl (res, arg, urlparse) {
 
     case 'http:':
     case 'https:':
-    case 'npm:':
       res.type = 'remote'
       res.spec = arg
       break
