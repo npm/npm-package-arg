@@ -169,6 +169,11 @@ function parseUrl (res, arg, urlparse) {
       res.spec = urlparse.pathname
       break
 
+    case "github:":
+      res.type = "github"
+      res.spec = arg.replace(/^github:/, "")
+      break
+
     default:
       throw new Error("Unsupported URL Type: " + arg)
       break

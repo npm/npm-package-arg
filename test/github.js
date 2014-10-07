@@ -40,27 +40,12 @@ require("tap").test("basic", function (t) {
       raw: "foo@user/foo-js"
     },
 
-    "git+ssh://git@github.com/user/foo#1.2.3": {
+    "github:user/foo-js": {
       name: null,
-      type: "git",
-      spec: "ssh://git@github.com/user/foo#1.2.3",
-      raw: "git+ssh://git@github.com/user/foo#1.2.3"
-    },
-
-    "git://github.com/user/foo": {
-      name: null,
-      type: "git",
-      spec: "git://github.com/user/foo",
-      raw: "git://github.com/user/foo"
-    },
-
-    "@foo/bar@git+ssh://github.com/user/foo": {
-      name: "@foo/bar",
-      scope: "@foo",
-      spec: "ssh://github.com/user/foo",
-      rawSpec: "git+ssh://github.com/user/foo",
-      raw: "@foo/bar@git+ssh://github.com/user/foo"
-    },
+      type: "github",
+      spec: "user/foo-js",
+      raw: "github:user/foo-js"
+    }
 
   }
 
