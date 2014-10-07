@@ -154,23 +154,23 @@ function parseUrl (res, arg, urlparse) {
     case "git+ftp:":
     case "git+ssh:":
     case "git+file:":
-      res.type = 'git'
-      res.spec = arg.replace(/^git\+/, '')
+      res.type = "git"
+      res.spec = arg.replace(/^git\+/, "")
       break
 
-    case 'http:':
-    case 'https:':
-      res.type = 'remote'
+    case "http:":
+    case "https:":
+      res.type = "remote"
       res.spec = arg
       break
 
-    case 'file:':
-      res.type = 'local'
+    case "file:":
+      res.type = "local"
       res.spec = urlparse.pathname
-      break;
+      break
 
     default:
-      throw new Error('Unsupported URL Type: ' + arg)
+      throw new Error("Unsupported URL Type: " + arg)
       break
   }
 
