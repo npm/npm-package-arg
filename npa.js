@@ -7,10 +7,10 @@ var path = require("path")
 module.exports = npa
 
 var isWindows = process.platform === "win32" || global.FAKE_WINDOWS
-var slashRe = isWindows ? /\\|\// : /\//
+var slashRe = isWindows ? /\\|[/]/ : /[/]/
 
-var parseName = /^(?:@([^\/]+?)\/)?([^\/]+?)$/
-var nameAt = /^(@([^\/]+?)\/)?([^\/]+?)@/
+var parseName = /^(?:@([^/]+?)[/])?([^/]+?)$/
+var nameAt = /^(@([^/]+?)[/])?([^/]+?)@/
 var debug = util.debuglog ? util.debuglog("npa")
   : /\bnpa\b/i.test(process.env.NODE_DEBUG || "")
   ? function () {
@@ -25,7 +25,7 @@ function validName (name) {
   var n = name.trim()
   if (!n || n.charAt(0) === "."
       || !n.match(/^[a-zA-Z0-9]/)
-      || n.match(/[\/\(\)&\?#\|<>@:%\s\\\*'"!~`]/)
+      || n.match(/[/()&?#|<>@:%\s\\*'"!~`]/)
       || n.toLowerCase() === "node_modules"
       || n !== encodeURIComponent(n)
       || n.toLowerCase() === "favicon.ico") {
@@ -141,7 +141,7 @@ function maybeGitHubShorthand (arg) {
   // we don't want to do that.  Just let git fail if it turns
   // out that the commit-ish is invalid.
   // GH usernames cannot start with . or -
-  return /^[^@%\/\s\.-][^@%\/\s]*\/[^@\s\/%]+(?:#.*)?$/.test(arg)
+  return /^[^@%/\s.-][^@%/\s]*[/][^@\s/%]+(?:#.*)?$/.test(arg)
 }
 
 function parseUrl (res, arg, urlparse) {
@@ -155,7 +155,7 @@ function parseUrl (res, arg, urlparse) {
     case "git+ssh:":
     case "git+file:":
       res.type = "git"
-      res.spec = arg.replace(/^git\+/, "")
+      res.spec = arg.replace(/^git[+]/, "")
       break
 
     case "http:":
