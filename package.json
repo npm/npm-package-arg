@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "hosted-git-info": "^1.5.3",
+    "hosted-git-info": "^2.0.2",
     "semver": "4"
   },
   "devDependencies": {
