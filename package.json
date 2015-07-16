@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "hosted-git-info": "^2.1.4",
-    "semver": "4"
+    "semver": "4 || 5"
   },
   "devDependencies": {
     "tap": "^1.2.0"
