@@ -102,7 +102,7 @@ function npa (arg) {
     if (p && validName(p[2]) &&
         (!p[1] || validName(p[1]))) {
       res.type = "range"
-      res.spec = "*"
+      res.spec = "latest"
       res.rawSpec = ""
       res.name = arg
       if (p[1])
