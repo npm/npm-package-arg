@@ -21,6 +21,38 @@ var cases = {
     spec: path.resolve("C:\\x\\y\\z"),
     type: "local"
   },
+  "foo@file:///C:\\x\\y\\z": {
+    raw: "foo@file:///C:\\x\\y\\z",
+    scope: null,
+    name: "foo",
+    rawSpec: "file:///C:\\x\\y\\z",
+    spec: path.resolve("C:\\x\\y\\z"),
+    type: "local"
+  },
+  "foo@file://C:\\x\\y\\z": {
+    raw: "foo@file://C:\\x\\y\\z",
+    scope: null,
+    name: "foo",
+    rawSpec: "file://C:\\x\\y\\z",
+    spec: path.resolve("C:\\x\\y\\z"),
+    type: "local"
+  },
+  "file:///C:\\x\\y\\z": {
+    raw: "file:///C:\\x\\y\\z",
+    scope: null,
+    name: null,
+    rawSpec: "file:///C:\\x\\y\\z",
+    spec: path.resolve("C:\\x\\y\\z"),
+    type: "local"
+  },
+  "file://C:\\x\\y\\z": {
+    raw: "file://C:\\x\\y\\z",
+    scope: null,
+    name: null,
+    rawSpec: "file://C:\\x\\y\\z",
+    spec: path.resolve("C:\\x\\y\\z"),
+    type: "local"
+  },
   "foo@/foo/bar/baz": {
     raw: "foo@/foo/bar/baz",
     scope: null,
