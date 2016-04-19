@@ -10,7 +10,7 @@ var cases = {
     scope: null,
     name: null,
     rawSpec: "C:\\x\\y\\z",
-    spec: path.resolve("C:\\x\\y\\z"),
+    spec: "C:\\x\\y\\z",
     type: "local"
   },
   "foo@C:\\x\\y\\z": {
@@ -18,7 +18,7 @@ var cases = {
     scope: null,
     name: "foo",
     rawSpec: "C:\\x\\y\\z",
-    spec: path.resolve("C:\\x\\y\\z"),
+    spec: "C:\\x\\y\\z",
     type: "local"
   },
   "foo@file:///C:\\x\\y\\z": {
@@ -26,7 +26,7 @@ var cases = {
     scope: null,
     name: "foo",
     rawSpec: "file:///C:\\x\\y\\z",
-    spec: path.resolve("C:\\x\\y\\z"),
+    spec: "C:\\x\\y\\z",
     type: "local"
   },
   "foo@file://C:\\x\\y\\z": {
@@ -34,7 +34,7 @@ var cases = {
     scope: null,
     name: "foo",
     rawSpec: "file://C:\\x\\y\\z",
-    spec: path.resolve("C:\\x\\y\\z"),
+    spec: "C:\\x\\y\\z",
     type: "local"
   },
   "file:///C:\\x\\y\\z": {
@@ -42,7 +42,7 @@ var cases = {
     scope: null,
     name: null,
     rawSpec: "file:///C:\\x\\y\\z",
-    spec: path.resolve("C:\\x\\y\\z"),
+    spec: "C:\\x\\y\\z",
     type: "local"
   },
   "file://C:\\x\\y\\z": {
@@ -50,7 +50,7 @@ var cases = {
     scope: null,
     name: null,
     rawSpec: "file://C:\\x\\y\\z",
-    spec: path.resolve("C:\\x\\y\\z"),
+    spec: "C:\\x\\y\\z",
     type: "local"
   },
   "foo@/foo/bar/baz": {
@@ -58,7 +58,7 @@ var cases = {
     scope: null,
     name: "foo",
     rawSpec: "/foo/bar/baz",
-    spec: path.resolve("/foo/bar/baz"),
+    spec: "/foo/bar/baz",
     type: "local"
   }
 }

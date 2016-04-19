@@ -122,7 +122,7 @@ function parseLocal (res, arg) {
     throw new Error("Invalid Path: " + JSON.stringify(arg))
   }
   res.type = "local"
-  res.spec = path.resolve(arg)
+  res.spec = arg
 }
 
 function parseUrl (res, arg, urlparse) {
