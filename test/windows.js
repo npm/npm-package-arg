@@ -9,6 +9,7 @@ var cases = {
     raw: "C:\\x\\y\\z",
     scope: null,
     name: null,
+    escapedName: null,
     rawSpec: "C:\\x\\y\\z",
     spec: "C:\\x\\y\\z",
     type: "local"
@@ -17,6 +18,7 @@ var cases = {
     raw: "foo@C:\\x\\y\\z",
     scope: null,
     name: "foo",
+    escapedName: "foo",
     rawSpec: "C:\\x\\y\\z",
     spec: "C:\\x\\y\\z",
     type: "local"
@@ -25,6 +27,7 @@ var cases = {
     raw: "foo@file:///C:\\x\\y\\z",
     scope: null,
     name: "foo",
+    escapedName: "foo",
     rawSpec: "file:///C:\\x\\y\\z",
     spec: "C:\\x\\y\\z",
     type: "local"
@@ -33,6 +36,7 @@ var cases = {
     raw: "foo@file://C:\\x\\y\\z",
     scope: null,
     name: "foo",
+    escapedName: "foo",
     rawSpec: "file://C:\\x\\y\\z",
     spec: "C:\\x\\y\\z",
     type: "local"
@@ -41,6 +45,7 @@ var cases = {
     raw: "file:///C:\\x\\y\\z",
     scope: null,
     name: null,
+    escapedName: null,
     rawSpec: "file:///C:\\x\\y\\z",
     spec: "C:\\x\\y\\z",
     type: "local"
@@ -49,6 +54,7 @@ var cases = {
     raw: "file://C:\\x\\y\\z",
     scope: null,
     name: null,
+    escapedName: null,
     rawSpec: "file://C:\\x\\y\\z",
     spec: "C:\\x\\y\\z",
     type: "local"
@@ -57,6 +63,7 @@ var cases = {
     raw: "foo@/foo/bar/baz",
     scope: null,
     name: "foo",
+    escapedName: "foo",
     rawSpec: "/foo/bar/baz",
     spec: "/foo/bar/baz",
     type: "local"

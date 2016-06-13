@@ -50,11 +50,16 @@ function npa (arg) {
   if (nameparse && validName(nameparse[3]) &&
       (!nameparse[2] || validName(nameparse[2]))) {
     res.name = (nameparse[1] || "") + nameparse[3]
-    if (nameparse[2])
+    if (nameparse[2]) {
       res.scope = "@" + nameparse[2]
+      res.escapedName = escapeName(res.name)
+    } else {
+      res.escapedName = res.name
+    }
     arg = arg.substr(nameparse[0].length)
   } else {
     res.name = null
+    res.escapedName = null
   }
 
   res.rawSpec = arg
@@ -106,14 +111,23 @@ function npa (arg) {
       res.spec = "latest"
       res.rawSpec = ""
       res.name = arg
-      if (p[1])
+      if (p[1]) {
         res.scope = "@" + p[1]
+        res.escapedName = escapeName(res.name)
+      } else {
+        res.escapedName = res.name
+      }
     } else {
       parseLocal(res, arg)
     }
   }
 
   return res
+}
+
+function escapeName (name) {
+  // scoped packages in couch must have slash url-encoded, e.g. @foo%2Fbar
+  return name && name.replace('/', '%2f')
 }
 
 function parseLocal (res, arg) {
