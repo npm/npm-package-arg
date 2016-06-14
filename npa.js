@@ -43,6 +43,7 @@ function npa (arg) {
   var res = new Result
   res.raw = arg
   res.scope = null
+  res.escapedName = null
 
   // See if it's something like foo@...
   var nameparse = arg.match(nameAt)
@@ -50,6 +51,7 @@ function npa (arg) {
   if (nameparse && validName(nameparse[3]) &&
       (!nameparse[2] || validName(nameparse[2]))) {
     res.name = (nameparse[1] || "") + nameparse[3]
+    res.escapedName = escapeName(res.name)
     if (nameparse[2])
       res.scope = "@" + nameparse[2]
     arg = arg.substr(nameparse[0].length)
@@ -106,6 +108,7 @@ function npa (arg) {
       res.spec = "latest"
       res.rawSpec = ""
       res.name = arg
+      res.escapedName = escapeName(res.name)
       if (p[1])
         res.scope = "@" + p[1]
     } else {
@@ -114,6 +117,11 @@ function npa (arg) {
   }
 
   return res
+}
+
+function escapeName (name) {
+  // scoped packages in couch must have slash url-encoded, e.g. @foo%2Fbar
+  return name && name.replace('/', '%2f')
 }
 
 function parseLocal (res, arg) {

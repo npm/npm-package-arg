@@ -7,6 +7,7 @@ require("tap").test("basic", function (t) {
   var tests = {
     "foo@1.2": {
       name: "foo",
+      escapedName: "foo",
       type: "range",
       spec: ">=1.2.0 <1.3.0",
       raw: "foo@1.2",
@@ -16,6 +17,7 @@ require("tap").test("basic", function (t) {
     "@foo/bar": {
       raw: "@foo/bar",
       name: "@foo/bar",
+      escapedName: "@foo%2fbar",
       scope: "@foo",
       rawSpec: "",
       spec: "latest",
@@ -25,6 +27,7 @@ require("tap").test("basic", function (t) {
     "@foo/bar@": {
       raw: "@foo/bar@",
       name: "@foo/bar",
+      escapedName: "@foo%2fbar",
       scope: "@foo",
       rawSpec: "",
       spec: "latest",
@@ -34,6 +37,7 @@ require("tap").test("basic", function (t) {
     "@foo/bar@baz": {
       raw: "@foo/bar@baz",
       name: "@foo/bar",
+      escapedName: "@foo%2fbar",
       scope: "@foo",
       rawSpec: "baz",
       spec: "baz",
@@ -43,6 +47,7 @@ require("tap").test("basic", function (t) {
     "@f fo o al/ a d s ;f ": {
       raw: "@f fo o al/ a d s ;f",
       name: null,
+      escapedName: null,
       rawSpec: "@f fo o al/ a d s ;f",
       spec: "@f fo o al/ a d s ;f",
       type: "local"
@@ -50,6 +55,7 @@ require("tap").test("basic", function (t) {
 
     "foo@1.2.3": {
       name: "foo",
+      escapedName: "foo",
       type: "version",
       spec: "1.2.3",
       raw: "foo@1.2.3"
@@ -57,6 +63,7 @@ require("tap").test("basic", function (t) {
 
     "foo@=v1.2.3": {
       name: "foo",
+      escapedName: "foo",
       type: "version",
       spec: "1.2.3",
       raw: "foo@=v1.2.3",
@@ -65,6 +72,7 @@ require("tap").test("basic", function (t) {
 
     "git+ssh://git@notgithub.com/user/foo#1.2.3": {
       name: null,
+      escapedName: null,
       type: "git",
       spec: "ssh://git@notgithub.com/user/foo#1.2.3",
       raw: "git+ssh://git@notgithub.com/user/foo#1.2.3"
@@ -72,6 +80,7 @@ require("tap").test("basic", function (t) {
 
     "git+file://path/to/repo#1.2.3": {
       name: null,
+      escapedName: null,
       type: "git",
       spec: "file://path/to/repo#1.2.3",
       raw: "git+file://path/to/repo#1.2.3"
@@ -79,6 +88,7 @@ require("tap").test("basic", function (t) {
 
     "git://notgithub.com/user/foo": {
       name: null,
+      escapedName: null,
       type: "git",
       spec: "git://notgithub.com/user/foo",
       raw: "git://notgithub.com/user/foo"
@@ -86,6 +96,7 @@ require("tap").test("basic", function (t) {
 
     "@foo/bar@git+ssh://notgithub.com/user/foo": {
       name: "@foo/bar",
+      escapedName: "@foo%2fbar",
       scope: "@foo",
       spec: "ssh://notgithub.com/user/foo",
       rawSpec: "git+ssh://notgithub.com/user/foo",
@@ -94,6 +105,7 @@ require("tap").test("basic", function (t) {
 
     "/path/to/foo": {
       name: null,
+      escapedName: null,
       type: "local",
       spec: path.resolve(__dirname, "/path/to/foo"),
       raw: "/path/to/foo"
@@ -101,6 +113,7 @@ require("tap").test("basic", function (t) {
 
     "file:path/to/foo": {
       name: null,
+      escapedName: null,
       type: "local",
       spec: "path/to/foo",
       raw: "file:path/to/foo"
@@ -108,6 +121,7 @@ require("tap").test("basic", function (t) {
 
     "file:~/path/to/foo": {
       name: null,
+      escapedName: null,
       type: "local",
       spec: "~/path/to/foo",
       raw: "file:~/path/to/foo"
@@ -115,6 +129,7 @@ require("tap").test("basic", function (t) {
 
     "file:../path/to/foo": {
       name: null,
+      escapedName: null,
       type: "local",
       spec: "../path/to/foo",
       raw: "file:../path/to/foo"
@@ -122,6 +137,7 @@ require("tap").test("basic", function (t) {
 
     "file:///path/to/foo": {
       name: null,
+      escapedName: null,
       type: "local",
       spec: "/path/to/foo",
       raw: "file:///path/to/foo"
@@ -129,6 +145,7 @@ require("tap").test("basic", function (t) {
 
     "https://server.com/foo.tgz": {
       name: null,
+      escapedName: null,
       type: "remote",
       spec: "https://server.com/foo.tgz",
       raw: "https://server.com/foo.tgz"
@@ -136,6 +153,7 @@ require("tap").test("basic", function (t) {
 
     "foo@latest": {
       name: "foo",
+      escapedName: "foo",
       type: "tag",
       spec: "latest",
       raw: "foo@latest"
@@ -143,6 +161,7 @@ require("tap").test("basic", function (t) {
 
     "foo": {
       name: "foo",
+      escapedName: "foo",
       type: "tag",
       spec: "latest",
       raw: "foo"
