@@ -7,15 +7,15 @@
     "test": "test"
   },
   "dependencies": {
-    "hosted-git-info": "^2.1.4",
-    "semver": "4 || 5"
+    "hosted-git-info": "^2.1.5",
+    "semver": "^5.1.0"
   },
   "devDependencies": {
     "standard": "^7.1.2",
-    "tap": "^1.2.0"
+    "tap": "^5.7.2"
   },
   "scripts": {
-    "test": "standard && tap test/*.js"
+    "test": "standard && tap --coverage test/*.js"
   },
   "repository": {
     "type": "git",
