@@ -11,10 +11,11 @@
     "semver": "4 || 5"
   },
   "devDependencies": {
+    "standard": "^7.1.2",
     "tap": "^1.2.0"
   },
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "standard && tap test/*.js"
   },
   "repository": {
     "type": "git",
