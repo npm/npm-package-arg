@@ -24,7 +24,7 @@ var parsed = npa("@bar/foo@1.2")
 {
   raw: '@bar/foo@1.2',       // what was passed in
   name: '@bar/foo',          // the name of the package
-  escapedName: '@bar%2ffoo', // the escaped name, for registry internals
+  escapedName: '@bar%2ffoo', // the escaped name, for making requests against a registry
   scope: '@bar',             // the scope of the package, or null
   type: 'range',             // the type of specifier this is
   spec: '>=1.2.0 <1.3.0',    // the expanded specifier
@@ -101,9 +101,9 @@ keys:
 * `scope` - If a name is something like `@org/module` then the `scope`
   field will be set to `@org`.  If it doesn't have a scoped name, then
   scope is `null`.
-* `escapedName` - The escaped version of `name`, which may be needed when
-  interacting with registry internals like CouchDB. When `name` is `null`,
-  `escapedName` will also be `null`.
+* `escapedName` - A version of `name` escaped to match the npm scoped packages
+  specification. Mostly used when making requests against a registry. When
+  `name` is `null`, `escapedName` will also be `null`.
 
 If you only include a name and no specifier part, eg, `foo` or `foo@` then
 a default of `latest` will be used (as of 4.1.0). This is contrast with
