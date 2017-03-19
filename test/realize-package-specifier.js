@@ -1,0 +1,43 @@
+'use strict'
+var test = require('tap').test
+var npa = require('../npa.js')
+
+test('realize-package-specifier', function (t) {
+  t.plan(6)
+  var result
+  result = npa('a.tar.gz', '/test/a/b')
+  t.is(result.type, 'file', 'local tarball')
+  result = npa('d', '/test/a/b')
+  t.is(result.type, 'tag', 'remote package')
+  result = npa('file:./a.tar.gz', '/test/a/b')
+  t.is(result.type, 'file', 'local tarball')
+  result = npa('file:./b', '/test/a/b')
+  t.is(result.type, 'directory', 'local package directory')
+  result = npa('file:./c', '/test/a/b')
+  t.is(result.type, 'directory', 'non-package local directory, specified with a file URL')
+  result = npa('file:./d', '/test/a/b')
+  t.is(result.type, 'directory', 'no local directory, specified with a file URL')
+})
+test('named realize-package-specifier', function (t) {
+  t.plan(10)
+  var result
+  result = npa('a@a.tar.gz', '/test/a/b')
+  t.is(result.type, 'file', 'named local tarball')
+  result = npa('d@d', '/test/a/b')
+  t.is(result.type, 'tag', 'remote package')
+  result = npa('a@file:./a.tar.gz', '/test/a/b')
+  t.is(result.type, 'file', 'local tarball')
+  result = npa('b@file:./b', '/test/a/b')
+  t.is(result.type, 'directory', 'local package directory')
+  result = npa('c@file:./c', '/test/a/b')
+  t.is(result.type, 'directory', 'non-package local directory, specified with a file URL')
+  result = npa('d@file:./d', '/test/a/b')
+  t.is(result.type, 'directory', 'no local directory, specified with a file URL')
+  result = npa('e@e/2', 'test/a/b')
+  t.is(result.type, 'git', 'hosted package dependency is git')
+  t.is(result.hosted.type, 'github', 'github package dependency')
+  result = npa('e@1', '/test/a/b')
+  t.is(result.type, 'range', 'range like specifier is never a local file')
+  result = npa('e@1.0.0', '/test/a/b')
+  t.is(result.type, 'version', 'version like specifier is never a local file')
+})
