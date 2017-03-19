@@ -14,7 +14,7 @@
     "semver": "^5.1.0"
   },
   "devDependencies": {
-    "standard": "^7.1.2",
+    "standard": "9.0.2",
     "tap": "^5.7.2"
   },
   "scripts": {
