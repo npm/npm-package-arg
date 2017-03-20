@@ -15,10 +15,10 @@
   },
   "devDependencies": {
     "standard": "9.0.2",
-    "tap": "^5.7.2"
+    "tap": "^10.3.0"
   },
   "scripts": {
-    "test": "standard && tap --coverage test/*.js"
+    "test": "standard && tap -J --coverage test/*.js"
   },
   "repository": {
     "type": "git",
