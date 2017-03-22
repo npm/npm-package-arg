@@ -10,7 +10,7 @@
     "npa.js"
   ],
   "dependencies": {
-    "hosted-git-info": "^2.1.5",
+    "hosted-git-info": "^2.4.2",
     "semver": "^5.1.0"
   },
   "devDependencies": {
