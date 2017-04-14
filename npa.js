@@ -113,6 +113,14 @@ Result.prototype.setName = function (name) {
   return this
 }
 
+Result.prototype.toString = function () {
+  const full = []
+  if (this.name != null && this.name !== '') full.push(this.name)
+  const spec = this.saveSpec || this.fetchSpec || this.rawSpec
+  if (spec != null && spec !== '') full.push(spec)
+  return full.length ? full.join('@') : this.raw
+}
+
 Result.prototype.toJSON = function () {
   const result = Object.assign({}, this)
   delete result.hosted
