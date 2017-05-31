@@ -98,6 +98,16 @@ require('tap').test('basic', function (t) {
       raw: 'git+ssh://git@notgithub.com/user/foo#1.2.3'
     },
 
+    'git+ssh://git@notgithub.com:user/foo#1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://git@notgithub.com:user/foo#1.2.3',
+      fetchSpec: 'ssh://git@notgithub.com/user/foo',
+      gitCommittish: '1.2.3',
+      raw: 'git+ssh://git@notgithub.com:user/foo#1.2.3'
+    },
+
     'git+ssh://git@github.com/user/foo#1.2.3': {
       name: null,
       escapedName: null,

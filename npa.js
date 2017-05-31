@@ -209,6 +209,7 @@ function fromURL (res) {
       setGitCommittish(res, urlparse.hash != null ? urlparse.hash.slice(1) : '')
       urlparse.protocol = urlparse.protocol.replace(/^git[+]/, '')
       delete urlparse.hash
+      urlparse.pathname = urlparse.pathname.replace(/^\/:/, '/')
       res.fetchSpec = url.format(urlparse)
       break
 
