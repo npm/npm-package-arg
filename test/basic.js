@@ -98,6 +98,66 @@ require('tap').test('basic', function (t) {
       raw: 'git+ssh://git@notgithub.com/user/foo#1.2.3'
     },
 
+    'git+ssh://git@notgithub.com:user/foo#1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://git@notgithub.com:user/foo#1.2.3',
+      fetchSpec: 'git@notgithub.com:user/foo',
+      gitCommittish: '1.2.3',
+      raw: 'git+ssh://git@notgithub.com:user/foo#1.2.3'
+    },
+
+    'git+ssh://mydomain.com:foo#1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://mydomain.com:foo#1.2.3',
+      fetchSpec: 'mydomain.com:foo',
+      gitCommittish: '1.2.3',
+      raw: 'git+ssh://mydomain.com:foo#1.2.3'
+    },
+
+    'git+ssh://mydomain.com:foo/bar#1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://mydomain.com:foo/bar#1.2.3',
+      fetchSpec: 'mydomain.com:foo/bar',
+      gitCommittish: '1.2.3',
+      raw: 'git+ssh://mydomain.com:foo/bar#1.2.3'
+    },
+
+    'git+ssh://mydomain.com:1234#1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://mydomain.com:1234#1.2.3',
+      fetchSpec: 'ssh://mydomain.com:1234',
+      gitCommittish: '1.2.3',
+      raw: 'git+ssh://mydomain.com:1234#1.2.3'
+    },
+
+    'git+ssh://mydomain.com:1234/hey#1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://mydomain.com:1234/hey#1.2.3',
+      fetchSpec: 'ssh://mydomain.com:1234/hey',
+      gitCommittish: '1.2.3',
+      raw: 'git+ssh://mydomain.com:1234/hey#1.2.3'
+    },
+
+    'git+ssh://username:password@mydomain.com:1234/hey#1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://username:password@mydomain.com:1234/hey#1.2.3',
+      fetchSpec: 'ssh://username:password@mydomain.com:1234/hey',
+      gitCommittish: '1.2.3',
+      raw: 'git+ssh://username:password@mydomain.com:1234/hey#1.2.3'
+    },
+
     'git+ssh://git@github.com/user/foo#1.2.3': {
       name: null,
       escapedName: null,
