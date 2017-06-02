@@ -192,22 +192,6 @@ function unsupportedURLType (protocol, spec) {
   return err
 }
 
-function matchGitScp (spec) {
-  // git ssh specifiers are overloaded to also use scp-style git
-  // specifiers, so we have to parse those out and treat them special.
-  // They are NOT true URIs, so we can't hand them to `url.parse`.
-  //
-  // This regex looks for things that look like:
-  // git+ssh://git@my.custom.git.com:username/project.git#deadbeef
-  //
-  // ...and various combinations. The username in the beginning is *required*.
-  const matched = spec.match(/^git\+ssh:\/\/((?:[^@]+)@(?:[^:/]+):[/]?(?:(?:[^/]+[/])?[^/]+?)(?:[.]git)?)(?:#(.*))?$/i)
-  return matched && {
-    fetchSpec: matched[1],
-    gitCommittish: matched[2]
-  }
-}
-
 function fromURL (res) {
   if (!url) url = require('url')
   const urlparse = url.parse(res.rawSpec)
@@ -219,20 +203,15 @@ function fromURL (res) {
     case 'git+https:':
     case 'git+rsync:':
     case 'git+ftp:':
-    case 'git+file:':
     case 'git+ssh:':
+    case 'git+file:':
       res.type = 'git'
-      const match = urlparse.protocol === 'git+ssh:' && matchGitScp(res.rawSpec)
-      if (match) {
-        res.fetchSpec = match.fetchSpec
-        res.gitCommittish = match.gitCommittish
-      } else {
-        setGitCommittish(res, urlparse.hash != null ? urlparse.hash.slice(1) : '')
-        urlparse.protocol = urlparse.protocol.replace(/^git[+]/, '')
-        delete urlparse.hash
-        res.fetchSpec = url.format(urlparse)
-      }
+      setGitCommittish(res, urlparse.hash != null ? urlparse.hash.slice(1) : '')
+      urlparse.protocol = urlparse.protocol.replace(/^git[+]/, '')
+      delete urlparse.hash
+      res.fetchSpec = url.format(urlparse)
       break
+
     case 'http:':
     case 'https:':
       res.type = 'remote'
