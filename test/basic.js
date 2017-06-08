@@ -98,6 +98,36 @@ require('tap').test('basic', function (t) {
       raw: 'git+ssh://git@notgithub.com/user/foo#1.2.3'
     },
 
+    'git+ssh://git@notgithub.com/user/foo': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://git@notgithub.com/user/foo',
+      fetchSpec: 'ssh://git@notgithub.com/user/foo',
+      gitCommittish: 'master',
+      raw: 'git+ssh://git@notgithub.com/user/foo'
+    },
+
+    'git+ssh://git@notgithub.com:user/foo': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://git@notgithub.com:user/foo',
+      fetchSpec: 'git@notgithub.com:user/foo',
+      gitCommittish: 'master',
+      raw: 'git+ssh://git@notgithub.com:user/foo'
+    },
+
+    'git+ssh://mydomain.com:foo': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://mydomain.com:foo',
+      fetchSpec: 'mydomain.com:foo',
+      gitCommittish: 'master',
+      raw: 'git+ssh://mydomain.com:foo'
+    },
+
     'git+ssh://git@notgithub.com:user/foo#1.2.3': {
       name: null,
       escapedName: null,
@@ -146,6 +176,16 @@ require('tap').test('basic', function (t) {
       fetchSpec: 'ssh://mydomain.com:1234/hey',
       gitCommittish: '1.2.3',
       raw: 'git+ssh://mydomain.com:1234/hey#1.2.3'
+    },
+
+    'git+ssh://mydomain.com:1234/hey': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://mydomain.com:1234/hey',
+      fetchSpec: 'ssh://mydomain.com:1234/hey',
+      gitCommittish: 'master',
+      raw: 'git+ssh://mydomain.com:1234/hey'
     },
 
     'git+ssh://username:password@mydomain.com:1234/hey#1.2.3': {
