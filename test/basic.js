@@ -104,7 +104,7 @@ require('tap').test('basic', function (t) {
       type: 'git',
       saveSpec: 'git+ssh://git@notgithub.com/user/foo',
       fetchSpec: 'ssh://git@notgithub.com/user/foo',
-      gitCommittish: 'master',
+      gitCommittish: null,
       raw: 'git+ssh://git@notgithub.com/user/foo'
     },
 
@@ -114,7 +114,7 @@ require('tap').test('basic', function (t) {
       type: 'git',
       saveSpec: 'git+ssh://git@notgithub.com:user/foo',
       fetchSpec: 'git@notgithub.com:user/foo',
-      gitCommittish: 'master',
+      gitCommittish: null,
       raw: 'git+ssh://git@notgithub.com:user/foo'
     },
 
@@ -124,7 +124,7 @@ require('tap').test('basic', function (t) {
       type: 'git',
       saveSpec: 'git+ssh://mydomain.com:foo',
       fetchSpec: 'mydomain.com:foo',
-      gitCommittish: 'master',
+      gitCommittish: null,
       raw: 'git+ssh://mydomain.com:foo'
     },
 
@@ -184,7 +184,7 @@ require('tap').test('basic', function (t) {
       type: 'git',
       saveSpec: 'git+ssh://mydomain.com:1234/hey',
       fetchSpec: 'ssh://mydomain.com:1234/hey',
-      gitCommittish: 'master',
+      gitCommittish: null,
       raw: 'git+ssh://mydomain.com:1234/hey'
     },
 
