@@ -140,10 +140,8 @@ function setGitCommittish (res, committish) {
   if (committish != null && committish.length >= 7 && committish.slice(0, 7) === 'semver:') {
     res.gitRange = decodeURIComponent(committish.slice(7))
     res.gitCommittish = null
-  } else if (committish == null || committish === '') {
-    res.gitCommittish = 'master'
   } else {
-    res.gitCommittish = committish
+    res.gitCommittish = committish === '' ? null : committish
   }
   return res
 }
@@ -213,7 +211,7 @@ function matchGitScp (spec) {
   const matched = spec.match(/^git\+ssh:\/\/([^:#]+:[^#]+(?:\.git)?)(?:#(.*))?$/i)
   return matched && !matched[1].match(/:[0-9]+\/?.*$/i) && {
     fetchSpec: matched[1],
-    gitCommittish: matched[2] || 'master'
+    gitCommittish: matched[2] == null ? null : matched[2]
   }
 }
 
