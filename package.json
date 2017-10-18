@@ -10,9 +10,9 @@
     "npa.js"
   ],
   "dependencies": {
-    "hosted-git-info": "^2.4.2",
+    "hosted-git-info": "^2.5.0",
     "osenv": "^0.1.4",
-    "semver": "^5.1.0",
+    "semver": "^5.4.1",
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
