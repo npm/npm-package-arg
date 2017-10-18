@@ -18,6 +18,15 @@ const isFilename = /[.](?:tgz|tar.gz|tar)$/i
 function npa (arg, where) {
   let name
   let spec
+  if (typeof arg === 'object') {
+    if (arg instanceof Result && (!where || where === arg.where)) {
+      return arg
+    } else if (arg.name && arg.rawSpec) {
+      return npa.resolve(arg.name, arg.rawSpec, where || arg.where)
+    } else {
+      return npa(arg.raw, where || arg.where)
+    }
+  }
   const nameEndsAt = arg[0] === '@' ? arg.slice(1).indexOf('@') + 1 : arg.indexOf('@')
   const namePart = nameEndsAt > 0 ? arg.slice(0, nameEndsAt) : arg
   if (isURL.test(arg)) {

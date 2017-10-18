@@ -420,6 +420,22 @@ require('tap').test('basic', function (t) {
 //    t.has(res, tests[arg], arg + ' matches expectations')
   })
 
+  var objSpec = {name: 'foo', rawSpec: '1.2.3'}
+  t.equal(npa(objSpec, '/whatnot').toString(), 'foo@1.2.3', 'parsed object')
+
+  objSpec = {raw: './foo/bar', where: '/here'}
+  t.equal(npa(objSpec).fetchSpec, '/here/foo/bar', '`where` is reused')
+
+  objSpec = {raw: './foo/bar', where: '/here'}
+  t.equal(npa(objSpec, '/whatnot').fetchSpec, '/whatnot/foo/bar', '`where` arg overrides the one in the spec object')
+
+  t.equal(npa(npa('foo@1.2.3')).toString(), 'foo@1.2.3', 'spec is passthrough')
+
+  var parsedSpec = npa('./foo', './here')
+  t.equal(npa(parsedSpec), parsedSpec, 'reused if no where')
+  t.equal(npa(parsedSpec, './here'), parsedSpec, 'reused if where matches')
+  t.notEqual(npa(parsedSpec, './there'), parsedSpec, 'new instance if where does not match')
+  t.notEqual(npa(parsedSpec, './there').fetchSpec, '/there/foo', 'new instance has new where')
   // Completely unreasonable invalid garbage throws an error
   t.throws(function () {
     t.comment(npa('this is not a \0 valid package name or url'))
