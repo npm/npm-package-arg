@@ -236,6 +236,10 @@ function fromURL (res) {
       } else {
         setGitCommittish(res, urlparse.hash != null ? urlparse.hash.slice(1) : '')
         urlparse.protocol = urlparse.protocol.replace(/^git[+]/, '')
+        // support the :user/repo.git form
+        if (urlparse.pathname) {
+          urlparse.pathname = urlparse.pathname.replace(/^\/:/, '/')
+        }
         delete urlparse.hash
         res.fetchSpec = url.format(urlparse)
       }
