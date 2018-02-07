@@ -231,8 +231,8 @@ function fromURL (res) {
       res.type = 'git'
       const match = urlparse.protocol === 'git+ssh:' && matchGitScp(res.rawSpec)
       if (match) {
+        setGitCommittish(res, match.gitCommittish)
         res.fetchSpec = match.fetchSpec
-        res.gitCommittish = match.gitCommittish
       } else {
         setGitCommittish(res, urlparse.hash != null ? urlparse.hash.slice(1) : '')
         urlparse.protocol = urlparse.protocol.replace(/^git[+]/, '')
