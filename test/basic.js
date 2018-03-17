@@ -220,6 +220,18 @@ require('tap').test('basic', function (t) {
       raw: 'git+ssh://git@notgithub.com/user/foo#semver:^1.2.3'
     },
 
+    'git+ssh://git@notgithub.com:user/foo#semver:^1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      hosted: null,
+      saveSpec: 'git+ssh://git@notgithub.com:user/foo#semver:^1.2.3',
+      fetchSpec: 'git@notgithub.com:user/foo',
+      gitCommittish: null,
+      gitRange: '^1.2.3',
+      raw: 'git+ssh://git@notgithub.com:user/foo#semver:^1.2.3'
+    },
+
     'git+ssh://git@github.com/user/foo#semver:^1.2.3': {
       name: null,
       escapedName: null,
@@ -229,6 +241,17 @@ require('tap').test('basic', function (t) {
       gitCommittish: null,
       gitRange: '^1.2.3',
       raw: 'git+ssh://git@github.com/user/foo#semver:^1.2.3'
+    },
+
+    'git+ssh://git@github.com:user/foo#semver:^1.2.3': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://git@github.com/user/foo.git#semver:^1.2.3',
+      fetchSpec: 'ssh://git@github.com/user/foo.git',
+      gitCommittish: null,
+      gitRange: '^1.2.3',
+      raw: 'git+ssh://git@github.com:user/foo#semver:^1.2.3'
     },
 
     'user/foo#semver:^1.2.3': {
