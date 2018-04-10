@@ -88,6 +88,26 @@ require('tap').test('basic', function (t) {
       rawSpec: '=v1.2.3'
     },
 
+    'foo@npm:bar': {
+      name: 'foo',
+      escapedName: 'foo',
+      type: 'alias',
+      saveSpec: null,
+      fetchSpec: null,
+      raw: 'foo@npm:bar',
+      rawSpec: 'npm:bar',
+      subSpec: {
+        registry: true,
+        name: 'bar',
+        escapedName: 'bar',
+        type: 'tag',
+        raw: 'bar',
+        rawSpec: '',
+        saveSpec: null,
+        fetchSpec: 'latest'
+      }
+    },
+
     'git+ssh://git@notgithub.com/user/foo#1.2.3': {
       name: null,
       escapedName: null,
@@ -471,6 +491,14 @@ require('tap').test('basic', function (t) {
   t.throws(function () {
     npa.resolve('invalid/name', '1.0.0')
   }, 'Invalid names throw errrors')
+
+  t.throws(() => {
+    npa('foo@npm:bar@npm:baz')
+  }, 'nested aliases not supported')
+
+  t.throws(() => {
+    npa('foo@npm:foo/bar')
+  }, 'aliases only work for registry deps')
 
   t.has(npa.resolve('foo', '^1.2.3', '/test/a/b'), {type: 'range'}, 'npa.resolve')
   t.has(npa.resolve('foo', 'file:foo', '/test/a/b'), {type: 'directory', fetchSpec: '/test/a/b/foo'}, 'npa.resolve file:')

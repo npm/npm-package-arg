@@ -62,6 +62,8 @@ function resolve (name, spec, where, arg) {
 
   if (spec && (isFilespec.test(spec) || /^file:/i.test(spec))) {
     return fromFile(res, where)
+  } else if (spec && /^npm:/i.test(spec)) {
+    return fromAlias(res, where)
   }
   if (!HostedGit) HostedGit = require('hosted-git-info')
   const hosted = HostedGit.fromUrl(spec, {noGitPlus: true, noCommittish: true})
@@ -250,6 +252,22 @@ function fromURL (res) {
       throw unsupportedURLType(urlparse.protocol, res.rawSpec)
   }
 
+  return res
+}
+
+function fromAlias (res, where) {
+  const subSpec = npa(res.rawSpec.substr(4), where)
+  if (subSpec.type === 'alias') {
+    throw new Error('nested aliases not supported')
+  }
+  if (!subSpec.registry) {
+    throw new Error('aliases only work for registry deps')
+  }
+  res.subSpec = subSpec
+  res.registry = true
+  res.type = 'alias'
+  res.saveSpec = null
+  res.fetchSpec = null
   return res
 }
 
