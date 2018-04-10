@@ -460,7 +460,7 @@ require('tap').test('basic', function (t) {
     Object.keys(tests[arg]).forEach(function (key) {
       t.has(res[key], tests[arg][key], arg + ' [' + key + ']')
     })
-//    t.has(res, tests[arg], arg + ' matches expectations')
+    //    t.has(res, tests[arg], arg + ' matches expectations')
   })
 
   var objSpec = {name: 'foo', rawSpec: '1.2.3'}
