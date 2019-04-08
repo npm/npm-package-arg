@@ -247,6 +247,14 @@ function fromURL (res) {
       res.type = 'remote'
       res.fetchSpec = res.saveSpec
       break
+    case 'ipns:':
+      res.type = 'ipns'
+      res.fetchSpec = res.saveSpec
+      break
+    case 'ipfs:':
+      res.type = 'ipfs'
+      res.fetchSpec = res.saveSpec
+      break
 
     default:
       throw unsupportedURLType(urlparse.protocol, res.rawSpec)
