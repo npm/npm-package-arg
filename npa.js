@@ -101,6 +101,7 @@ function Result (opts) {
   this.name = undefined
   this.escapedName = undefined
   this.scope = undefined
+  this.nameWithoutScope = undefined
   this.rawSpec = opts.rawSpec == null ? '' : opts.rawSpec
   this.saveSpec = opts.saveSpec
   this.fetchSpec = opts.fetchSpec
@@ -118,7 +119,11 @@ Result.prototype.setName = function (name) {
     throw invalidPackageName(name, valid)
   }
   this.name = name
-  this.scope = name[0] === '@' ? name.slice(0, name.indexOf('/')) : undefined
+  if (name[0] === '@') {
+    const separator = name.indexOf('/')
+    this.scope = name.slice(0, separator)
+    this.nameWithoutScope = name.slice(separator + 1)
+  }
   // scoped packages in couch must have slash url-encoded, e.g. @foo%2Fbar
   this.escapedName = name.replace('/', '%2f')
   return this
