@@ -426,6 +426,15 @@ require('tap').test('basic', function (t) {
       raw: 'file:////path/to/foo'
     },
 
+    'http://insecure.com/foo.tgz': {
+      name: null,
+      escapedName: null,
+      type: 'remote',
+      saveSpec: 'http://insecure.com/foo.tgz',
+      fetchSpec: 'http://insecure.com/foo.tgz',
+      raw: 'http://insecure.com/foo.tgz'
+    },
+
     'https://server.com/foo.tgz': {
       name: null,
       escapedName: null,
@@ -466,8 +475,21 @@ require('tap').test('basic', function (t) {
   var objSpec = {name: 'foo', rawSpec: '1.2.3'}
   t.equal(npa(objSpec, '/whatnot').toString(), 'foo@1.2.3', 'parsed object')
 
+  objSpec.where = '/whatnot'
+  t.equal(npa(objSpec).toString(), 'foo@1.2.3', 'parsed object w/o where arg')
+
+  t.equal(npa('git+http://foo.com/bar').toString(),
+    'git+http://foo.com/bar', 'parsed git toString')
+
   objSpec = {raw: './foo/bar', where: '/here'}
   t.equal(npa(objSpec).fetchSpec, '/here/foo/bar', '`where` is reused')
+
+  var res = new npa.Result({name: 'bar', rawSpec: './foo/bar'})
+  t.equal(res.toString(), 'bar@./foo/bar', 'toString with only rawSpec')
+  res = new npa.Result({rawSpec: './x/y'})
+  t.equal(res.toString(), './x/y', 'toString with only rawSpec, no name')
+  res = new npa.Result({rawSpec: ''})
+  t.equal(res.toString(), '', 'toString with nothing')
 
   objSpec = {raw: './foo/bar', where: '/here'}
   t.equal(npa(objSpec, '/whatnot').fetchSpec, '/whatnot/foo/bar', '`where` arg overrides the one in the spec object')
