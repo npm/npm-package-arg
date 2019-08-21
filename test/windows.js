@@ -66,6 +66,21 @@ var cases = {
     rawSpec: '/foo/bar/baz',
     fetchSpec: '/foo/bar/baz',
     type: 'directory'
+  },
+  'foo@git+file://C:\\x\\y\\z': {
+    type: 'git',
+    registry: null,
+    where: null,
+    raw: 'foo@git+file://C:\\x\\y\\z',
+    name: 'foo',
+    escapedName: 'foo',
+    scope: null,
+    rawSpec: 'git+file://C:\\x\\y\\z',
+    saveSpec: 'git+file://C:\\x\\y\\z',
+    fetchSpec: 'file://c:/x/y/z',
+    gitRange: null,
+    gitCommittish: null,
+    hosted: null
   }
 }
 

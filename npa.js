@@ -238,6 +238,11 @@ function fromURL (res) {
       } else {
         setGitCommittish(res, urlparse.hash != null ? urlparse.hash.slice(1) : '')
         urlparse.protocol = urlparse.protocol.replace(/^git[+]/, '')
+        if (urlparse.protocol === 'file:' && /^git\+file:\/\/[a-z]:/i.test(res.rawSpec)) {
+          // keep the drive letter : on windows file paths
+          urlparse.host += ':'
+          urlparse.hostname += ':'
+        }
         delete urlparse.hash
         res.fetchSpec = url.format(urlparse)
       }
