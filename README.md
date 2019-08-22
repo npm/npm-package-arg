@@ -64,6 +64,9 @@ keys:
 * `scope` - If a name is something like `@org/module` then the `scope`
   field will be set to `@org`.  If it doesn't have a scoped name, then
   scope is `null`.
+* `scopeWithoutName` - If a name is something like `@org/module` then the `scopeWithoutName`
+  field will be set to `module`.  If it doesn't have a scoped name, then
+  scopeWithoutName is `null`.
 * `escapedName` - A version of `name` escaped to match the npm scoped packages
   specification. Mostly used when making requests against a registry. When
   `name` is `null`, `escapedName` will also be `null`.
