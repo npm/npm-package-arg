@@ -12,7 +12,7 @@
   "dependencies": {
     "hosted-git-info": "^2.7.1",
     "osenv": "^0.1.5",
-    "semver": "^5.6.0",
+    "semver": "^6.3.0",
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
