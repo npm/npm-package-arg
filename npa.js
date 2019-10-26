@@ -20,6 +20,7 @@ const isURL = /^(?:git[+])?[a-z]+:/i
 const isFilename = /[.](?:tgz|tar.gz|tar)$/i
 
 function npa (arg, where) {
+  if (!arg) return {}
   let name
   let spec
   if (typeof arg === 'object') {

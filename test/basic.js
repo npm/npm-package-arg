@@ -531,5 +531,7 @@ require('tap').test('basic', function (t) {
   t.has(npa.resolve('foo', 'file:abc'), {type: 'directory', raw: 'foo@file:abc'}, 'npa.resolve sets raw right')
   t.has(npa('./path/to/thing/package@1.2.3/'), {name: null, type: 'directory'}, 'npa with path in @ in it')
   t.has(npa('path/to/thing/package@1.2.3'), {name: null, type: 'directory'}, 'npa w/o leading or trailing slash')
+
+  t.deepEqual(npa(), {}, 'no argument is given')
   t.end()
 })
