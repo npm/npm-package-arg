@@ -40,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/npm/npm-package-arg/issues"
   },
-  "homepage": "https://github.com/npm/npm-package-arg"
+  "homepage": "https://github.com/npm/npm-package-arg",
+  "engines": {
+    "node": ">=10"
+  }
 }
