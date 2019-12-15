@@ -17,19 +17,15 @@
   },
   "devDependencies": {
     "standard": "^11.0.1",
-    "standard-version": "^4.4.0",
-    "tap": "^14.10.2",
-    "weallbehave": "^1.2.0",
-    "weallcontribute": "^1.0.8"
+    "standard-version": "^7.0.1",
+    "tap": "^14.10.2"
   },
   "scripts": {
     "prerelease": "npm t",
     "postrelease": "npm publish && git push --follow-tags",
-    "pretest": "standard",
+    "posttest": "standard",
     "release": "standard-version -s",
-    "test": "tap --100 -J --coverage test/*.js",
-    "update-coc": "weallbehave -o . && git add CODE_OF_CONDUCT.md && git commit -m 'docs(coc): updated CODE_OF_CONDUCT.md'",
-    "update-contrib": "weallcontribute -o . && git add CONTRIBUTING.md && git commit -m 'docs(contributing): updated CONTRIBUTING.md'"
+    "test": "tap --100 -J --coverage test/*.js"
   },
   "repository": {
     "type": "git",
