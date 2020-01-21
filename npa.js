@@ -92,6 +92,11 @@ function invalidTagName (name) {
   err.code = 'EINVALIDTAGNAME'
   return err
 }
+function invalidVersionRange (range) {
+  const err = new Error(`Invalid version range "${range}": Version may not contain spaces.`)
+  err.code = 'EINVALIDVERSIONRANGE'
+  return err
+}
 
 function Result (opts) {
   this.type = opts.type
@@ -290,6 +295,10 @@ function fromRegistry (res) {
   if (version) {
     res.type = 'version'
   } else if (range) {
+    if (!/^\S+$/g.test(spec)) {
+      throw invalidVersionRange(spec)
+    }
+
     res.type = 'range'
   } else {
     if (encodeURIComponent(spec) !== spec) {

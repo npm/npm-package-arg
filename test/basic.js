@@ -522,6 +522,10 @@ require('tap').test('basic', function (t) {
     npa('foo@npm:foo/bar')
   }, 'aliases only work for registry deps')
 
+  t.throws(() => {
+    npa('foo@npm:3.2. 1')
+  }, 'version may not contain spaces')
+
   t.has(npa.resolve('foo', '^1.2.3', '/test/a/b'), {type: 'range'}, 'npa.resolve')
   t.has(npa.resolve('foo', 'file:foo', '/test/a/b'), {type: 'directory', fetchSpec: '/test/a/b/foo'}, 'npa.resolve file:')
   t.has(npa.resolve('foo', '../foo/bar', '/test/a/b'), {type: 'directory'}, 'npa.resolve no protocol')
