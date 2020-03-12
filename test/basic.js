@@ -453,7 +453,7 @@ require('tap').test('basic', function (t) {
       raw: 'foo@latest'
     },
 
-    'foo': {
+    foo: {
       name: 'foo',
       escapedName: 'foo',
       type: 'tag',
@@ -472,7 +472,7 @@ require('tap').test('basic', function (t) {
     //    t.has(res, tests[arg], arg + ' matches expectations')
   })
 
-  var objSpec = {name: 'foo', rawSpec: '1.2.3'}
+  var objSpec = { name: 'foo', rawSpec: '1.2.3' }
   t.equal(npa(objSpec, '/whatnot').toString(), 'foo@1.2.3', 'parsed object')
 
   objSpec.where = '/whatnot'
@@ -481,17 +481,17 @@ require('tap').test('basic', function (t) {
   t.equal(npa('git+http://foo.com/bar').toString(),
     'git+http://foo.com/bar', 'parsed git toString')
 
-  objSpec = {raw: './foo/bar', where: '/here'}
+  objSpec = { raw: './foo/bar', where: '/here' }
   t.equal(npa(objSpec).fetchSpec, '/here/foo/bar', '`where` is reused')
 
-  var res = new npa.Result({name: 'bar', rawSpec: './foo/bar'})
+  var res = new npa.Result({ name: 'bar', rawSpec: './foo/bar' })
   t.equal(res.toString(), 'bar@./foo/bar', 'toString with only rawSpec')
-  res = new npa.Result({rawSpec: './x/y'})
+  res = new npa.Result({ rawSpec: './x/y' })
   t.equal(res.toString(), './x/y', 'toString with only rawSpec, no name')
-  res = new npa.Result({rawSpec: ''})
+  res = new npa.Result({ rawSpec: '' })
   t.equal(res.toString(), '', 'toString with nothing')
 
-  objSpec = {raw: './foo/bar', where: '/here'}
+  objSpec = { raw: './foo/bar', where: '/here' }
   t.equal(npa(objSpec, '/whatnot').fetchSpec, '/whatnot/foo/bar', '`where` arg overrides the one in the spec object')
 
   t.equal(npa(npa('foo@1.2.3')).toString(), 'foo@1.2.3', 'spec is passthrough')
@@ -522,14 +522,14 @@ require('tap').test('basic', function (t) {
     npa('foo@npm:foo/bar')
   }, 'aliases only work for registry deps')
 
-  t.has(npa.resolve('foo', '^1.2.3', '/test/a/b'), {type: 'range'}, 'npa.resolve')
-  t.has(npa.resolve('foo', 'file:foo', '/test/a/b'), {type: 'directory', fetchSpec: '/test/a/b/foo'}, 'npa.resolve file:')
-  t.has(npa.resolve('foo', '../foo/bar', '/test/a/b'), {type: 'directory'}, 'npa.resolve no protocol')
-  t.has(npa.resolve('foo', 'file:../foo/bar', '/test/a/b'), {type: 'directory'}, 'npa.resolve file protocol')
-  t.has(npa.resolve('foo', 'file:../foo/bar.tgz', '/test/a/b'), {type: 'file'}, 'npa.resolve file protocol w/ tgz')
-  t.has(npa.resolve(null, '4.0.0', '/test/a/b'), {type: 'version', name: null}, 'npa.resolve with no name')
-  t.has(npa.resolve('foo', 'file:abc'), {type: 'directory', raw: 'foo@file:abc'}, 'npa.resolve sets raw right')
-  t.has(npa('./path/to/thing/package@1.2.3/'), {name: null, type: 'directory'}, 'npa with path in @ in it')
-  t.has(npa('path/to/thing/package@1.2.3'), {name: null, type: 'directory'}, 'npa w/o leading or trailing slash')
+  t.has(npa.resolve('foo', '^1.2.3', '/test/a/b'), { type: 'range' }, 'npa.resolve')
+  t.has(npa.resolve('foo', 'file:foo', '/test/a/b'), { type: 'directory', fetchSpec: '/test/a/b/foo' }, 'npa.resolve file:')
+  t.has(npa.resolve('foo', '../foo/bar', '/test/a/b'), { type: 'directory' }, 'npa.resolve no protocol')
+  t.has(npa.resolve('foo', 'file:../foo/bar', '/test/a/b'), { type: 'directory' }, 'npa.resolve file protocol')
+  t.has(npa.resolve('foo', 'file:../foo/bar.tgz', '/test/a/b'), { type: 'file' }, 'npa.resolve file protocol w/ tgz')
+  t.has(npa.resolve(null, '4.0.0', '/test/a/b'), { type: 'version', name: null }, 'npa.resolve with no name')
+  t.has(npa.resolve('foo', 'file:abc'), { type: 'directory', raw: 'foo@file:abc' }, 'npa.resolve sets raw right')
+  t.has(npa('./path/to/thing/package@1.2.3/'), { name: null, type: 'directory' }, 'npa with path in @ in it')
+  t.has(npa('path/to/thing/package@1.2.3'), { name: null, type: 'directory' }, 'npa w/o leading or trailing slash')
   t.end()
 })

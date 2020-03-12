@@ -70,7 +70,7 @@ function resolve (name, spec, where, arg) {
     return fromAlias(res, where)
   }
   if (!HostedGit) HostedGit = require('hosted-git-info')
-  const hosted = HostedGit.fromUrl(spec, {noGitPlus: true, noCommittish: true})
+  const hosted = HostedGit.fromUrl(spec, { noGitPlus: true, noCommittish: true })
   if (hosted) {
     return fromHostedGit(res, hosted)
   } else if (spec && isURL.test(spec)) {
@@ -191,7 +191,7 @@ function fromFile (res, where) {
 function fromHostedGit (res, hosted) {
   res.type = 'git'
   res.hosted = hosted
-  res.saveSpec = hosted.toString({noGitPlus: false, noCommittish: false})
+  res.saveSpec = hosted.toString({ noGitPlus: false, noCommittish: false })
   res.fetchSpec = hosted.getDefaultRepresentation() === 'shortcut' ? null : hosted.toString()
   return setGitCommittish(res, hosted.committish)
 }
