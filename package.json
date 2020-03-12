@@ -15,16 +15,16 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
-    "standard": "^11.0.1",
-    "standard-version": "^7.0.1",
+    "standard": "^14.3.1",
     "tap": "^14.10.2"
   },
   "scripts": {
-    "prerelease": "npm t",
-    "postrelease": "npm publish && git push --follow-tags",
-    "posttest": "standard",
-    "release": "standard-version -s",
-    "test": "tap --100 -J --coverage test/*.js"
+    "preversion": "npm test",
+    "postversion": "npm publish",
+    "prepublishOnly": "git push origin --follow-tags",
+    "lint": "standard",
+    "test": "tap",
+    "posttest": "npm run lint"
   },
   "repository": {
     "type": "git",
