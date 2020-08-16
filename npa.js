@@ -122,6 +122,7 @@ Result.prototype.setName = function (name) {
   }
   this.name = name
   this.scope = name[0] === '@' ? name.slice(0, name.indexOf('/')) : undefined
+  this.subname = name[0] === '@' ? name.slice(name.indexOf('/') + 1) : undefined
   // scoped packages in couch must have slash url-encoded, e.g. @foo%2Fbar
   this.escapedName = name.replace('/', '%2f')
   return this
