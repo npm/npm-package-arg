@@ -1,9 +1,9 @@
 global.FAKE_WINDOWS = true
 
-import {npa} from '../lib/npm-package-arg.js';
-import tap from 'tap';
+var npa = require('../../lib/cjs/')
+var test = require('tap').test
 
-const cases = {
+var cases = {
   'C:\\x\\y\\z': {
     raw: 'C:\\x\\y\\z',
     scope: null,
@@ -82,12 +82,12 @@ const cases = {
     gitCommittish: null,
     hosted: null
   }
-};
+}
 
-tap.test('parse a windows path', t => {
-  Object.keys(cases).forEach(c => {
-    const expect = cases[c];
-    const actual = npa(c);
+test('parse a windows path', function (t) {
+  Object.keys(cases).forEach(function (c) {
+    var expect = cases[c]
+    var actual = npa(c)
     t.has(actual, expect, c)
   })
   t.end()

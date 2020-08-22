@@ -1,9 +1,10 @@
-import tap from 'tap';
-import {npa} from '../lib/npm-package-arg.js';
+'use strict'
+var test = require('tap').test
+var npa = require('../../lib/cjs/')
 
-tap.test('realize-package-specifier', t => {
+test('realize-package-specifier', function (t) {
   t.plan(6)
-  let result;
+  var result
   result = npa('a.tar.gz', '/test/a/b')
   t.is(result.type, 'file', 'local tarball')
   result = npa('d', '/test/a/b')
@@ -17,9 +18,9 @@ tap.test('realize-package-specifier', t => {
   result = npa('file:./d', '/test/a/b')
   t.is(result.type, 'directory', 'no local directory, specified with a file URL')
 })
-tap.test('named realize-package-specifier', t => {
+test('named realize-package-specifier', function (t) {
   t.plan(10)
-  let result;
+  var result
   result = npa('a@a.tar.gz', '/test/a/b')
   t.is(result.type, 'file', 'named local tarball')
   result = npa('d@d', '/test/a/b')

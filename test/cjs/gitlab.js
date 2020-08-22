@@ -1,10 +1,9 @@
-import {npa, Result} from '../lib/npm-package-arg.js';
-import tap from 'tap'
+var npa = require('../../lib/cjs/')
 
-tap.test('basic', t => {
+require('tap').test('basic', function (t) {
   t.setMaxListeners(999)
 
-  const tests = {
+  var tests = {
     'gitlab:user/foo-js': {
       name: null,
       type: 'git',
@@ -60,12 +59,12 @@ tap.test('basic', t => {
       rawSpec: 'git+ssh://gitlab.com/user/foo',
       raw: '@foo/bar@git+ssh://gitlab.com/user/foo'
     }
-  };
+  }
 
-  Object.keys(tests).forEach(arg => {
-    const res = npa(arg);
-    t.ok(res instanceof Result, `${arg} is a result`)
-    t.has(JSON.parse(JSON.stringify(res)), tests[arg], `${arg} matches expectations`)
+  Object.keys(tests).forEach(function (arg) {
+    var res = npa(arg)
+    t.ok(res instanceof npa.Result, arg + ' is a result')
+    t.has(JSON.parse(JSON.stringify(res)), tests[arg], arg + ' matches expectations')
   })
 
   t.end()

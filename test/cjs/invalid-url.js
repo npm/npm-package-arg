@@ -1,6 +1,5 @@
-import {npa} from '../lib/npm-package-arg.js';
-import t from 'tap';
-
+var npa = require('../../lib/cjs/')
+const t = require('tap')
 t.throws(() => npa('foo@gopher://goodluckwiththat'), {
   code: 'EUNSUPPORTEDPROTOCOL'
 })

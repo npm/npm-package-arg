@@ -1,15 +1,11 @@
-import {npa, Result, resolve} from '../lib/npm-package-arg.js';
-import * as path from 'path';
-import { homedir } from 'os';
-import tap from 'tap'
-import {fileURLToPath} from 'url'
+var npa = require('../../lib/cjs/')
+var path = require('path')
+var os = require('os')
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-
-tap.test('basic', t => {
+require('tap').test('basic', function (t) {
   t.setMaxListeners(999)
 
-  const tests = {
+  var tests = {
     'foo@1.2': {
       name: 'foo',
       escapedName: 'foo',
@@ -366,7 +362,7 @@ tap.test('basic', t => {
       escapedName: null,
       type: 'directory',
       saveSpec: 'file:~/path/to/foo',
-      fetchSpec: `${homedir().replace(/\\/g, '/')}/path/to/foo`,
+      fetchSpec: os.homedir().replace(/\\/g, '/') + '/path/to/foo',
       raw: 'file:~/path/to/foo'
     },
 
@@ -375,7 +371,7 @@ tap.test('basic', t => {
       escapedName: null,
       type: 'directory',
       saveSpec: 'file:~/path/to/foo',
-      fetchSpec: `${homedir().replace(/\\/g, '/')}/path/to/foo`,
+      fetchSpec: os.homedir().replace(/\\/g, '/') + '/path/to/foo',
       raw: 'file:/~/path/to/foo'
     },
 
@@ -465,18 +461,18 @@ tap.test('basic', t => {
       fetchSpec: 'latest',
       raw: 'foo'
     }
-  };
+  }
 
-  Object.keys(tests).forEach(arg => {
-    const res = npa(arg, '/test/a/b');
-    t.ok(res instanceof Result, `${arg} is a result`)
-    Object.keys(tests[arg]).forEach(key => {
-      t.has(res[key], tests[arg][key], `${arg} [${key}]`)
+  Object.keys(tests).forEach(function (arg) {
+    var res = npa(arg, '/test/a/b')
+    t.ok(res instanceof npa.Result, arg + ' is a result')
+    Object.keys(tests[arg]).forEach(function (key) {
+      t.has(res[key], tests[arg][key], arg + ' [' + key + ']')
     })
     //    t.has(res, tests[arg], arg + ' matches expectations')
   })
 
-  let objSpec = { name: 'foo', rawSpec: '1.2.3' };
+  var objSpec = { name: 'foo', rawSpec: '1.2.3' }
   t.equal(npa(objSpec, '/whatnot').toString(), 'foo@1.2.3', 'parsed object')
 
   objSpec.where = '/whatnot'
@@ -488,11 +484,11 @@ tap.test('basic', t => {
   objSpec = { raw: './foo/bar', where: '/here' }
   t.equal(npa(objSpec).fetchSpec, '/here/foo/bar', '`where` is reused')
 
-  let res = new Result({ name: 'bar', rawSpec: './foo/bar' });
+  var res = new npa.Result({ name: 'bar', rawSpec: './foo/bar' })
   t.equal(res.toString(), 'bar@./foo/bar', 'toString with only rawSpec')
-  res = new Result({ rawSpec: './x/y' })
+  res = new npa.Result({ rawSpec: './x/y' })
   t.equal(res.toString(), './x/y', 'toString with only rawSpec, no name')
-  res = new Result({ rawSpec: '' })
+  res = new npa.Result({ rawSpec: '' })
   t.equal(res.toString(), '', 'toString with nothing')
 
   objSpec = { raw: './foo/bar', where: '/here' }
@@ -500,22 +496,22 @@ tap.test('basic', t => {
 
   t.equal(npa(npa('foo@1.2.3')).toString(), 'foo@1.2.3', 'spec is passthrough')
 
-  const parsedSpec = npa('./foo', './here');
+  var parsedSpec = npa('./foo', './here')
   t.equal(npa(parsedSpec), parsedSpec, 'reused if no where')
   t.equal(npa(parsedSpec, './here'), parsedSpec, 'reused if where matches')
   t.notEqual(npa(parsedSpec, './there'), parsedSpec, 'new instance if where does not match')
   t.notEqual(npa(parsedSpec, './there').fetchSpec, '/there/foo', 'new instance has new where')
   // Completely unreasonable invalid garbage throws an error
-  t.throws(() => {
+  t.throws(function () {
     t.comment(npa('this is not a \0 valid package name or url'))
   })
 
-  t.throws(() => {
+  t.throws(function () {
     npa('gopher://yea right')
   }, 'Unsupported URL Type: gopher://yea right')
 
-  t.throws(() => {
-    resolve('invalid/name', '1.0.0')
+  t.throws(function () {
+    npa.resolve('invalid/name', '1.0.0')
   }, 'Invalid names throw errrors')
 
   t.throws(() => {
@@ -526,13 +522,13 @@ tap.test('basic', t => {
     npa('foo@npm:foo/bar')
   }, 'aliases only work for registry deps')
 
-  t.has(resolve('foo', '^1.2.3', '/test/a/b'), { type: 'range' }, 'resolve')
-  t.has(resolve('foo', 'file:foo', '/test/a/b'), { type: 'directory', fetchSpec: '/test/a/b/foo' }, 'resolve file:')
-  t.has(resolve('foo', '../foo/bar', '/test/a/b'), { type: 'directory' }, 'resolve no protocol')
-  t.has(resolve('foo', 'file:../foo/bar', '/test/a/b'), { type: 'directory' }, 'resolve file protocol')
-  t.has(resolve('foo', 'file:../foo/bar.tgz', '/test/a/b'), { type: 'file' }, 'resolve file protocol w/ tgz')
-  t.has(resolve(null, '4.0.0', '/test/a/b'), { type: 'version', name: null }, 'resolve with no name')
-  t.has(resolve('foo', 'file:abc'), { type: 'directory', raw: 'foo@file:abc' }, 'resolve sets raw right')
+  t.has(npa.resolve('foo', '^1.2.3', '/test/a/b'), { type: 'range' }, 'npa.resolve')
+  t.has(npa.resolve('foo', 'file:foo', '/test/a/b'), { type: 'directory', fetchSpec: '/test/a/b/foo' }, 'npa.resolve file:')
+  t.has(npa.resolve('foo', '../foo/bar', '/test/a/b'), { type: 'directory' }, 'npa.resolve no protocol')
+  t.has(npa.resolve('foo', 'file:../foo/bar', '/test/a/b'), { type: 'directory' }, 'npa.resolve file protocol')
+  t.has(npa.resolve('foo', 'file:../foo/bar.tgz', '/test/a/b'), { type: 'file' }, 'npa.resolve file protocol w/ tgz')
+  t.has(npa.resolve(null, '4.0.0', '/test/a/b'), { type: 'version', name: null }, 'npa.resolve with no name')
+  t.has(npa.resolve('foo', 'file:abc'), { type: 'directory', raw: 'foo@file:abc' }, 'npa.resolve sets raw right')
   t.has(npa('./path/to/thing/package@1.2.3/'), { name: null, type: 'directory' }, 'npa with path in @ in it')
   t.has(npa('path/to/thing/package@1.2.3'), { name: null, type: 'directory' }, 'npa w/o leading or trailing slash')
   t.end()

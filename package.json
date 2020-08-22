@@ -1,40 +1,33 @@
 {
-  "name": "npm-package-arg",
   "version": "8.0.1",
-  "description": "Parse the things that can be arguments to `npm install`",
-  "main": "npa.js",
-  "directories": {
-    "test": "test"
-  },
-  "files": [
-    "npa.js"
-  ],
+  "license": "ISC",
+  "files": ["lib"],
   "dependencies": {
     "hosted-git-info": "^3.0.2",
     "semver": "^7.0.0",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^3.0.0",
+    "@types/node": "^14.6.0"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "tap ./test/",
+    "build": "ascjs --no-default lib/npm-package-arg.js lib/cjs/npm-package-arg.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/npm-package-arg.js",
+      "require": "./lib/cjs/index.js"
+    }
   },
   "devDependencies": {
-    "tap": "^14.10.2"
+    "tap": "^14.10.2",
+    "ascjs": "^4.0.1"
   },
-  "scripts": {
-    "preversion": "npm test",
-    "postversion": "npm publish",
-    "prepublishOnly": "git push origin --follow-tags",
-    "test": "tap",
-    "snap": "tap"
+  "tap": {
+    "esm": false
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/npm/npm-package-arg"
-  },
-  "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/npm/npm-package-arg/issues"
-  },
-  "homepage": "https://github.com/npm/npm-package-arg",
   "engines": {
     "node": ">=10"
-  }
+  },
+  "name": "npm-package-arg"
 }
