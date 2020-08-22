@@ -9,6 +9,7 @@
     "@types/node": "^14.6.0"
   },
   "type": "module",
+  "types": "./@types/index.d.ts",
   "scripts": {
     "test": "tap ./test/",
     "build": "ascjs --no-default lib/npm-package-arg.js lib/cjs/npm-package-arg.js"
