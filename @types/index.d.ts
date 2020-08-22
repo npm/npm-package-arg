@@ -68,7 +68,7 @@ FileResult |
 HostedGitResult |
 URLResult |
 AliasResult |
-RegistryResult;;
+RegistryResult
 
 export class Result {
     constructor(opts: ResultOpts);
