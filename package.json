@@ -1,18 +1,26 @@
 {
-  "version": "8.0.1",
-  "license": "ISC",
-  "files": ["lib"],
+  "name": "npm-package-arg",
+  "version": "9.0.0",
+  "description": "Parse the things that can be arguments to `npm install`",
+  "main": "lib/cjs/index.js",
+  "type": "module",
+  "types": "./@types/index.d.ts",
+  "directories": {
+    "test": "test",
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "hosted-git-info": "^3.0.2",
     "semver": "^7.0.0",
-    "validate-npm-package-name": "^3.0.0",
-    "@types/node": "^14.6.0"
+    "validate-npm-package-name": "^3.0.0"
   },
-  "type": "module",
-  "types": "./@types/index.d.ts",
-  "scripts": {
-    "test": "tap ./test/",
-    "build": "ascjs --no-default lib/npm-package-arg.js lib/cjs/npm-package-arg.js"
+  "devDependencies": {
+    "tap": "^14.10.2",
+    "@types/node": "^14.6.0",
+    "ascjs": "^4.0.1"
   },
   "exports": {
     ".": {
@@ -20,15 +28,28 @@
       "require": "./lib/cjs/index.js"
     }
   },
-  "devDependencies": {
-    "tap": "^14.10.2",
-    "ascjs": "^4.0.1"
-  },
   "tap": {
     "esm": false
   },
+  "scripts": {
+    "preversion": "npm test",
+    "postversion": "npm publish",
+    "prepublishOnly": "git push origin --follow-tags",
+    "test": "tap ./test/",
+    "snap": "tap ./test/",
+    "build": "ascjs --no-default lib/npm-package-arg.js lib/cjs/npm-package-arg.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/npm-package-arg"
+  },
+  "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npm/npm-package-arg/issues"
+  },
+  "homepage": "https://github.com/npm/npm-package-arg",
   "engines": {
     "node": ">=10"
-  },
-  "name": "npm-package-arg"
+  }
 }
