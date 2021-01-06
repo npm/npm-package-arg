@@ -375,6 +375,24 @@ require('tap').test('basic', function (t) {
       raw: 'file:/~/path/to/foo'
     },
 
+    'file:/~path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:/~path/to/foo',
+      fetchSpec: '/~path/to/foo',
+      raw: 'file:/~path/to/foo'
+    },
+
+    'file:/.path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:/.path/to/foo',
+      fetchSpec: '/.path/to/foo',
+      raw: 'file:/.path/to/foo'
+    },
+
     'file:../path/to/foo': {
       name: null,
       escapedName: null,
