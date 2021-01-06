@@ -175,7 +175,7 @@ function fromFile (res, where) {
 
   const spec = res.rawSpec.replace(/\\/g, '/')
     .replace(/^file:[/]*([A-Za-z]:)/, '$1') // drive name paths on windows
-    .replace(/^file:(?:[/]*([~./]))?/, '$1')
+    .replace(/^file:(?:[/]*(~\/|\.*\/|[/]))?/, '$1')
   if (/^~[/]/.test(spec)) {
     // this is needed for windows and for file:~/foo/bar
     res.fetchSpec = resolvePath(homedir(), spec.slice(2))
