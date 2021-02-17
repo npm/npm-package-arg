@@ -2,6 +2,14 @@ var npa = require('../npa.js')
 var path = require('path')
 var os = require('os')
 
+const normalizePath = p => p && p.replace(/^[a-zA-Z]:/, '').replace(/\\/g, '/')
+
+const normalizePaths = spec => {
+  spec.saveSpec = normalizePath(spec.saveSpec)
+  spec.fetchSpec = normalizePath(spec.fetchSpec)
+  return spec
+}
+
 require('tap').test('basic', function (t) {
   t.setMaxListeners(999)
 
@@ -314,12 +322,32 @@ require('tap').test('basic', function (t) {
       raw: '@foo/bar@git+ssh://notgithub.com/user/foo'
     },
 
+    'git@npm:not-git': {
+      name: 'git',
+      type: 'alias',
+      subSpec: {
+        type: 'tag',
+        registry: true,
+        name: 'not-git',
+        fetchSpec: 'latest'
+      },
+      raw: 'git@npm:not-git'
+    },
+
+    'not-git@hostname.com:some/repo': {
+      name: null,
+      type: 'git',
+      saveSpec: 'git+ssh://not-git@hostname.com:some/repo',
+      fetchSpec: 'not-git@hostname.com:some/repo',
+      raw: 'not-git@hostname.com:some/repo'
+    },
+
     '/path/to/foo': {
       name: null,
       escapedName: null,
       type: 'directory',
       saveSpec: 'file:/path/to/foo',
-      fetchSpec: path.resolve(__dirname, '/path/to/foo'),
+      fetchSpec: '/path/to/foo',
       raw: '/path/to/foo'
     },
 
@@ -328,7 +356,7 @@ require('tap').test('basic', function (t) {
       escapedName: null,
       type: 'file',
       saveSpec: 'file:/path/to/foo.tar',
-      fetchSpec: path.resolve(__dirname, '/path/to/foo.tar'),
+      fetchSpec: '/path/to/foo.tar',
       raw: '/path/to/foo.tar'
     },
 
@@ -337,7 +365,7 @@ require('tap').test('basic', function (t) {
       escapedName: null,
       type: 'file',
       saveSpec: 'file:/path/to/foo.tgz',
-      fetchSpec: path.resolve(__dirname, '/path/to/foo.tgz'),
+      fetchSpec: '/path/to/foo.tgz',
       raw: '/path/to/foo.tgz'
     },
     'file:path/to/foo': {
@@ -362,7 +390,7 @@ require('tap').test('basic', function (t) {
       escapedName: null,
       type: 'directory',
       saveSpec: 'file:~/path/to/foo',
-      fetchSpec: os.homedir().replace(/\\/g, '/') + '/path/to/foo',
+      fetchSpec: normalizePath(path.join(os.homedir(), '/path/to/foo')),
       raw: 'file:~/path/to/foo'
     },
 
@@ -371,7 +399,7 @@ require('tap').test('basic', function (t) {
       escapedName: null,
       type: 'directory',
       saveSpec: 'file:~/path/to/foo',
-      fetchSpec: os.homedir().replace(/\\/g, '/') + '/path/to/foo',
+      fetchSpec: normalizePath(path.join(os.homedir(), '/path/to/foo')),
       raw: 'file:/~/path/to/foo'
     },
 
@@ -464,7 +492,7 @@ require('tap').test('basic', function (t) {
   }
 
   Object.keys(tests).forEach(function (arg) {
-    var res = npa(arg, '/test/a/b')
+    var res = normalizePaths(npa(arg, '/test/a/b'))
     t.ok(res instanceof npa.Result, arg + ' is a result')
     Object.keys(tests[arg]).forEach(function (key) {
       t.has(res[key], tests[arg][key], arg + ' [' + key + ']')
@@ -482,17 +510,17 @@ require('tap').test('basic', function (t) {
     'git+http://foo.com/bar', 'parsed git toString')
 
   objSpec = { raw: './foo/bar', where: '/here' }
-  t.equal(npa(objSpec).fetchSpec, '/here/foo/bar', '`where` is reused')
+  t.equal(normalizePath(npa(objSpec).fetchSpec), '/here/foo/bar', '`where` is reused')
 
   var res = new npa.Result({ name: 'bar', rawSpec: './foo/bar' })
   t.equal(res.toString(), 'bar@./foo/bar', 'toString with only rawSpec')
   res = new npa.Result({ rawSpec: './x/y' })
-  t.equal(res.toString(), './x/y', 'toString with only rawSpec, no name')
+  t.equal(normalizePath(res.toString()), './x/y', 'toString with only rawSpec, no name')
   res = new npa.Result({ rawSpec: '' })
   t.equal(res.toString(), '', 'toString with nothing')
 
   objSpec = { raw: './foo/bar', where: '/here' }
-  t.equal(npa(objSpec, '/whatnot').fetchSpec, '/whatnot/foo/bar', '`where` arg overrides the one in the spec object')
+  t.equal(normalizePath(npa(objSpec, '/whatnot').fetchSpec), '/whatnot/foo/bar', '`where` arg overrides the one in the spec object')
 
   t.equal(npa(npa('foo@1.2.3')).toString(), 'foo@1.2.3', 'spec is passthrough')
 
@@ -523,7 +551,7 @@ require('tap').test('basic', function (t) {
   }, 'aliases only work for registry deps')
 
   t.has(npa.resolve('foo', '^1.2.3', '/test/a/b'), { type: 'range' }, 'npa.resolve')
-  t.has(npa.resolve('foo', 'file:foo', '/test/a/b'), { type: 'directory', fetchSpec: '/test/a/b/foo' }, 'npa.resolve file:')
+  t.has(normalizePaths(npa.resolve('foo', 'file:foo', '/test/a/b')), { type: 'directory', fetchSpec: '/test/a/b/foo' }, 'npa.resolve file:')
   t.has(npa.resolve('foo', '../foo/bar', '/test/a/b'), { type: 'directory' }, 'npa.resolve no protocol')
   t.has(npa.resolve('foo', 'file:../foo/bar', '/test/a/b'), { type: 'directory' }, 'npa.resolve file protocol')
   t.has(npa.resolve('foo', 'file:../foo/bar.tgz', '/test/a/b'), { type: 'file' }, 'npa.resolve file protocol w/ tgz')
