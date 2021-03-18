@@ -92,7 +92,7 @@ require('tap').test('basic', function (t) {
     'git@github.com:12345/foo': {
       name: undefined,
       type: 'git',
-      saveSpec: 'git+ssh://git@github.com/12345/foo',
+      saveSpec: 'git+ssh://git@github.com:12345/foo',
       raw: 'git@github.com:12345/foo'
     }
   }
