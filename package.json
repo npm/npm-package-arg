@@ -15,7 +15,7 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
-    "tap": "^14.10.2"
+    "tap": "^14.11.0"
   },
   "scripts": {
     "preversion": "npm test",
