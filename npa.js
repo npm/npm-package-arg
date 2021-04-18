@@ -48,8 +48,10 @@ function npa (arg, where) {
     const valid = validatePackageName(arg)
     if (valid.validForOldPackages) {
       name = arg
-    } else {
+    } else if (valid.validForNewPackages) {
       spec = arg
+    } else {
+      throw invalidPackageName(arg, valid)
     }
   }
   return resolve(name, spec, where, arg)

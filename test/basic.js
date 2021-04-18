@@ -542,6 +542,10 @@ require('tap').test('basic', function (t) {
     npa.resolve('invalid/name', '1.0.0')
   }, 'Invalid names throw errrors')
 
+  t.throws(function () {
+    npa('')
+  }, 'Empty names throw errrors')
+
   t.throws(() => {
     npa('foo@npm:bar@npm:baz')
   }, 'nested aliases not supported')
