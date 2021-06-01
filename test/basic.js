@@ -21,7 +21,7 @@ require('tap').test('basic', function (t) {
       saveSpec: null,
       fetchSpec: '1.2',
       raw: 'foo@1.2',
-      rawSpec: '1.2'
+      rawSpec: '1.2',
     },
 
     'foo@~1.2': {
@@ -31,7 +31,7 @@ require('tap').test('basic', function (t) {
       saveSpec: null,
       fetchSpec: '~1.2',
       raw: 'foo@~1.2',
-      rawSpec: '~1.2'
+      rawSpec: '~1.2',
     },
 
     '@foo/bar': {
@@ -42,7 +42,7 @@ require('tap').test('basic', function (t) {
       rawSpec: '',
       saveSpec: null,
       fetchSpec: 'latest',
-      type: 'tag'
+      type: 'tag',
     },
 
     '@foo/bar@': {
@@ -53,7 +53,7 @@ require('tap').test('basic', function (t) {
       rawSpec: '',
       saveSpec: null,
       fetchSpec: 'latest',
-      type: 'tag'
+      type: 'tag',
     },
 
     '@foo/bar@baz': {
@@ -64,7 +64,7 @@ require('tap').test('basic', function (t) {
       rawSpec: 'baz',
       saveSpec: null,
       fetchSpec: 'baz',
-      type: 'tag'
+      type: 'tag',
     },
 
     '@f fo o al/ a d s ;f': {
@@ -74,7 +74,7 @@ require('tap').test('basic', function (t) {
       rawSpec: '@f fo o al/ a d s ;f',
       saveSpec: 'file:@f fo o al/ a d s ;f',
       fetchSpec: '/test/a/b/@f fo o al/ a d s ;f',
-      type: 'directory'
+      type: 'directory',
     },
 
     'foo@1.2.3': {
@@ -83,7 +83,7 @@ require('tap').test('basic', function (t) {
       type: 'version',
       saveSpec: null,
       fetchSpec: '1.2.3',
-      raw: 'foo@1.2.3'
+      raw: 'foo@1.2.3',
     },
 
     'foo@=v1.2.3': {
@@ -93,7 +93,7 @@ require('tap').test('basic', function (t) {
       saveSpec: null,
       fetchSpec: '=v1.2.3',
       raw: 'foo@=v1.2.3',
-      rawSpec: '=v1.2.3'
+      rawSpec: '=v1.2.3',
     },
 
     'foo@npm:bar': {
@@ -112,8 +112,8 @@ require('tap').test('basic', function (t) {
         raw: 'bar',
         rawSpec: '',
         saveSpec: null,
-        fetchSpec: 'latest'
-      }
+        fetchSpec: 'latest',
+      },
     },
 
     'git+ssh://git@notgithub.com/user/foo#1.2.3': {
@@ -123,7 +123,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://git@notgithub.com/user/foo#1.2.3',
       fetchSpec: 'ssh://git@notgithub.com/user/foo',
       gitCommittish: '1.2.3',
-      raw: 'git+ssh://git@notgithub.com/user/foo#1.2.3'
+      raw: 'git+ssh://git@notgithub.com/user/foo#1.2.3',
     },
 
     'git+ssh://git@notgithub.com/user/foo': {
@@ -133,7 +133,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://git@notgithub.com/user/foo',
       fetchSpec: 'ssh://git@notgithub.com/user/foo',
       gitCommittish: null,
-      raw: 'git+ssh://git@notgithub.com/user/foo'
+      raw: 'git+ssh://git@notgithub.com/user/foo',
     },
 
     'git+ssh://git@notgithub.com:user/foo': {
@@ -143,7 +143,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://git@notgithub.com:user/foo',
       fetchSpec: 'git@notgithub.com:user/foo',
       gitCommittish: null,
-      raw: 'git+ssh://git@notgithub.com:user/foo'
+      raw: 'git+ssh://git@notgithub.com:user/foo',
     },
 
     'git+ssh://mydomain.com:foo': {
@@ -153,7 +153,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://mydomain.com:foo',
       fetchSpec: 'mydomain.com:foo',
       gitCommittish: null,
-      raw: 'git+ssh://mydomain.com:foo'
+      raw: 'git+ssh://mydomain.com:foo',
     },
 
     'git+ssh://git@notgithub.com:user/foo#1.2.3': {
@@ -163,7 +163,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://git@notgithub.com:user/foo#1.2.3',
       fetchSpec: 'git@notgithub.com:user/foo',
       gitCommittish: '1.2.3',
-      raw: 'git+ssh://git@notgithub.com:user/foo#1.2.3'
+      raw: 'git+ssh://git@notgithub.com:user/foo#1.2.3',
     },
 
     'git+ssh://mydomain.com:foo#1.2.3': {
@@ -173,7 +173,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://mydomain.com:foo#1.2.3',
       fetchSpec: 'mydomain.com:foo',
       gitCommittish: '1.2.3',
-      raw: 'git+ssh://mydomain.com:foo#1.2.3'
+      raw: 'git+ssh://mydomain.com:foo#1.2.3',
     },
 
     'git+ssh://mydomain.com:foo/bar#1.2.3': {
@@ -183,7 +183,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://mydomain.com:foo/bar#1.2.3',
       fetchSpec: 'mydomain.com:foo/bar',
       gitCommittish: '1.2.3',
-      raw: 'git+ssh://mydomain.com:foo/bar#1.2.3'
+      raw: 'git+ssh://mydomain.com:foo/bar#1.2.3',
     },
 
     'git+ssh://mydomain.com:1234#1.2.3': {
@@ -193,7 +193,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://mydomain.com:1234#1.2.3',
       fetchSpec: 'ssh://mydomain.com:1234',
       gitCommittish: '1.2.3',
-      raw: 'git+ssh://mydomain.com:1234#1.2.3'
+      raw: 'git+ssh://mydomain.com:1234#1.2.3',
     },
 
     'git+ssh://mydomain.com:1234/hey#1.2.3': {
@@ -203,7 +203,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://mydomain.com:1234/hey#1.2.3',
       fetchSpec: 'ssh://mydomain.com:1234/hey',
       gitCommittish: '1.2.3',
-      raw: 'git+ssh://mydomain.com:1234/hey#1.2.3'
+      raw: 'git+ssh://mydomain.com:1234/hey#1.2.3',
     },
 
     'git+ssh://mydomain.com:1234/hey': {
@@ -213,7 +213,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://mydomain.com:1234/hey',
       fetchSpec: 'ssh://mydomain.com:1234/hey',
       gitCommittish: null,
-      raw: 'git+ssh://mydomain.com:1234/hey'
+      raw: 'git+ssh://mydomain.com:1234/hey',
     },
 
     'git+ssh://username:password@mydomain.com:1234/hey#1.2.3': {
@@ -223,7 +223,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://username:password@mydomain.com:1234/hey#1.2.3',
       fetchSpec: 'ssh://username:password@mydomain.com:1234/hey',
       gitCommittish: '1.2.3',
-      raw: 'git+ssh://username:password@mydomain.com:1234/hey#1.2.3'
+      raw: 'git+ssh://username:password@mydomain.com:1234/hey#1.2.3',
     },
 
     'git+ssh://git@github.com/user/foo#1.2.3': {
@@ -233,7 +233,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://git@github.com/user/foo.git#1.2.3',
       fetchSpec: 'ssh://git@github.com/user/foo.git',
       gitCommittish: '1.2.3',
-      raw: 'git+ssh://git@github.com/user/foo#1.2.3'
+      raw: 'git+ssh://git@github.com/user/foo#1.2.3',
     },
 
     'git+ssh://git@notgithub.com/user/foo#semver:^1.2.3': {
@@ -245,7 +245,7 @@ require('tap').test('basic', function (t) {
       fetchSpec: 'ssh://git@notgithub.com/user/foo',
       gitCommittish: null,
       gitRange: '^1.2.3',
-      raw: 'git+ssh://git@notgithub.com/user/foo#semver:^1.2.3'
+      raw: 'git+ssh://git@notgithub.com/user/foo#semver:^1.2.3',
     },
 
     'git+ssh://git@notgithub.com:user/foo#semver:^1.2.3': {
@@ -257,7 +257,7 @@ require('tap').test('basic', function (t) {
       fetchSpec: 'git@notgithub.com:user/foo',
       gitCommittish: null,
       gitRange: '^1.2.3',
-      raw: 'git+ssh://git@notgithub.com:user/foo#semver:^1.2.3'
+      raw: 'git+ssh://git@notgithub.com:user/foo#semver:^1.2.3',
     },
 
     'git+ssh://git@github.com/user/foo#semver:^1.2.3': {
@@ -268,7 +268,7 @@ require('tap').test('basic', function (t) {
       fetchSpec: 'ssh://git@github.com/user/foo.git',
       gitCommittish: null,
       gitRange: '^1.2.3',
-      raw: 'git+ssh://git@github.com/user/foo#semver:^1.2.3'
+      raw: 'git+ssh://git@github.com/user/foo#semver:^1.2.3',
     },
 
     'git+ssh://git@github.com:user/foo#semver:^1.2.3': {
@@ -279,7 +279,7 @@ require('tap').test('basic', function (t) {
       fetchSpec: 'ssh://git@github.com/user/foo.git',
       gitCommittish: null,
       gitRange: '^1.2.3',
-      raw: 'git+ssh://git@github.com:user/foo#semver:^1.2.3'
+      raw: 'git+ssh://git@github.com:user/foo#semver:^1.2.3',
     },
 
     'user/foo#semver:^1.2.3': {
@@ -290,7 +290,7 @@ require('tap').test('basic', function (t) {
       fetchSpec: null,
       gitCommittish: null,
       gitRange: '^1.2.3',
-      raw: 'user/foo#semver:^1.2.3'
+      raw: 'user/foo#semver:^1.2.3',
     },
 
     'git+file://path/to/repo#1.2.3': {
@@ -300,7 +300,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+file://path/to/repo#1.2.3',
       fetchSpec: 'file://path/to/repo',
       gitCommittish: '1.2.3',
-      raw: 'git+file://path/to/repo#1.2.3'
+      raw: 'git+file://path/to/repo#1.2.3',
     },
 
     'git://notgithub.com/user/foo': {
@@ -309,7 +309,7 @@ require('tap').test('basic', function (t) {
       type: 'git',
       saveSpec: 'git://notgithub.com/user/foo',
       fetchSpec: 'git://notgithub.com/user/foo',
-      raw: 'git://notgithub.com/user/foo'
+      raw: 'git://notgithub.com/user/foo',
     },
 
     '@foo/bar@git+ssh://notgithub.com/user/foo': {
@@ -319,7 +319,7 @@ require('tap').test('basic', function (t) {
       saveSpec: 'git+ssh://notgithub.com/user/foo',
       fetchSpec: 'ssh://notgithub.com/user/foo',
       rawSpec: 'git+ssh://notgithub.com/user/foo',
-      raw: '@foo/bar@git+ssh://notgithub.com/user/foo'
+      raw: '@foo/bar@git+ssh://notgithub.com/user/foo',
     },
 
     'git@npm:not-git': {
@@ -329,9 +329,9 @@ require('tap').test('basic', function (t) {
         type: 'tag',
         registry: true,
         name: 'not-git',
-        fetchSpec: 'latest'
+        fetchSpec: 'latest',
       },
-      raw: 'git@npm:not-git'
+      raw: 'git@npm:not-git',
     },
 
     'not-git@hostname.com:some/repo': {
@@ -339,7 +339,7 @@ require('tap').test('basic', function (t) {
       type: 'git',
       saveSpec: 'git+ssh://not-git@hostname.com:some/repo',
       fetchSpec: 'not-git@hostname.com:some/repo',
-      raw: 'not-git@hostname.com:some/repo'
+      raw: 'not-git@hostname.com:some/repo',
     },
 
     '/path/to/foo': {
@@ -348,7 +348,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:/path/to/foo',
       fetchSpec: '/path/to/foo',
-      raw: '/path/to/foo'
+      raw: '/path/to/foo',
     },
 
     '/path/to/foo.tar': {
@@ -357,7 +357,7 @@ require('tap').test('basic', function (t) {
       type: 'file',
       saveSpec: 'file:/path/to/foo.tar',
       fetchSpec: '/path/to/foo.tar',
-      raw: '/path/to/foo.tar'
+      raw: '/path/to/foo.tar',
     },
 
     '/path/to/foo.tgz': {
@@ -366,7 +366,7 @@ require('tap').test('basic', function (t) {
       type: 'file',
       saveSpec: 'file:/path/to/foo.tgz',
       fetchSpec: '/path/to/foo.tgz',
-      raw: '/path/to/foo.tgz'
+      raw: '/path/to/foo.tgz',
     },
     'file:path/to/foo': {
       name: null,
@@ -374,7 +374,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:path/to/foo',
       fetchSpec: '/test/a/b/path/to/foo',
-      raw: 'file:path/to/foo'
+      raw: 'file:path/to/foo',
     },
     'file:path/to/foo.tar.gz': {
       name: null,
@@ -382,7 +382,7 @@ require('tap').test('basic', function (t) {
       type: 'file',
       saveSpec: 'file:path/to/foo',
       fetchSpec: '/test/a/b/path/to/foo.tar.gz',
-      raw: 'file:path/to/foo.tar.gz'
+      raw: 'file:path/to/foo.tar.gz',
     },
 
     'file:~/path/to/foo': {
@@ -391,7 +391,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:~/path/to/foo',
       fetchSpec: normalizePath(path.join(os.homedir(), '/path/to/foo')),
-      raw: 'file:~/path/to/foo'
+      raw: 'file:~/path/to/foo',
     },
 
     'file:/~/path/to/foo': {
@@ -400,7 +400,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:~/path/to/foo',
       fetchSpec: normalizePath(path.join(os.homedir(), '/path/to/foo')),
-      raw: 'file:/~/path/to/foo'
+      raw: 'file:/~/path/to/foo',
     },
 
     'file:../path/to/foo': {
@@ -409,7 +409,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:../path/to/foo',
       fetchSpec: '/test/a/path/to/foo',
-      raw: 'file:../path/to/foo'
+      raw: 'file:../path/to/foo',
     },
 
     'file:/../path/to/foo': {
@@ -418,7 +418,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:../path/to/foo',
       fetchSpec: '/test/a/path/to/foo',
-      raw: 'file:/../path/to/foo'
+      raw: 'file:/../path/to/foo',
     },
 
     'file:///path/to/foo': {
@@ -427,7 +427,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:/path/to/foo',
       fetchSpec: '/path/to/foo',
-      raw: 'file:///path/to/foo'
+      raw: 'file:///path/to/foo',
     },
     'file:/path/to/foo': {
       name: null,
@@ -435,7 +435,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:/path/to/foo',
       fetchSpec: '/path/to/foo',
-      raw: 'file:/path/to/foo'
+      raw: 'file:/path/to/foo',
     },
     'file://path/to/foo': {
       name: null,
@@ -443,7 +443,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:/path/to/foo',
       fetchSpec: '/path/to/foo',
-      raw: 'file://path/to/foo'
+      raw: 'file://path/to/foo',
     },
     'file:////path/to/foo': {
       name: null,
@@ -451,7 +451,7 @@ require('tap').test('basic', function (t) {
       type: 'directory',
       saveSpec: 'file:/path/to/foo',
       fetchSpec: '/path/to/foo',
-      raw: 'file:////path/to/foo'
+      raw: 'file:////path/to/foo',
     },
 
     'http://insecure.com/foo.tgz': {
@@ -460,7 +460,7 @@ require('tap').test('basic', function (t) {
       type: 'remote',
       saveSpec: 'http://insecure.com/foo.tgz',
       fetchSpec: 'http://insecure.com/foo.tgz',
-      raw: 'http://insecure.com/foo.tgz'
+      raw: 'http://insecure.com/foo.tgz',
     },
 
     'https://server.com/foo.tgz': {
@@ -469,7 +469,7 @@ require('tap').test('basic', function (t) {
       type: 'remote',
       saveSpec: 'https://server.com/foo.tgz',
       fetchSpec: 'https://server.com/foo.tgz',
-      raw: 'https://server.com/foo.tgz'
+      raw: 'https://server.com/foo.tgz',
     },
 
     'foo@latest': {
@@ -478,7 +478,7 @@ require('tap').test('basic', function (t) {
       type: 'tag',
       saveSpec: null,
       fetchSpec: 'latest',
-      raw: 'foo@latest'
+      raw: 'foo@latest',
     },
 
     foo: {
@@ -487,8 +487,8 @@ require('tap').test('basic', function (t) {
       type: 'tag',
       saveSpec: null,
       fetchSpec: 'latest',
-      raw: 'foo'
-    }
+      raw: 'foo',
+    },
   }
 
   Object.keys(tests).forEach(function (arg) {

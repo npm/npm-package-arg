@@ -8,69 +8,69 @@ require('tap').test('basic', function (t) {
       name: null,
       type: 'git',
       saveSpec: 'github:user/foo-js',
-      raw: 'user/foo-js'
+      raw: 'user/foo-js',
     },
 
     'user/foo-js#bar/baz': {
       name: null,
       type: 'git',
       saveSpec: 'github:user/foo-js#bar/baz',
-      raw: 'user/foo-js#bar/baz'
+      raw: 'user/foo-js#bar/baz',
     },
 
     'user..blerg--/..foo-js# . . . . . some . tags / / /': {
       name: null,
       type: 'git',
       saveSpec: 'github:user..blerg--/..foo-js# . . . . . some . tags / / /',
-      raw: 'user..blerg--/..foo-js# . . . . . some . tags / / /'
+      raw: 'user..blerg--/..foo-js# . . . . . some . tags / / /',
     },
 
     'user/foo-js#bar/baz/bin': {
       name: null,
       type: 'git',
-      raw: 'user/foo-js#bar/baz/bin'
+      raw: 'user/foo-js#bar/baz/bin',
     },
 
     'foo@user/foo-js': {
       name: 'foo',
       type: 'git',
       saveSpec: 'github:user/foo-js',
-      raw: 'foo@user/foo-js'
+      raw: 'foo@user/foo-js',
     },
 
     'github:user/foo-js': {
       name: null,
       type: 'git',
       saveSpec: 'github:user/foo-js',
-      raw: 'github:user/foo-js'
+      raw: 'github:user/foo-js',
     },
 
     'git+ssh://git@github.com/user/foo#1.2.3': {
       name: null,
       type: 'git',
       saveSpec: 'git+ssh://git@github.com/user/foo.git#1.2.3',
-      raw: 'git+ssh://git@github.com/user/foo#1.2.3'
+      raw: 'git+ssh://git@github.com/user/foo#1.2.3',
     },
 
     'git+ssh://git@github.com:user/foo#1.2.3': {
       name: null,
       type: 'git',
       saveSpec: 'git+ssh://git@github.com/user/foo.git#1.2.3',
-      raw: 'git+ssh://git@github.com:user/foo#1.2.3'
+      raw: 'git+ssh://git@github.com:user/foo#1.2.3',
     },
 
     'git://github.com/user/foo': {
       name: null,
       type: 'git',
       saveSpec: 'git://github.com/user/foo.git',
-      raw: 'git://github.com/user/foo'
+      raw: 'git://github.com/user/foo',
     },
 
     'https://github.com/user/foo.git': {
       name: null,
       type: 'git',
       saveSpec: 'git+https://github.com/user/foo.git',
-      raw: 'https://github.com/user/foo.git'
+      raw: 'https://github.com/user/foo.git',
     },
 
     '@foo/bar@git+ssh://github.com/user/foo': {
@@ -79,22 +79,22 @@ require('tap').test('basic', function (t) {
       type: 'git',
       saveSpec: 'git+ssh://git@github.com/user/foo.git',
       rawSpec: 'git+ssh://github.com/user/foo',
-      raw: '@foo/bar@git+ssh://github.com/user/foo'
+      raw: '@foo/bar@git+ssh://github.com/user/foo',
     },
 
     'foo@bar/foo': {
       name: 'foo',
       type: 'git',
       saveSpec: 'github:bar/foo',
-      raw: 'foo@bar/foo'
+      raw: 'foo@bar/foo',
     },
 
     'git@github.com:12345/foo': {
       name: undefined,
       type: 'git',
       saveSpec: 'git+ssh://git@github.com:12345/foo',
-      raw: 'git@github.com:12345/foo'
-    }
+      raw: 'git@github.com:12345/foo',
+    },
   }
 
   Object.keys(tests).forEach(function (arg) {

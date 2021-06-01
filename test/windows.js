@@ -11,7 +11,7 @@ var cases = {
     escapedName: null,
     rawSpec: 'C:\\x\\y\\z',
     fetchSpec: 'C:/x/y/z',
-    type: 'directory'
+    type: 'directory',
   },
   'foo@C:\\x\\y\\z': {
     raw: 'foo@C:\\x\\y\\z',
@@ -20,7 +20,7 @@ var cases = {
     escapedName: 'foo',
     rawSpec: 'C:\\x\\y\\z',
     fetchSpec: 'C:/x/y/z',
-    type: 'directory'
+    type: 'directory',
   },
   'foo@file:///C:\\x\\y\\z': {
     raw: 'foo@file:///C:\\x\\y\\z',
@@ -29,7 +29,7 @@ var cases = {
     escapedName: 'foo',
     rawSpec: 'file:///C:\\x\\y\\z',
     fetchSpec: 'C:/x/y/z',
-    type: 'directory'
+    type: 'directory',
   },
   'foo@file://C:\\x\\y\\z': {
     raw: 'foo@file://C:\\x\\y\\z',
@@ -38,7 +38,7 @@ var cases = {
     escapedName: 'foo',
     rawSpec: 'file://C:\\x\\y\\z',
     fetchSpec: 'C:/x/y/z',
-    type: 'directory'
+    type: 'directory',
   },
   'file:///C:\\x\\y\\z': {
     raw: 'file:///C:\\x\\y\\z',
@@ -47,7 +47,7 @@ var cases = {
     escapedName: null,
     rawSpec: 'file:///C:\\x\\y\\z',
     fetchSpec: 'C:/x/y/z',
-    type: 'directory'
+    type: 'directory',
   },
   'file://C:\\x\\y\\z': {
     raw: 'file://C:\\x\\y\\z',
@@ -56,7 +56,7 @@ var cases = {
     escapedName: null,
     rawSpec: 'file://C:\\x\\y\\z',
     fetchSpec: 'C:/x/y/z',
-    type: 'directory'
+    type: 'directory',
   },
   'foo@/foo/bar/baz': {
     raw: 'foo@/foo/bar/baz',
@@ -65,7 +65,7 @@ var cases = {
     escapedName: 'foo',
     rawSpec: '/foo/bar/baz',
     fetchSpec: '/foo/bar/baz',
-    type: 'directory'
+    type: 'directory',
   },
   'foo@git+file://C:\\x\\y\\z': {
     type: 'git',
@@ -80,8 +80,8 @@ var cases = {
     fetchSpec: 'file://c:/x/y/z',
     gitRange: null,
     gitCommittish: null,
-    hosted: null
-  }
+    hosted: null,
+  },
 }
 
 test('parse a windows path', function (t) {

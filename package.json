@@ -15,6 +15,7 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
+    "@npmcli/lint": "^1.0.1",
     "tap": "^15.0.9"
   },
   "scripts": {
@@ -22,7 +23,12 @@
     "postversion": "npm publish",
     "prepublishOnly": "git push origin --follow-tags",
     "test": "tap",
-    "snap": "tap"
+    "snap": "tap",
+    "npmclilint": "npmcli-lint",
+    "lint": "npm run npmclilint -- \"*.*js\" \"test/**/*.*js\"",
+    "lintfix": "npm run lint -- --fix",
+    "posttest": "npm run lint --",
+    "postsnap": "npm run lintfix --"
   },
   "repository": {
     "type": "git",
