@@ -495,9 +495,8 @@ require('tap').test('basic', function (t) {
     var res = normalizePaths(npa(arg, '/test/a/b'))
     t.ok(res instanceof npa.Result, arg + ' is a result')
     Object.keys(tests[arg]).forEach(function (key) {
-      t.has(res[key], tests[arg][key], arg + ' [' + key + ']')
+      t.match(res[key], tests[arg][key], arg + ' [' + key + ']')
     })
-    //    t.has(res, tests[arg], arg + ' matches expectations')
   })
 
   var objSpec = { name: 'foo', rawSpec: '1.2.3' }
@@ -527,8 +526,8 @@ require('tap').test('basic', function (t) {
   var parsedSpec = npa('./foo', './here')
   t.equal(npa(parsedSpec), parsedSpec, 'reused if no where')
   t.equal(npa(parsedSpec, './here'), parsedSpec, 'reused if where matches')
-  t.notEqual(npa(parsedSpec, './there'), parsedSpec, 'new instance if where does not match')
-  t.notEqual(npa(parsedSpec, './there').fetchSpec, '/there/foo', 'new instance has new where')
+  t.not(npa(parsedSpec, './there'), parsedSpec, 'new instance if where does not match')
+  t.not(npa(parsedSpec, './there').fetchSpec, '/there/foo', 'new instance has new where')
   // Completely unreasonable invalid garbage throws an error
   t.throws(function () {
     t.comment(npa('this is not a \0 valid package name or url'))
