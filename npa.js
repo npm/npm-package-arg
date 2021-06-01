@@ -283,7 +283,7 @@ function fromAlias (res, where) {
 
 function fromRegistry (res) {
   res.registry = true
-  const spec = res.rawSpec === '' ? 'latest' : res.rawSpec
+  const spec = res.rawSpec === '' ? 'latest' : res.rawSpec.trim()
   // no save spec for registry components as we save based on the fetched
   // version, not on the argument so this can't compute that.
   res.saveSpec = null

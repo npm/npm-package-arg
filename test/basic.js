@@ -489,6 +489,46 @@ require('tap').test('basic', function (t) {
       fetchSpec: 'latest',
       raw: 'foo',
     },
+
+    'foo@ 1.2 ': {
+      name: 'foo',
+      escapedName: 'foo',
+      type: 'range',
+      saveSpec: null,
+      fetchSpec: '1.2',
+      raw: 'foo@ 1.2 ',
+      rawSpec: ' 1.2 ',
+    },
+
+    'foo@ 1.2.3 ': {
+      name: 'foo',
+      escapedName: 'foo',
+      type: 'version',
+      saveSpec: null,
+      fetchSpec: '1.2.3',
+      raw: 'foo@ 1.2.3 ',
+      rawSpec: ' 1.2.3 ',
+    },
+
+    'foo@1.2.3 ': {
+      name: 'foo',
+      escapedName: 'foo',
+      type: 'version',
+      saveSpec: null,
+      fetchSpec: '1.2.3',
+      raw: 'foo@1.2.3 ',
+      rawSpec: '1.2.3 ',
+    },
+
+    'foo@ 1.2.3': {
+      name: 'foo',
+      escapedName: 'foo',
+      type: 'version',
+      saveSpec: null,
+      fetchSpec: '1.2.3',
+      raw: 'foo@ 1.2.3',
+      rawSpec: ' 1.2.3',
+    },
   }
 
   Object.keys(tests).forEach(function (arg) {
