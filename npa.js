@@ -3,16 +3,12 @@ module.exports = npa
 module.exports.resolve = resolve
 module.exports.Result = Result
 
-let url
-let HostedGit
-let semver
-let path_
-function path () {
-  if (!path_) path_ = require('path')
-  return path_
-}
-let validatePackageName
-let os
+const url = require('url')
+const HostedGit = require('hosted-git-info')
+const semver = require('semver')
+const path = require('path')
+const validatePackageName = require('validate-npm-package-name')
+const { homedir } = require('os')
 
 const isWindows = process.platform === 'win32' || global.FAKE_WINDOWS
 const hasSlashes = isWindows ? /\\|[/]/ : /[/]/
@@ -44,7 +40,6 @@ function npa (arg, where) {
     name = namePart
     spec = arg.slice(nameEndsAt + 1)
   } else {
-    if (!validatePackageName) validatePackageName = require('validate-npm-package-name')
     const valid = validatePackageName(arg)
     if (valid.validForOldPackages) {
       name = arg
@@ -72,7 +67,6 @@ function resolve (name, spec, where, arg) {
   } else if (spec && /^npm:/i.test(spec)) {
     return fromAlias(res, where)
   }
-  if (!HostedGit) HostedGit = require('hosted-git-info')
   const hosted = HostedGit.fromUrl(spec, { noGitPlus: true, noCommittish: true })
   if (hosted) {
     return fromHostedGit(res, hosted)
@@ -118,7 +112,6 @@ function Result (opts) {
 }
 
 Result.prototype.setName = function (name) {
-  if (!validatePackageName) validatePackageName = require('validate-npm-package-name')
   const valid = validatePackageName(name)
   if (!valid.validForOldPackages) {
     throw invalidPackageName(name, valid)
@@ -158,7 +151,7 @@ const isAbsolutePath = /^[/]|^[A-Za-z]:/
 
 function resolvePath (where, spec) {
   if (isAbsolutePath.test(spec)) return spec
-  return path().resolve(where, spec)
+  return path.resolve(where, spec)
 }
 
 function isAbsolute (dir) {
@@ -177,15 +170,14 @@ function fromFile (res, where) {
     .replace(/^file:(?:[/]*([~./]))?/, '$1')
   if (/^~[/]/.test(spec)) {
     // this is needed for windows and for file:~/foo/bar
-    if (!os) os = require('os')
-    res.fetchSpec = resolvePath(os.homedir(), spec.slice(2))
+    res.fetchSpec = resolvePath(homedir(), spec.slice(2))
     res.saveSpec = 'file:' + spec
   } else {
     res.fetchSpec = resolvePath(where, spec)
     if (isAbsolute(spec)) {
       res.saveSpec = 'file:' + spec
     } else {
-      res.saveSpec = 'file:' + path().relative(where, res.fetchSpec)
+      res.saveSpec = 'file:' + path.relative(where, res.fetchSpec)
     }
   }
   return res
@@ -222,7 +214,6 @@ function matchGitScp (spec) {
 }
 
 function fromURL (res) {
-  if (!url) url = require('url')
   const urlparse = url.parse(res.rawSpec)
   res.saveSpec = res.rawSpec
   // check the protocol, and then see if it's git or not
@@ -287,7 +278,6 @@ function fromRegistry (res) {
   // version, not on the argument so this can't compute that.
   res.saveSpec = null
   res.fetchSpec = spec
-  if (!semver) semver = require('semver')
   const version = semver.valid(spec, true)
   const range = semver.validRange(spec, true)
   if (version) {
