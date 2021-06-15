@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [10.x, 12.x, 13.x]
+        node-version: [10.1.x, 10.x, 12.0.x, 12.x, 14.0.x, 14.x, 16.0.x, 16.x]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     runs-on: ${{ matrix.os }}
@@ -61,6 +61,7 @@ jobs:
       #   Simply run the tests for the project.
       ################################################################################
       - name: Run tests
+        if: github.event_name != 'push' || matrix.node-version != '12.x' || matrix.os != 'ubuntu-latest'
         run: npm test -- --no-coverage
 
       ################################################################################
