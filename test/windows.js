@@ -1,72 +1,81 @@
 global.FAKE_WINDOWS = true
 
-var npa = require('../npa.js')
-var test = require('tap').test
+const npa = require('../npa.js')
+const t = require('tap')
 
-var cases = {
+t.on('bailout', () => process.exit(1))
+
+const cases = {
   'C:\\x\\y\\z': {
     raw: 'C:\\x\\y\\z',
     scope: null,
     name: null,
     escapedName: null,
     rawSpec: 'C:\\x\\y\\z',
-    fetchSpec: 'C:/x/y/z',
+    fetchSpec: 'C:\\x\\y\\z',
     type: 'directory',
   },
+
   'foo@C:\\x\\y\\z': {
     raw: 'foo@C:\\x\\y\\z',
     scope: null,
     name: 'foo',
     escapedName: 'foo',
     rawSpec: 'C:\\x\\y\\z',
-    fetchSpec: 'C:/x/y/z',
+    fetchSpec: 'C:\\x\\y\\z',
     type: 'directory',
   },
+
   'foo@file:///C:\\x\\y\\z': {
     raw: 'foo@file:///C:\\x\\y\\z',
     scope: null,
     name: 'foo',
     escapedName: 'foo',
     rawSpec: 'file:///C:\\x\\y\\z',
-    fetchSpec: 'C:/x/y/z',
+    fetchSpec: 'C:\\x\\y\\z',
     type: 'directory',
   },
+
   'foo@file://C:\\x\\y\\z': {
     raw: 'foo@file://C:\\x\\y\\z',
     scope: null,
     name: 'foo',
     escapedName: 'foo',
     rawSpec: 'file://C:\\x\\y\\z',
-    fetchSpec: 'C:/x/y/z',
+    fetchSpec: 'C:\\x\\y\\z',
     type: 'directory',
   },
+
   'file:///C:\\x\\y\\z': {
     raw: 'file:///C:\\x\\y\\z',
     scope: null,
     name: null,
     escapedName: null,
     rawSpec: 'file:///C:\\x\\y\\z',
-    fetchSpec: 'C:/x/y/z',
+    fetchSpec: 'C:\\x\\y\\z',
     type: 'directory',
   },
+
   'file://C:\\x\\y\\z': {
     raw: 'file://C:\\x\\y\\z',
     scope: null,
     name: null,
     escapedName: null,
     rawSpec: 'file://C:\\x\\y\\z',
-    fetchSpec: 'C:/x/y/z',
+    fetchSpec: 'C:\\x\\y\\z',
     type: 'directory',
   },
+
   'foo@/foo/bar/baz': {
     raw: 'foo@/foo/bar/baz',
     scope: null,
     name: 'foo',
     escapedName: 'foo',
     rawSpec: '/foo/bar/baz',
-    fetchSpec: '/foo/bar/baz',
+    fetchSpec: 'C:\\foo\\bar\\baz',
     type: 'directory',
   },
+
   'foo@git+file://C:\\x\\y\\z': {
     type: 'git',
     registry: null,
@@ -84,10 +93,10 @@ var cases = {
   },
 }
 
-test('parse a windows path', function (t) {
+t.test('parse a windows path', function (t) {
   Object.keys(cases).forEach(function (c) {
-    var expect = cases[c]
-    var actual = npa(c)
+    const expect = cases[c]
+    const actual = npa(c, 'C:\\test\\path')
     t.has(actual, expect, c)
   })
   t.end()

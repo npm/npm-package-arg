@@ -1,19 +1,24 @@
-var npa = require('../npa.js')
-var path = require('path')
-var os = require('os')
+const path = require('path').posix
+const os = require('os')
 
 const normalizePath = p => p && p.replace(/^[a-zA-Z]:/, '').replace(/\\/g, '/')
 
+const cwd = normalizePath(process.cwd())
+process.cwd = () => cwd
 const normalizePaths = spec => {
   spec.saveSpec = normalizePath(spec.saveSpec)
   spec.fetchSpec = normalizePath(spec.fetchSpec)
   return spec
 }
 
-require('tap').test('basic', function (t) {
+const t = require('tap')
+const npa = t.mock('../npa.js', { path })
+t.on('bailout', () => process.exit(1))
+
+t.test('basic', function (t) {
   t.setMaxListeners(999)
 
-  var tests = {
+  const tests = {
     'foo@1.2': {
       name: 'foo',
       escapedName: 'foo',
@@ -472,6 +477,14 @@ require('tap').test('basic', function (t) {
       raw: 'file:////path/to/foo',
     },
 
+    'file://.': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:',
+      raw: 'file://.',
+    },
+
     'http://insecure.com/foo.tgz': {
       name: null,
       escapedName: null,
@@ -550,14 +563,14 @@ require('tap').test('basic', function (t) {
   }
 
   Object.keys(tests).forEach(function (arg) {
-    var res = normalizePaths(npa(arg, '/test/a/b'))
+    const res = normalizePaths(npa(arg, '/test/a/b'))
     t.ok(res instanceof npa.Result, arg + ' is a result')
     Object.keys(tests[arg]).forEach(function (key) {
       t.match(res[key], tests[arg][key], arg + ' [' + key + ']')
     })
   })
 
-  var objSpec = { name: 'foo', rawSpec: '1.2.3' }
+  let objSpec = { name: 'foo', rawSpec: '1.2.3' }
   t.equal(npa(objSpec, '/whatnot').toString(), 'foo@1.2.3', 'parsed object')
 
   objSpec.where = '/whatnot'
@@ -569,7 +582,7 @@ require('tap').test('basic', function (t) {
   objSpec = { raw: './foo/bar', where: '/here' }
   t.equal(normalizePath(npa(objSpec).fetchSpec), '/here/foo/bar', '`where` is reused')
 
-  var res = new npa.Result({ name: 'bar', rawSpec: './foo/bar' })
+  let res = new npa.Result({ name: 'bar', rawSpec: './foo/bar' })
   t.equal(res.toString(), 'bar@./foo/bar', 'toString with only rawSpec')
   res = new npa.Result({ rawSpec: './x/y' })
   t.equal(normalizePath(res.toString()), './x/y', 'toString with only rawSpec, no name')
@@ -577,11 +590,15 @@ require('tap').test('basic', function (t) {
   t.equal(res.toString(), '', 'toString with nothing')
 
   objSpec = { raw: './foo/bar', where: '/here' }
-  t.equal(normalizePath(npa(objSpec, '/whatnot').fetchSpec), '/whatnot/foo/bar', '`where` arg overrides the one in the spec object')
+  t.equal(
+    normalizePath(npa(objSpec, '/whatnot').fetchSpec),
+    '/whatnot/foo/bar',
+    '`where` arg overrides the one in the spec object'
+  )
 
   t.equal(npa(npa('foo@1.2.3')).toString(), 'foo@1.2.3', 'spec is passthrough')
 
-  var parsedSpec = npa('./foo', './here')
+  const parsedSpec = npa('./foo', './here')
   t.equal(npa(parsedSpec), parsedSpec, 'reused if no where')
   t.equal(npa(parsedSpec, './here'), parsedSpec, 'reused if where matches')
   t.not(npa(parsedSpec, './there'), parsedSpec, 'new instance if where does not match')
@@ -607,14 +624,72 @@ require('tap').test('basic', function (t) {
     npa('foo@npm:foo/bar')
   }, 'aliases only work for registry deps')
 
-  t.has(npa.resolve('foo', '^1.2.3', '/test/a/b'), { type: 'range' }, 'npa.resolve')
-  t.has(normalizePaths(npa.resolve('foo', 'file:foo', '/test/a/b')), { type: 'directory', fetchSpec: '/test/a/b/foo' }, 'npa.resolve file:')
-  t.has(npa.resolve('foo', '../foo/bar', '/test/a/b'), { type: 'directory' }, 'npa.resolve no protocol')
-  t.has(npa.resolve('foo', 'file:../foo/bar', '/test/a/b'), { type: 'directory' }, 'npa.resolve file protocol')
-  t.has(npa.resolve('foo', 'file:../foo/bar.tgz', '/test/a/b'), { type: 'file' }, 'npa.resolve file protocol w/ tgz')
-  t.has(npa.resolve(null, '4.0.0', '/test/a/b'), { type: 'version', name: null }, 'npa.resolve with no name')
-  t.has(npa.resolve('foo', 'file:abc'), { type: 'directory', raw: 'foo@file:abc' }, 'npa.resolve sets raw right')
-  t.has(npa('./path/to/thing/package@1.2.3/'), { name: null, type: 'directory' }, 'npa with path in @ in it')
-  t.has(npa('path/to/thing/package@1.2.3'), { name: null, type: 'directory' }, 'npa w/o leading or trailing slash')
+  t.has(npa.resolve('foo', '^1.2.3', '/test/a/b'), {
+    type: 'range',
+  }, 'npa.resolve')
+  t.has(normalizePaths(npa.resolve('foo', 'file:foo', '/test/a/b')), {
+    type: 'directory',
+    fetchSpec: '/test/a/b/foo',
+  }, 'npa.resolve file:')
+  t.has(npa.resolve('foo', '../foo/bar', '/test/a/b'), {
+    type: 'directory',
+  }, 'npa.resolve no protocol')
+  t.has(npa.resolve('foo', 'file:../foo/bar', '/test/a/b'), {
+    type: 'directory',
+  }, 'npa.resolve file protocol')
+  t.has(npa.resolve('foo', 'file:../foo/bar.tgz', '/test/a/b'), {
+    type: 'file',
+  }, 'npa.resolve file protocol w/ tgz')
+  t.has(npa.resolve(null, '4.0.0', '/test/a/b'), {
+    type: 'version',
+    name: null,
+  }, 'npa.resolve with no name')
+  t.has(npa.resolve('foo', 'file:abc'), {
+    type: 'directory',
+    raw: 'foo@file:abc',
+  }, 'npa.resolve sets raw right')
+  t.has(npa('./path/to/thing/package@1.2.3/'), {
+    name: null,
+    type: 'directory',
+  }, 'npa with path in @ in it')
+  t.has(npa('path/to/thing/package@1.2.3'), {
+    name: null,
+    type: 'directory',
+  }, 'npa w/o leading or trailing slash')
+  t.end()
+})
+
+t.test('strict 8909 compliance mode', t => {
+  t.teardown(() => process.env.NPM_PACKAGE_ARG_8909_STRICT = '0')
+  process.env.NPM_PACKAGE_ARG_8909_STRICT = '1'
+
+  t.throws(() => npa('file://.'), {
+    message: 'Invalid file: URL, must be absolute if // present',
+    raw: 'file://.',
+  })
+
+  t.throws(() => npa('file://some/relative/path'), {
+    message: 'Invalid file: URL, must be absolute if // present',
+    raw: 'file://some/relative/path',
+  })
+
+  // I cannot for the life of me figure out how to make new URL('file:...')
+  // actually fail to parse.  it seems like it accepts any garbage you can
+  // throw at it.  However, because it theoretically CAN throw, here's a test.
+  t.throws(() => {
+    const npa = t.mock('../npa.js', {
+      url: {
+        URL: class {
+          constructor () {
+            throw new Error('thansk i haet it')
+          }
+        },
+      },
+    })
+    npa('file:thansk i haet it')
+  }, {
+    message: 'Invalid file: URL, must comply with RFC 8909',
+  })
+
   t.end()
 })
