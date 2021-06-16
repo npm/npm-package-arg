@@ -159,7 +159,7 @@ function fromFile (res, where) {
 
   // always put the '/' on where when resolving urls, or else
   // file:foo from /path/to/bar goes to /path/to/foo, when we want
-  // it to be /path/to/foo/bar
+  // it to be /path/to/bar/foo
 
   let specUrl
   let resolvedUrl
