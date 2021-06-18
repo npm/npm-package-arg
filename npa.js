@@ -142,6 +142,11 @@ Result.prototype.toJSON = function () {
 }
 
 function setGitCommittish (res, committish) {
+  if (committish != null && committish.includes('::')) {
+    const parts = committish.split('::')
+    committish = parts[0]
+    res.gitSubdir = `/${parts[1]}`
+  }
   if (committish != null && committish.length >= 7 && committish.slice(0, 7) === 'semver:') {
     res.gitRange = decodeURIComponent(committish.slice(7))
     res.gitCommittish = null
