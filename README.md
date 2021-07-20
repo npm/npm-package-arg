@@ -58,6 +58,7 @@ keys:
   * `file` - A local `.tar.gz`, `.tar` or `.tgz` file.
   * `directory` - A local directory.
   * `remote` - An http url (presumably to a tgz)
+  * `alias` - A specifier with an alias, like `myalias@npm:foo@1.2.3`
 * `registry` - If true this specifier refers to a resource hosted on a
   registry.  This is true for `tag`, `version` and `range` types.
 * `name` - If known, the `name` field expected in the resulting pkg.
@@ -81,3 +82,5 @@ keys:
   JSON.
 * `raw` - The original un-modified string that was provided.  If called as
   `npa.resolve(name, spec)` then this will be `name + '@' + spec`.
+* `subSpec` - If `type === 'alias'`, this is a Result Object for parsing the
+  targer specifier for the alias.
