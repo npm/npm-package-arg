@@ -693,3 +693,17 @@ t.test('strict 8909 compliance mode', t => {
 
   t.end()
 })
+
+t.test('error message', t => {
+  t.throws(() => npa('lodash.has@>=^4'), {
+    // eslint-disable-next-line max-len
+    message: 'Invalid tag name ">=^4" of package "lodash.has@>=^4": Tags may not have any characters that encodeURIComponent encodes.',
+  })
+
+  t.throws(() => npa('lodash.has @^4'), {
+    // eslint-disable-next-line max-len
+    message: 'Invalid package name "lodash.has " of package "lodash.has @^4": name cannot contain leading or trailing spaces; name can only contain URL-friendly characters.',
+  })
+
+  t.end()
+})
