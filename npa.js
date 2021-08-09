@@ -80,13 +80,13 @@ function resolve (name, spec, where, arg) {
     return fromRegistry(res)
 }
 
-function invalidPackageName (name, valid) {
-  const err = new Error(`Invalid package name "${name}": ${valid.errors.join('; ')}`)
+function invalidPackageName (name, valid, raw) {
+  const err = new Error(`Invalid package name "${name}" of package "${raw}": ${valid.errors.join('; ')}.`)
   err.code = 'EINVALIDPACKAGENAME'
   return err
 }
-function invalidTagName (name) {
-  const err = new Error(`Invalid tag name "${name}": Tags may not have any characters that encodeURIComponent encodes.`)
+function invalidTagName (name, raw) {
+  const err = new Error(`Invalid tag name "${name}" of package "${raw}": Tags may not have any characters that encodeURIComponent encodes.`)
   err.code = 'EINVALIDTAGNAME'
   return err
 }
@@ -116,7 +116,7 @@ function Result (opts) {
 Result.prototype.setName = function (name) {
   const valid = validatePackageName(name)
   if (!valid.validForOldPackages)
-    throw invalidPackageName(name, valid)
+    throw invalidPackageName(name, valid, this.raw)
 
   this.name = name
   this.scope = name[0] === '@' ? name.slice(0, name.indexOf('/')) : undefined
@@ -340,7 +340,7 @@ function fromRegistry (res) {
     res.type = 'range'
   else {
     if (encodeURIComponent(spec) !== spec)
-      throw invalidTagName(spec)
+      throw invalidTagName(spec, res.raw)
 
     res.type = 'tag'
   }
