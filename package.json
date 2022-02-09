@@ -2,12 +2,12 @@
   "name": "npm-package-arg",
   "version": "8.1.5",
   "description": "Parse the things that can be arguments to `npm install`",
-  "main": "npa.js",
+  "main": "./lib/npa.js",
   "directories": {
     "test": "test"
   },
   "files": [
-    "npa.js"
+    "./lib"
   ],
   "dependencies": {
     "hosted-git-info": "^4.0.1",

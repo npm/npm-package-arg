@@ -12,7 +12,7 @@ const normalizePaths = spec => {
 }
 
 const t = require('tap')
-const npa = t.mock('../npa.js', { path })
+const npa = t.mock('..', { path })
 t.on('bailout', () => process.exit(1))
 
 t.test('basic', function (t) {
@@ -677,7 +677,7 @@ t.test('strict 8909 compliance mode', t => {
   // actually fail to parse.  it seems like it accepts any garbage you can
   // throw at it.  However, because it theoretically CAN throw, here's a test.
   t.throws(() => {
-    const npa = t.mock('../npa.js', {
+    const npa = t.mock('..', {
       url: {
         URL: class {
           constructor () {

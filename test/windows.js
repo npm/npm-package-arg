@@ -1,6 +1,6 @@
 global.FAKE_WINDOWS = true
 
-const npa = require('../npa.js')
+const npa = require('..')
 const t = require('tap')
 
 t.on('bailout', () => process.exit(1))
