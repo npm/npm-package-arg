@@ -11,7 +11,7 @@
     "lib"
   ],
   "dependencies": {
-    "hosted-git-info": "^4.0.1",
+    "hosted-git-info": "^4.1.0",
     "semver": "^7.3.5",
     "validate-npm-package-name": "^3.0.0"
   },
