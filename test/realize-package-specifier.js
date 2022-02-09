@@ -1,6 +1,6 @@
 'use strict'
 var test = require('tap').test
-var npa = require('../npa.js')
+var npa = require('..')
 
 test('realize-package-specifier', function (t) {
   t.plan(6)

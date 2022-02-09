@@ -1,4 +1,4 @@
-var npa = require('../npa.js')
+var npa = require('..')
 
 require('tap').test('basic', function (t) {
   t.setMaxListeners(999)
