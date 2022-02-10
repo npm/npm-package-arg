@@ -83,4 +83,4 @@ keys:
 * `raw` - The original un-modified string that was provided.  If called as
   `npa.resolve(name, spec)` then this will be `name + '@' + spec`.
 * `subSpec` - If `type === 'alias'`, this is a Result Object for parsing the
-  targer specifier for the alias.
+  target specifier for the alias.
