@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.0](https://www.github.com/npm/npm-package-arg/compare/v8.1.5...v9.0.0) (2022-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This drops support for node10 and non-LTS versions of node 12 and node 14.
+
+### Bug Fixes
+
+* make error message more clear to locate which package is invalid ([8cb4527](https://www.github.com/npm/npm-package-arg/commit/8cb452760e9e0d7921ea59a1e4d3ec3db7994595))
+
+
+### Dependencies
+
+* @npmcli/template-oss@2.7.1 ([6975264](https://www.github.com/npm/npm-package-arg/commit/6975264f553471a21b4bb313290c226eb3aa8da3))
+* update hosted-git-info requirement from ^4.0.1 to ^4.1.0 ([c6a9e12](https://www.github.com/npm/npm-package-arg/commit/c6a9e12c67d4209118dfabe6e110ece64a0ad1b7))
+* update semver requirement from ^7.3.4 to ^7.3.5 ([73fc02e](https://www.github.com/npm/npm-package-arg/commit/73fc02e91ba887201880d37be81838df9b161f05))
+
+
+### Documentation
+
+* Update result object documentation for type=alias ([55907a9](https://www.github.com/npm/npm-package-arg/commit/55907a917979e566250428dc6da9aad8fd4fb65a))
+
 ## [8.0.0](https://github.com/npm/npm-package-arg/compare/v7.0.0...v8.0.0) (2019-12-15)
 
 
