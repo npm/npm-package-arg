@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.1](https://www.github.com/npm/npm-package-arg/compare/v9.0.0...v9.0.1) (2022-03-15)
+
+
+### Dependencies
+
+* bump hosted-git-info from 4.1.0 to 5.0.0 ([#75](https://www.github.com/npm/npm-package-arg/issues/75)) ([c26876d](https://www.github.com/npm/npm-package-arg/commit/c26876d116285c8ab6a91f223b679155c91e60a0))
+
 ## [9.0.0](https://www.github.com/npm/npm-package-arg/compare/v8.1.5...v9.0.0) (2022-02-10)
 
 
