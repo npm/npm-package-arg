@@ -677,7 +677,7 @@ t.test('strict 8909 compliance mode', t => {
   // actually fail to parse.  it seems like it accepts any garbage you can
   // throw at it.  However, because it theoretically CAN throw, here's a test.
   t.throws(() => {
-    const npa = t.mock('..', {
+    const broken = t.mock('..', {
       url: {
         URL: class {
           constructor () {
@@ -686,7 +686,7 @@ t.test('strict 8909 compliance mode', t => {
         },
       },
     })
-    npa('file:thansk i haet it')
+    broken('file:thansk i haet it')
   }, {
     message: 'Invalid file: URL, must comply with RFC 8909',
   })
