@@ -13,7 +13,7 @@
   "dependencies": {
     "hosted-git-info": "^5.0.0",
     "semver": "^7.3.5",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^4.0.0"
   },
   "devDependencies": {
     "@npmcli/eslint-config": "^3.0.1",
