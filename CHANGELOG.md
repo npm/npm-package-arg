@@ -1,5 +1,12 @@
 # Changelog
 
+### [9.0.2](https://github.com/npm/npm-package-arg/compare/v9.0.1...v9.0.2) (2022-03-29)
+
+
+### Dependencies
+
+* bump validate-npm-package-name from 3.0.0 to 4.0.0 ([#83](https://github.com/npm/npm-package-arg/issues/83)) ([05f40c5](https://github.com/npm/npm-package-arg/commit/05f40c512326c0047ef31259ddc231fc81d9a187))
+
 ### [9.0.1](https://www.github.com/npm/npm-package-arg/compare/v9.0.0...v9.0.1) (2022-03-15)
 
 
