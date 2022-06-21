@@ -298,6 +298,41 @@ t.test('basic', function (t) {
       raw: 'user/foo#semver:^1.2.3',
     },
 
+    'user/foo#path:dist': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'github:user/foo#path:dist',
+      fetchSpec: null,
+      gitCommittish: null,
+      gitSubdir: '/dist',
+      raw: 'user/foo#path:dist',
+    },
+
+    'user/foo#1234::path:dist': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'github:user/foo#1234::path:dist',
+      fetchSpec: null,
+      gitCommittish: '1234',
+      gitRange: null,
+      gitSubdir: '/dist',
+      raw: 'user/foo#1234::path:dist',
+    },
+
+    'user/foo#notimplemented:value': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'github:user/foo#notimplemented:value',
+      fetchSpec: null,
+      gitCommittish: null,
+      gitRange: null,
+      gitSubdir: null,
+      raw: 'user/foo#notimplemented:value',
+    },
+
     'git+file://path/to/repo#1.2.3': {
       name: null,
       escapedName: null,
@@ -703,6 +738,26 @@ t.test('error message', t => {
   t.throws(() => npa('lodash.has @^4'), {
     // eslint-disable-next-line max-len
     message: 'Invalid package name "lodash.has " of package "lodash.has @^4": name cannot contain leading or trailing spaces; name can only contain URL-friendly characters.',
+  })
+
+  t.throws(() => npa('user/foo#1234::semver:^1.2.3'), {
+    message: 'cannot override existing committish with a semver range',
+  })
+
+  t.throws(() => npa('user/foo#semver:^1.2.3::1234'), {
+    message: 'cannot override existing semver range with a committish',
+  })
+
+  t.throws(() => npa('user/foo#path:skipped::path:dist'), {
+    message: 'cannot override existing path with a second path',
+  })
+
+  t.throws(() => npa('user/foo#1234::5678'), {
+    message: 'cannot override existing committish with a second committish',
+  })
+
+  t.throws(() => npa('user/foo#semver:^1.0.0::semver:^2.0.0'), {
+    message: 'cannot override existing semver range with a second semver range',
   })
 
   t.end()
