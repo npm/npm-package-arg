@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/npm/npm-package-arg/compare/v9.0.2...v9.1.0) (2022-06-22)
+
+
+### Features
+
+* **git:** add support for :: in #committish ([#91](https://github.com/npm/npm-package-arg/issues/91)) ([246f1e9](https://github.com/npm/npm-package-arg/commit/246f1e919bd19302bbb907acbe87735f61392a9a))
+
 ### [9.0.2](https://github.com/npm/npm-package-arg/compare/v9.0.1...v9.0.2) (2022-03-29)
 
 
