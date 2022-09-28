@@ -461,6 +461,33 @@ t.test('basic', function (t) {
       raw: 'file:/.path/to/foo',
     },
 
+    'file:./path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:path/to/foo',
+      fetchSpec: '/test/a/b/path/to/foo',
+      raw: 'file:./path/to/foo',
+    },
+
+    'file:/./path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:path/to/foo',
+      fetchSpec: '/test/a/b/path/to/foo',
+      raw: 'file:/./path/to/foo',
+    },
+
+    'file://./path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:path/to/foo',
+      fetchSpec: '/test/a/b/path/to/foo',
+      raw: 'file://./path/to/foo',
+    },
+
     'file:../path/to/foo': {
       name: null,
       escapedName: null,
@@ -477,6 +504,15 @@ t.test('basic', function (t) {
       saveSpec: 'file:../path/to/foo',
       fetchSpec: '/test/a/path/to/foo',
       raw: 'file:/../path/to/foo',
+    },
+
+    'file://../path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:../path/to/foo',
+      fetchSpec: '/test/a/path/to/foo',
+      raw: 'file://../path/to/foo',
     },
 
     'file:///path/to/foo': {
@@ -517,6 +553,7 @@ t.test('basic', function (t) {
       escapedName: null,
       type: 'directory',
       saveSpec: 'file:',
+      fetchSpec: '/test/a/b',
       raw: 'file://.',
     },
 
