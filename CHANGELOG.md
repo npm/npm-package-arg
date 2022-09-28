@@ -1,5 +1,11 @@
 # Changelog
 
+## [9.1.2](https://github.com/npm/npm-package-arg/compare/v9.1.1...v9.1.2) (2022-09-28)
+
+### Bug Fixes
+
+* [`50ed49c`](https://github.com/npm/npm-package-arg/commit/50ed49c9f376b8382e334da5fb40ef77a8d2a447) revert engines change (@lukekarrys)
+
 ## [9.1.1](https://github.com/npm/npm-package-arg/compare/v9.1.0...v9.1.1) (2022-09-28)
 
 ### Bug Fixes
