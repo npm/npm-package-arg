@@ -1,5 +1,11 @@
 # Changelog
 
+## [9.1.1](https://github.com/npm/npm-package-arg/compare/v9.1.0...v9.1.1) (2022-09-28)
+
+### Bug Fixes
+
+* [`8383fdc`](https://github.com/npm/npm-package-arg/commit/8383fdc240280e8e3cb3dac8d9bb588752bd2656) [#109](https://github.com/npm/npm-package-arg/pull/109) resolve relative urls that start with file:// (@lukekarrys)
+
 ## [9.1.0](https://github.com/npm/npm-package-arg/compare/v9.0.2...v9.1.0) (2022-06-22)
 
 
