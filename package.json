@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "hosted-git-info": "^6.0.0",
-    "proc-log": "^2.0.1",
+    "proc-log": "^3.0.0",
     "semver": "^7.3.5",
     "validate-npm-package-name": "^4.0.0"
   },
