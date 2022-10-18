@@ -44,10 +44,10 @@ t.test('basic', function (t) {
       name: '@foo/bar',
       escapedName: '@foo%2fbar',
       scope: '@foo',
-      rawSpec: '',
+      rawSpec: '*',
       saveSpec: null,
-      fetchSpec: 'latest',
-      type: 'tag',
+      fetchSpec: '*',
+      type: 'range',
     },
 
     '@foo/bar@': {
@@ -55,10 +55,10 @@ t.test('basic', function (t) {
       name: '@foo/bar',
       escapedName: '@foo%2fbar',
       scope: '@foo',
-      rawSpec: '',
+      rawSpec: '*',
       saveSpec: null,
-      fetchSpec: 'latest',
-      type: 'tag',
+      fetchSpec: '*',
+      type: 'range',
     },
 
     '@foo/bar@baz': {
@@ -113,11 +113,11 @@ t.test('basic', function (t) {
         registry: true,
         name: 'bar',
         escapedName: 'bar',
-        type: 'tag',
+        type: 'range',
         raw: 'bar',
-        rawSpec: '',
+        rawSpec: '*',
         saveSpec: null,
-        fetchSpec: 'latest',
+        fetchSpec: '*',
       },
     },
 
@@ -366,10 +366,10 @@ t.test('basic', function (t) {
       name: 'git',
       type: 'alias',
       subSpec: {
-        type: 'tag',
+        type: 'range',
         registry: true,
         name: 'not-git',
-        fetchSpec: 'latest',
+        fetchSpec: '*',
       },
       raw: 'git@npm:not-git',
     },
@@ -587,9 +587,9 @@ t.test('basic', function (t) {
     foo: {
       name: 'foo',
       escapedName: 'foo',
-      type: 'tag',
+      type: 'range',
       saveSpec: null,
-      fetchSpec: 'latest',
+      fetchSpec: '*',
       raw: 'foo',
     },
 
