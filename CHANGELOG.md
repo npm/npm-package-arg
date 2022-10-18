@@ -1,5 +1,27 @@
 # Changelog
 
+## [10.0.0](https://github.com/npm/npm-package-arg/compare/v9.1.0...v10.0.0) (2022-10-18)
+
+### ⚠️ BREAKING CHANGES
+
+* `x` and `x@` now return the same spec as `x@*`
+* `npm-package-arg` is now compatible with the following semver range for node: `^14.17.0 || ^16.13.0 || >=18.0.0`
+
+### Features
+
+* [`749ccad`](https://github.com/npm/npm-package-arg/commit/749ccad1516e0e61db989669326165bfdb6b7227) [#104](https://github.com/npm/npm-package-arg/pull/104) postinstall for dependabot template-oss PR (@lukekarrys)
+
+### Bug Fixes
+
+* [`d2b87c0`](https://github.com/npm/npm-package-arg/commit/d2b87c083f6f83d01d869281631a0d544190edcf) [#97](https://github.com/npm/npm-package-arg/pull/97) standardize `x` `x@` and `x@*` (#97) (@wraithgar)
+* [`7b9cb25`](https://github.com/npm/npm-package-arg/commit/7b9cb25e2b2788ae7b0c9a9b33ca8701a030b8aa) [#108](https://github.com/npm/npm-package-arg/pull/108) resolve relative urls that start with file:// (@lukekarrys)
+
+### Dependencies
+
+* [`b3f0b93`](https://github.com/npm/npm-package-arg/commit/b3f0b93abae31e8e3a186c5f6ebedd3616b0764a) [#117](https://github.com/npm/npm-package-arg/pull/117) bump proc-log from 2.0.1 to 3.0.0 (#117)
+* [`7162848`](https://github.com/npm/npm-package-arg/commit/71628486d9f96ef522e28cb32e15ff8d26cf3903) [#116](https://github.com/npm/npm-package-arg/pull/116) bump validate-npm-package-name from 4.0.0 to 5.0.0 (#116)
+* [`3110d8f`](https://github.com/npm/npm-package-arg/commit/3110d8f954a76e237649bd478d0cb2fbc95f6afc) [#115](https://github.com/npm/npm-package-arg/pull/115) `hosted-git-info@6.0.0` (#115)
+
 ## [9.1.0](https://github.com/npm/npm-package-arg/compare/v9.0.2...v9.1.0) (2022-06-22)
 
 
