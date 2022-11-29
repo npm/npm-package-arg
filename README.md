@@ -45,6 +45,16 @@ included then the default is `latest`.
 
 **Throws** if the package name is invalid, a dist-tag is invalid or a URL's protocol is not supported.
 
+### var purl = npa.toPurl(*arg*, *reg*)
+
+Returns the [purl (package URL)](https://github.com/package-url/purl-spec) form of the given pacakge name/spec.
+
+* *arg* - A package/version string. For example: `foo@1.0.0` or `@bar/foo@2.0.0-alpha.1`.
+* *reg* - Optionally the URL to the package registry. If not specified, assumes the default
+`https://registry.npmjs.org`.
+
+**Throws** if the package name is invalid, or the supplied arg can't be resolved to a purl.
+
 ## RESULT OBJECT
 
 The objects that are returned by npm-package-arg contain the following
