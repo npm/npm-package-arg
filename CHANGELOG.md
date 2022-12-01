@@ -1,5 +1,11 @@
 # Changelog
 
+## [10.1.0](https://github.com/npm/npm-package-arg/compare/v10.0.0...v10.1.0) (2022-12-01)
+
+### Features
+
+* [`f2c243c`](https://github.com/npm/npm-package-arg/commit/f2c243c140a397d3054fe1ec84a091d237bbd6e9) [#122](https://github.com/npm/npm-package-arg/pull/122) add function to return pacakge purl (@bdehamer, @ljharb)
+
 ## [10.0.0](https://github.com/npm/npm-package-arg/compare/v9.1.0...v10.0.0) (2022-10-18)
 
 ### ⚠️ BREAKING CHANGES
