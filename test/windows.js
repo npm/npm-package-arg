@@ -1,7 +1,10 @@
-global.FAKE_WINDOWS = true
+const t = require('tap')
+
+const platform = Object.getOwnPropertyDescriptor(process, 'platform')
+Object.defineProperty(process, 'platform', { ...platform, value: 'win32' })
+t.teardown(() => Object.defineProperty(process, 'platform', platform))
 
 const npa = require('..')
-const t = require('tap')
 
 t.on('bailout', () => process.exit(1))
 
