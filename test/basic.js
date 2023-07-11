@@ -731,38 +731,19 @@ t.test('basic', function (t) {
   t.end()
 })
 
-t.test('strict 8909 compliance mode', t => {
-  t.teardown(() => process.env.NPM_PACKAGE_ARG_8909_STRICT = '0')
-  process.env.NPM_PACKAGE_ARG_8909_STRICT = '1'
-
-  t.throws(() => npa('file://.'), {
-    message: 'Invalid file: URL, must be absolute if // present',
-    raw: 'file://.',
-  })
-
-  t.throws(() => npa('file://some/relative/path'), {
-    message: 'Invalid file: URL, must be absolute if // present',
-    raw: 'file://some/relative/path',
-  })
-
-  // I cannot for the life of me figure out how to make new URL('file:...')
-  // actually fail to parse.  it seems like it accepts any garbage you can
-  // throw at it.  However, because it theoretically CAN throw, here's a test.
-  t.throws(() => {
-    const broken = t.mock('..', {
-      url: {
-        URL: class {
-          constructor () {
-            throw new Error('thansk i haet it')
-          }
-        },
+t.test('invalid url', t => {
+  const broken = t.mock('..', {
+    url: {
+      URL: class {
+        constructor () {
+          throw new Error('something went wrong')
+        }
       },
-    })
-    broken('file:thansk i haet it')
-  }, {
-    message: 'Invalid file: URL, must comply with RFC 8909',
+    },
   })
-
+  t.throws(() => broken('file:./test'),
+    { message: 'Invalid file: URL' }
+  )
   t.end()
 })
 
