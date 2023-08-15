@@ -11,7 +11,7 @@
     "lib/"
   ],
   "dependencies": {
-    "hosted-git-info": "^6.0.0",
+    "hosted-git-info": "^7.0.0",
     "proc-log": "^3.0.0",
     "semver": "^7.3.5",
     "validate-npm-package-name": "^5.0.0"
