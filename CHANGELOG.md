@@ -1,5 +1,21 @@
 # Changelog
 
+## [11.0.0](https://github.com/npm/npm-package-arg/compare/v10.1.0...v11.0.0) (2023-08-15)
+
+### ⚠️ BREAKING CHANGES
+
+* the strict RFC 8909 mode has been removed
+* support for node 14 has been removed
+
+### Bug Fixes
+
+* [`9344167`](https://github.com/npm/npm-package-arg/commit/934416709cb14ad0a0bab6e544b8d42c62aa279f) [#135](https://github.com/npm/npm-package-arg/pull/135) remove strict 8909 mode (@wraithgar)
+* [`5042ff2`](https://github.com/npm/npm-package-arg/commit/5042ff2bba38bf3d8f62541960c808ac3230da08) [#139](https://github.com/npm/npm-package-arg/pull/139) drop node14 support (@lukekarrys)
+
+### Dependencies
+
+* [`d2ab7ba`](https://github.com/npm/npm-package-arg/commit/d2ab7bade19f4594c828ee2a4d5942b2626123cb) [#138](https://github.com/npm/npm-package-arg/pull/138) bump hosted-git-info from 6.1.1 to 7.0.0
+
 ## [10.1.0](https://github.com/npm/npm-package-arg/compare/v10.0.0...v10.1.0) (2022-12-01)
 
 ### Features
