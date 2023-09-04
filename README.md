@@ -47,7 +47,7 @@ included then the default is `latest`.
 
 ### var purl = npa.toPurl(*arg*, *reg*)
 
-Returns the [purl (package URL)](https://github.com/package-url/purl-spec) form of the given pacakge name/spec.
+Returns the [purl (package URL)](https://github.com/package-url/purl-spec) form of the given package name/spec.
 
 * *arg* - A package/version string. For example: `foo@1.0.0` or `@bar/foo@2.0.0-alpha.1`.
 * *reg* - Optionally the URL to the package registry. If not specified, assumes the default
