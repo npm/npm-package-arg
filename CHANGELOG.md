@@ -1,5 +1,16 @@
 # Changelog
 
+## [11.0.1](https://github.com/npm/npm-package-arg/compare/v11.0.0...v11.0.1) (2023-09-05)
+
+### Bug Fixes
+
+* [`74b3c7e`](https://github.com/npm/npm-package-arg/commit/74b3c7e34a7ec16a6f9d36e3d8dfbc052f3ff5a8) [#141](https://github.com/npm/npm-package-arg/pull/141) use URL instead of url.parse (#141) (@wraithgar)
+
+### Documentation
+
+* [`ea00495`](https://github.com/npm/npm-package-arg/commit/ea0049578355050e0f56cdd28809501326ba534b) [#142](https://github.com/npm/npm-package-arg/pull/142) fix readme typo (#142) (@rotu)
+* [`26705c5`](https://github.com/npm/npm-package-arg/commit/26705c5fefcd695a881635cf4ccbd7c27de91af3) [#143](https://github.com/npm/npm-package-arg/pull/143) Fix citations to RFC 8089 (not 8909) for file: url (#143) (@rotu)
+
 ## [11.0.0](https://github.com/npm/npm-package-arg/compare/v10.1.0...v11.0.0) (2023-08-15)
 
 ### ⚠️ BREAKING CHANGES
