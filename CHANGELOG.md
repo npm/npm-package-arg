@@ -4,7 +4,7 @@
 
 ### ⚠️ BREAKING CHANGES
 
-* the strict RFC 8909 mode has been removed
+* the strict RFC 8089 mode has been removed
 * support for node 14 has been removed
 
 ### Bug Fixes
