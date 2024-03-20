@@ -1,6 +1,6 @@
 # npm-package-arg
 
-[![Build Status](https://travis-ci.org/npm/npm-package-arg.svg?branch=master)](https://travis-ci.org/npm/npm-package-arg)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/npm/npm-package-arg/ci.yml?branch=main)](https://github.com/npm/npm-package-arg)
 
 Parses package name and specifier passed to commands like `npm install` or
 `npm cache add`, or as found in `package.json` dependency sections.
