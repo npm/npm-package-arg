@@ -1,5 +1,26 @@
 # Changelog
 
+## [11.0.2](https://github.com/npm/npm-package-arg/compare/v11.0.1...v11.0.2) (2024-04-12)
+
+### Documentation
+
+* [`1765111`](https://github.com/npm/npm-package-arg/commit/17651118e122ea7c95a930285b228ccb1609652c) [#171](https://github.com/npm/npm-package-arg/pull/171) readme: fix broken badge URL (#171) (@10xLaCroixDrinker)
+
+### Dependencies
+
+* [`4ccd080`](https://github.com/npm/npm-package-arg/commit/4ccd08087e50c22a498498bbf2f27d2ffed346f3) [#173](https://github.com/npm/npm-package-arg/pull/173) `proc-log@4.0.0` (#173)
+
+### Chores
+
+* [`207ba7d`](https://github.com/npm/npm-package-arg/commit/207ba7d5cf32c6daa4fd2aad644e8371dd33e0de) [#168](https://github.com/npm/npm-package-arg/pull/168) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`604c1d2`](https://github.com/npm/npm-package-arg/commit/604c1d2011a2bb6be599f55fc0aeeb7ebe445517) [#168](https://github.com/npm/npm-package-arg/pull/168) bump @npmcli/template-oss from 4.21.1 to 4.21.3 (@dependabot[bot])
+* [`82273b5`](https://github.com/npm/npm-package-arg/commit/82273b59bac85e13e130e270e3c1a0ea55c1bfff) [#165](https://github.com/npm/npm-package-arg/pull/165) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`4228b37`](https://github.com/npm/npm-package-arg/commit/4228b378a41174b0671ea1a98b2426d86d3c50b3) [#165](https://github.com/npm/npm-package-arg/pull/165) bump @npmcli/template-oss from 4.19.0 to 4.21.1 (@dependabot[bot])
+* [`d4b1447`](https://github.com/npm/npm-package-arg/commit/d4b144726c787dd5ef98fbcf9863c1dd64b74d6a) [#147](https://github.com/npm/npm-package-arg/pull/147) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`c5920a9`](https://github.com/npm/npm-package-arg/commit/c5920a954577df498f3b0455aab35c3d3a8556a8) [#147](https://github.com/npm/npm-package-arg/pull/147) bump @npmcli/template-oss from 4.18.1 to 4.19.0 (@dependabot[bot])
+* [`ee68f93`](https://github.com/npm/npm-package-arg/commit/ee68f93f7b4b661d6fcc1d5d9213f897cfd4bd55) [#146](https://github.com/npm/npm-package-arg/pull/146) postinstall for dependabot template-oss PR (@lukekarrys)
+* [`7901052`](https://github.com/npm/npm-package-arg/commit/79010526afd9d97435d0486c7ac76e70cbffa6fe) [#146](https://github.com/npm/npm-package-arg/pull/146) bump @npmcli/template-oss from 4.18.0 to 4.18.1 (@dependabot[bot])
+
 ## [11.0.1](https://github.com/npm/npm-package-arg/compare/v11.0.0...v11.0.1) (2023-09-05)
 
 ### Bug Fixes
