@@ -693,6 +693,10 @@ t.test('basic', function (t) {
   }, 'nested aliases not supported')
 
   t.throws(() => {
+    npa('foo@npm:')
+  }, 'aliases must have a name')
+
+  t.throws(() => {
     npa('foo@npm:foo/bar')
   }, 'aliases only work for registry deps')
 
