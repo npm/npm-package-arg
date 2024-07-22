@@ -1,5 +1,17 @@
 # Changelog
 
+## [11.0.3](https://github.com/npm/npm-package-arg/compare/v11.0.2...v11.0.3) (2024-07-22)
+
+### Bug Fixes
+
+* [`59d53b3`](https://github.com/npm/npm-package-arg/commit/59d53b3ea2f66c7d35250b278b3ada551cef8741) [#184](https://github.com/npm/npm-package-arg/pull/184) throws an err when alias is without name (#184) (@milaninfy)
+
+### Chores
+
+* [`911661e`](https://github.com/npm/npm-package-arg/commit/911661e2bde83ee4489179d75bcaf33a50ce38ad) [#176](https://github.com/npm/npm-package-arg/pull/176) bump @npmcli/template-oss to 4.22.0 (@lukekarrys)
+* [`575012e`](https://github.com/npm/npm-package-arg/commit/575012e19092c77995c35b015f2fd18bde5d5bf9) [#186](https://github.com/npm/npm-package-arg/pull/186) bump @npmcli/template-oss from 4.22.0 to 4.23.1 (#186) (@dependabot[bot], @wraithgar)
+* [`74d06ae`](https://github.com/npm/npm-package-arg/commit/74d06ae66df6b8a91f5b5e4b8ff001a887cf4851) [#176](https://github.com/npm/npm-package-arg/pull/176) postinstall for dependabot template-oss PR (@lukekarrys)
+
 ## [11.0.2](https://github.com/npm/npm-package-arg/compare/v11.0.1...v11.0.2) (2024-04-12)
 
 ### Documentation
