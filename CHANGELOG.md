@@ -1,5 +1,20 @@
 # Changelog
 
+## [12.0.0](https://github.com/npm/npm-package-arg/compare/v11.0.3...v12.0.0) (2024-09-25)
+### ⚠️ BREAKING CHANGES
+* `npm-package-arg` now supports node `^18.17.0 || >=20.5.0`
+### Bug Fixes
+* [`6bf84db`](https://github.com/npm/npm-package-arg/commit/6bf84db8c37990556fa8738d0985c5e904e44d02) [#194](https://github.com/npm/npm-package-arg/pull/194) align to npm 10 node engine range (@reggi)
+### Dependencies
+* [`3361e59`](https://github.com/npm/npm-package-arg/commit/3361e594418a6ed6088367682e362042e4318811) [#194](https://github.com/npm/npm-package-arg/pull/194) `validate-npm-package-name@6.0.0`
+* [`06e3bd6`](https://github.com/npm/npm-package-arg/commit/06e3bd64cd4e727b9734e0e23be2b09afc3205cd) [#194](https://github.com/npm/npm-package-arg/pull/194) `proc-log@5.0.0`
+* [`96dd671`](https://github.com/npm/npm-package-arg/commit/96dd671a06d8b27cd48258d068bdaaa83161cf3c) [#194](https://github.com/npm/npm-package-arg/pull/194) `hosted-git-info@8.0.0`
+### Chores
+* [`163925e`](https://github.com/npm/npm-package-arg/commit/163925e69326ef40d208f9789794dcdae6932cdd) [#194](https://github.com/npm/npm-package-arg/pull/194) run template-oss-apply (@reggi)
+* [`a8a9bdd`](https://github.com/npm/npm-package-arg/commit/a8a9bddc726802fb5ed30f6b113d57f0655bbd51) [#190](https://github.com/npm/npm-package-arg/pull/190) bump @npmcli/eslint-config from 4.0.5 to 5.0.0 (@dependabot[bot])
+* [`f8d32ec`](https://github.com/npm/npm-package-arg/commit/f8d32ec3d0cb2d195084195664d48719060b6447) [#188](https://github.com/npm/npm-package-arg/pull/188) postinstall for dependabot template-oss PR (@hashtagchris)
+* [`a867f96`](https://github.com/npm/npm-package-arg/commit/a867f9644491a28560a8f751fa34320d7db14bde) [#188](https://github.com/npm/npm-package-arg/pull/188) bump @npmcli/template-oss from 4.23.1 to 4.23.3 (@dependabot[bot])
+
 ## [11.0.3](https://github.com/npm/npm-package-arg/compare/v11.0.2...v11.0.3) (2024-07-22)
 
 ### Bug Fixes
