@@ -1,5 +1,11 @@
 # Changelog
 
+## [12.0.1](https://github.com/npm/npm-package-arg/compare/v12.0.0...v12.0.1) (2024-12-10)
+### Bug Fixes
+* [`ea07a6e`](https://github.com/npm/npm-package-arg/commit/ea07a6edc71caae4db9342f90e03457edbb7bb24) [#197](https://github.com/npm/npm-package-arg/pull/197) allow for git usernames that start with a number (#197) (@wraithgar)
+### Chores
+* [`41aa799`](https://github.com/npm/npm-package-arg/commit/41aa799ee562f97d4bef48d0d08be8d4320bb219) [#196](https://github.com/npm/npm-package-arg/pull/196) bump @npmcli/template-oss from 4.23.3 to 4.23.4 (#196) (@dependabot[bot], @npm-cli-bot)
+
 ## [12.0.0](https://github.com/npm/npm-package-arg/compare/v11.0.3...v12.0.0) (2024-09-25)
 ### ⚠️ BREAKING CHANGES
 * `npm-package-arg` now supports node `^18.17.0 || >=20.5.0`
