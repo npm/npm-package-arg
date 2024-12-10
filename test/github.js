@@ -89,11 +89,36 @@ require('tap').test('basic', function (t) {
       raw: 'foo@bar/foo',
     },
 
+    'git@github.com:12345': {
+      name: undefined,
+      type: 'git',
+      saveSpec: 'git+ssh://git@github.com:12345',
+      fetchSpec: 'ssh://git@github.com:12345',
+      raw: 'git@github.com:12345',
+    },
+
+    'git@github.com:12345/': {
+      name: undefined,
+      type: 'git',
+      saveSpec: 'git+ssh://git@github.com:12345/',
+      fetchSpec: 'ssh://git@github.com:12345/',
+      raw: 'git@github.com:12345/',
+    },
+
     'git@github.com:12345/foo': {
       name: undefined,
       type: 'git',
       saveSpec: 'git+ssh://git@github.com:12345/foo',
+      fetchSpec: 'ssh://git@github.com:12345/foo',
       raw: 'git@github.com:12345/foo',
+    },
+
+    'git@github.com:12345foo': {
+      name: undefined,
+      type: 'git',
+      saveSpec: 'git+ssh://git@github.com:12345foo',
+      fetchSpec: 'git@github.com:12345foo',
+      raw: 'git@github.com:12345foo',
     },
   }
 
