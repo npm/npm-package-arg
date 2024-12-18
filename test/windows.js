@@ -1,9 +1,13 @@
-global.FAKE_WINDOWS = true
+// redefine process.platform before any requires so that we don't cache a require that got the non-redefined value
+const { platform } = process
+Object.defineProperty(process, 'platform', { value: 'win32' })
 
-const npa = require('..')
 const t = require('tap')
+const npa = require('..')
 
-t.on('bailout', () => process.exit(1))
+t.teardown(() => {
+  Object.defineProperty(process, 'platform', { value: platform })
+})
 
 const cases = {
   'C:\\x\\y\\z': {
@@ -95,9 +99,12 @@ const cases = {
 
 t.test('parse a windows path', function (t) {
   Object.keys(cases).forEach(function (c) {
-    const expect = cases[c]
-    const actual = npa(c, 'C:\\test\\path')
-    t.has(actual, expect, c)
+    t.test(c, t => {
+      const expect = cases[c]
+      const actual = npa(c, 'C:\\test\\path')
+      t.has(actual, expect, c)
+      t.end()
+    })
   })
   t.end()
 })
