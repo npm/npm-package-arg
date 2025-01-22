@@ -1,5 +1,7 @@
 # npm-package-arg
 
+CI TEST
+
 [![Build Status](https://img.shields.io/github/actions/workflow/status/npm/npm-package-arg/ci.yml?branch=main)](https://github.com/npm/npm-package-arg)
 
 Parses package name and specifier passed to commands like `npm install` or
