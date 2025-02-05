@@ -1,5 +1,11 @@
 # Changelog
 
+## [12.0.2](https://github.com/npm/npm-package-arg/compare/v12.0.1...v12.0.2) (2025-02-05)
+### Bug Fixes
+* [`14cb8a1`](https://github.com/npm/npm-package-arg/commit/14cb8a18b32982a3be5c45331331cdbed78218c8) [#200](https://github.com/npm/npm-package-arg/pull/200) properly parse non-url encoded file specs (#200) (@wraithgar)
+### Chores
+* [`1343a54`](https://github.com/npm/npm-package-arg/commit/1343a54064dd832befce32dff16d2736e307238e) [#199](https://github.com/npm/npm-package-arg/pull/199) bump @npmcli/template-oss from 4.23.4 to 4.23.5 (#199) (@dependabot[bot], @npm-cli-bot)
+
 ## [12.0.1](https://github.com/npm/npm-package-arg/compare/v12.0.0...v12.0.1) (2024-12-10)
 ### Bug Fixes
 * [`ea07a6e`](https://github.com/npm/npm-package-arg/commit/ea07a6edc71caae4db9342f90e03457edbb7bb24) [#197](https://github.com/npm/npm-package-arg/pull/197) allow for git usernames that start with a number (#197) (@wraithgar)
