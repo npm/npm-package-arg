@@ -1,23 +1,19 @@
-const path = require('path').posix
-const os = require('os')
+const path = require('node:path').posix
+const os = require('node:os')
 
 const normalizePath = p => p && p.replace(/^[a-zA-Z]:/, '').replace(/\\/g, '/')
 
 const cwd = normalizePath(process.cwd())
 process.cwd = () => cwd
 const normalizePaths = spec => {
-  spec.saveSpec = normalizePath(spec.saveSpec)
   spec.fetchSpec = normalizePath(spec.fetchSpec)
   return spec
 }
 
 const t = require('tap')
 const npa = t.mock('..', { path })
-t.on('bailout', () => process.exit(1))
 
 t.test('basic', function (t) {
-  t.setMaxListeners(999)
-
   const tests = {
     'foo@1.2': {
       name: 'foo',
@@ -635,10 +631,13 @@ t.test('basic', function (t) {
   }
 
   Object.keys(tests).forEach(function (arg) {
-    const res = normalizePaths(npa(arg, '/test/a/b'))
-    t.ok(res instanceof npa.Result, arg + ' is a result')
-    Object.keys(tests[arg]).forEach(function (key) {
-      t.match(res[key], tests[arg][key], arg + ' [' + key + ']')
+    t.test(arg, t => {
+      const res = normalizePaths(npa(arg, '/test/a/b'))
+      t.ok(res instanceof npa.Result, arg + ' is a result')
+      Object.keys(tests[arg]).forEach(function (key) {
+        t.match(res[key], tests[arg][key], arg + ' [' + key + ']')
+      })
+      t.end()
     })
   })
 
@@ -735,9 +734,49 @@ t.test('basic', function (t) {
   t.end()
 })
 
+t.test('directory with non URI compatible components', t => {
+  t.has(normalizePaths(npa('/test%dir')), {
+    type: 'directory',
+    name: null,
+    rawSpec: '/test%dir',
+    fetchSpec: '/test%dir',
+    saveSpec: 'file:/test%dir',
+  })
+  t.end()
+})
+
+t.test('file: spec with non URI compatible components', t => {
+  t.has(normalizePaths(npa('file:/test%dir')), {
+    type: 'directory',
+    name: null,
+    rawSpec: 'file:/test%dir',
+    fetchSpec: '/test%dir',
+    saveSpec: 'file:/test%dir',
+  })
+  t.end()
+})
+
+t.test('directory cwd has non URI compatible components', t => {
+  // eslint-disable-next-line max-len
+  const where = '/tmp/ !"$%&\'()*+,-.0123456789:;<=>@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
+  const originalCwd = process.cwd
+  t.teardown(() => {
+    process.cwd = originalCwd
+  })
+  process.cwd = () => where
+  t.has(normalizePaths(npa('./')), {
+    type: 'directory',
+    where,
+    name: null,
+    rawSpec: './',
+    fetchSpec: normalizePath(where),
+  })
+  t.end()
+})
+
 t.test('invalid url', t => {
   const broken = t.mock('..', {
-    url: {
+    'node:url': {
       URL: class {
         constructor () {
           throw new Error('something went wrong')
