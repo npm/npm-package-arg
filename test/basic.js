@@ -756,6 +756,17 @@ t.test('file: spec with non URI compatible components', t => {
   t.end()
 })
 
+t.test('file: spec with encoded URI components', t => {
+  t.has(normalizePaths(npa('file:/test_%23dir')), {
+    type: 'directory',
+    name: null,
+    rawSpec: 'file:/test_%23dir',
+    fetchSpec: '/test_#dir',
+    saveSpec: 'file:/test_#dir',
+  })
+  t.end()
+})
+
 t.test('directory cwd has non URI compatible components', t => {
   // eslint-disable-next-line max-len
   const where = '/tmp/ !"$%&\'()*+,-.0123456789:;<=>@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
