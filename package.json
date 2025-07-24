@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/npm/npm-package-arg",
   "engines": {
-    "node": "^18.17.0 || >=20.5.0"
+    "node": "^20.17.0 || >=22.9.0"
   },
   "tap": {
     "branches": 97,
