@@ -1,5 +1,13 @@
 # Changelog
 
+## [13.0.0](https://github.com/npm/npm-package-arg/compare/v12.0.2...v13.0.0) (2025-07-24)
+### ⚠️ BREAKING CHANGES
+* `npm-package-arg` now supports node `^20.17.0 || >=22.9.0`
+### Bug Fixes
+* [`aa3ed29`](https://github.com/npm/npm-package-arg/commit/aa3ed290c5b935159818b7e1d7714f87819df0b6) [#207](https://github.com/npm/npm-package-arg/pull/207) align to npm 11 node engine range (@owlstronaut)
+### Dependencies
+* [`fb6ea64`](https://github.com/npm/npm-package-arg/commit/fb6ea6416fc7e0be58162b07601bf359b522de5b) [#207](https://github.com/npm/npm-package-arg/pull/207) `hosted-git-info@9.0.0`
+
 ## [12.0.2](https://github.com/npm/npm-package-arg/compare/v12.0.1...v12.0.2) (2025-02-05)
 ### Bug Fixes
 * [`14cb8a1`](https://github.com/npm/npm-package-arg/commit/14cb8a18b32982a3be5c45331331cdbed78218c8) [#200](https://github.com/npm/npm-package-arg/pull/200) properly parse non-url encoded file specs (#200) (@wraithgar)
