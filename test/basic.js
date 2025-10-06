@@ -823,3 +823,40 @@ t.test('error message', t => {
 
   t.end()
 })
+
+t.test('tarball regex should only match literal dots', t => {
+  // Valid tarball extensions - should match
+  t.has(normalizePaths(npa('/path/to/package.tar.gz')), {
+    type: 'file',
+    name: null,
+  }, '.tar.gz should match as file')
+
+  t.has(normalizePaths(npa('/path/to/package.tgz')), {
+    type: 'file',
+    name: null,
+  }, '.tgz should match as file')
+
+  t.has(normalizePaths(npa('/path/to/package.tar')), {
+    type: 'file',
+    name: null,
+  }, '.tar should match as file')
+
+  // Invalid patterns with non-dot characters - should NOT match as file
+  // These should be treated as directories, not files
+  t.has(normalizePaths(npa('/path/to/package.tarXgz')), {
+    type: 'directory',
+    name: null,
+  }, '.tarXgz should NOT match as file (X is not a dot)')
+
+  t.has(normalizePaths(npa('/path/to/package.tar_gz')), {
+    type: 'directory',
+    name: null,
+  }, '.tar_gz should NOT match as file (underscore is not a dot)')
+
+  t.has(normalizePaths(npa('./package.tar gz')), {
+    type: 'directory',
+    name: null,
+  }, '.tar gz should NOT match as file (space is not a dot)')
+
+  t.end()
+})
