@@ -1,5 +1,9 @@
 # Changelog
 
+## [13.0.1](https://github.com/npm/npm-package-arg/compare/v13.0.0...v13.0.1) (2025-10-06)
+### Bug Fixes
+* [`f00dea0`](https://github.com/npm/npm-package-arg/commit/f00dea08e9bb30a4c0a1ed01274b63bdbe79c320) [#211](https://github.com/npm/npm-package-arg/pull/211) Correct tarball regex to detect literal dots (@markovejnovic)
+
 ## [13.0.0](https://github.com/npm/npm-package-arg/compare/v12.0.2...v13.0.0) (2025-07-24)
 ### ⚠️ BREAKING CHANGES
 * `npm-package-arg` now supports node `^20.17.0 || >=22.9.0`
