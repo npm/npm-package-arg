@@ -136,8 +136,8 @@ t.test('JSR validation errors', t => {
   t.test('invalid package name characters', t => {
     t.throws(
       () => npa('jsr:@scope/in valid'),
-      /Invalid package name/,
-      'throws error for invalid package name with spaces'
+      /JSR packages must be registry dependencies/,
+      'throws error when package is parsed as non-registry (e.g., directory)'
     )
     t.end()
   })
