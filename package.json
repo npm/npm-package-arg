@@ -47,7 +47,6 @@
     "node": "^20.17.0 || >=22.9.0"
   },
   "tap": {
-    "branches": 97,
     "nyc-arg": [
       "--exclude",
       "tap-snapshots/**"
