@@ -1,5 +1,14 @@
 # Changelog
 
+## [13.0.2](https://github.com/npm/npm-package-arg/compare/v13.0.1...v13.0.2) (2025-11-13)
+### Dependencies
+* [`34eddcb`](https://github.com/npm/npm-package-arg/commit/34eddcbb7598db1b025c683d7fb7807e92b055bd) [#216](https://github.com/npm/npm-package-arg/pull/216) `validate-npm-package-name@7.0.0`
+* [`aa1d884`](https://github.com/npm/npm-package-arg/commit/aa1d884c2891f17c374105e8ed54e4994d167c24) [#216](https://github.com/npm/npm-package-arg/pull/216) `proc-log@6.0.0`
+### Chores
+* [`bfacbad`](https://github.com/npm/npm-package-arg/commit/bfacbad93f0f9c8e85ef1c7e1dc74c144c765133) [#216](https://github.com/npm/npm-package-arg/pull/216) `@npmcli/eslint-config@6.0.0` (@wraithgar)
+* [`77e0f08`](https://github.com/npm/npm-package-arg/commit/77e0f0882fad89daf43070110029acbe419cc672) [#216](https://github.com/npm/npm-package-arg/pull/216) `@npmcli/template-oss@4.28.0` (@wraithgar)
+* [`86f5fc5`](https://github.com/npm/npm-package-arg/commit/86f5fc5d11b1567904e96cb3cb16fae6dfa13db1) [#215](https://github.com/npm/npm-package-arg/pull/215) remove code coverage bypass (#215) (@wraithgar)
+
 ## [13.0.1](https://github.com/npm/npm-package-arg/compare/v13.0.0...v13.0.1) (2025-10-06)
 ### Bug Fixes
 * [`f00dea0`](https://github.com/npm/npm-package-arg/commit/f00dea08e9bb30a4c0a1ed01274b63bdbe79c320) [#211](https://github.com/npm/npm-package-arg/pull/211) Correct tarball regex to detect literal dots (@markovejnovic)
