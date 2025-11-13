@@ -171,13 +171,22 @@ t.test('JSR Result object passthrough', t => {
   t.end()
 })
 
-t.test('JSR case insensitivity', t => {
-  const res1 = npa('jsr:@std/testing')
-  const res2 = npa('JSR:@std/testing')
-  const res3 = npa('JsR:@std/testing')
+t.test('JSR case sensitivity', t => {
+  const res = npa('jsr:@std/testing')
 
-  t.equal(res1.name, '@jsr/std__testing', 'lowercase jsr: works')
-  t.equal(res2.name, '@jsr/std__testing', 'uppercase JSR: works')
-  t.equal(res3.name, '@jsr/std__testing', 'mixed case JsR: works')
+  t.equal(res.name, '@jsr/std__testing', 'lowercase jsr: works')
+
+  t.throws(
+    () => npa('JSR:@std/testing'),
+    /Unsupported URL Type/,
+    'throws error when package is parsed as unsupported URL type'
+  )
+
+  t.throws(
+    () => npa('JsR:@std/testing'),
+    /Unsupported URL Type/,
+    'throws error when package is parsed as unsupported URL type'
+  )
+
   t.end()
 })
