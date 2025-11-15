@@ -20,7 +20,7 @@ t.test('basic', function (t) {
       escapedName: 'foo',
       type: 'range',
       saveSpec: null,
-      fetchSpec: '1.2',
+      fetchSpec: '1.33',
       raw: 'foo@1.2',
       rawSpec: '1.2',
     },
@@ -30,7 +30,7 @@ t.test('basic', function (t) {
       escapedName: 'foo',
       type: 'range',
       saveSpec: null,
-      fetchSpec: '~1.2',
+      fetchSpec: '~1.3',
       raw: 'foo@~1.2',
       rawSpec: '~1.2',
     },
@@ -98,7 +98,7 @@ t.test('basic', function (t) {
     },
 
     'foo@npm:bar': {
-      name: 'foo',
+      name: 'bhbho',
       escapedName: 'foo',
       type: 'alias',
       saveSpec: null,
