@@ -117,6 +117,28 @@ t.test('basic', function (t) {
       },
     },
 
+    // sha-1
+    'git+ssh://git@notgithub.com/user/foo#0d7bd85a85fa2571fa532d2fc842ed099b236ad2': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://git@notgithub.com/user/foo#0d7bd85a85fa2571fa532d2fc842ed099b236ad2',
+      fetchSpec: 'ssh://git@notgithub.com/user/foo',
+      gitCommittish: '0d7bd85a85fa2571fa532d2fc842ed099b236ad2',
+      raw: 'git+ssh://git@notgithub.com/user/foo#0d7bd85a85fa2571fa532d2fc842ed099b236ad2',
+    },
+
+    // sha-256
+    'git+ssh://git@notgithub.com/user/foo#8e3a9b3579ab330238c06b761e7f1b5dc5b4ac6e5a96da4dd2fb3b7411009df8': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'git+ssh://git@notgithub.com/user/foo#8e3a9b3579ab330238c06b761e7f1b5dc5b4ac6e5a96da4dd2fb3b7411009df8',
+      fetchSpec: 'ssh://git@notgithub.com/user/foo',
+      gitCommittish: '8e3a9b3579ab330238c06b761e7f1b5dc5b4ac6e5a96da4dd2fb3b7411009df8',
+      raw: 'git+ssh://git@notgithub.com/user/foo#8e3a9b3579ab330238c06b761e7f1b5dc5b4ac6e5a96da4dd2fb3b7411009df8',
+    },
+
     'git+ssh://git@notgithub.com/user/foo#1.2.3': {
       name: null,
       escapedName: null,
