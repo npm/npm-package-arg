@@ -68,7 +68,9 @@ keys:
   * `file` - A local `.tar.gz`, `.tar` or `.tgz` file.
   * `directory` - A local directory.
   * `remote` - An http url (presumably to a tgz)
-  * `alias` - A specifier with an alias, like `myalias@npm:foo@1.2.3`
+  * `alias` - A specifier that aliases another registry package, like
+    `myalias@npm:foo@1.2.3`, `myalias@jsr:@scope/pkg@1.2.3`, or
+    `myalias@github:@owner/pkg@1.2.3`. See [Alias specifiers](#alias-specifiers).
 * `registry` - If true this specifier refers to a resource hosted on a
   registry.  This is true for `tag`, `version` and `range` types.
 * `name` - If known, the `name` field expected in the resulting pkg.
@@ -94,6 +96,46 @@ keys:
   `npa.resolve(name, spec)` then this will be `name + '@' + spec`.
 * `subSpec` - If `type === 'alias'`, this is a Result Object for parsing the
   target specifier for the alias.
+* `aliasType` - When `type === 'alias'`, one of `'npm'`, `'jsr'`, or
+  `'github'`, identifying which alias prefix the specifier used. `undefined`
+  on non-alias results.
+* `jsrName` - When `aliasType === 'jsr'`, the original scoped JSR package
+  name (e.g. `@scope/pkg`) as written by the user. `subSpec.name` is the
+  remapped `@jsr/<scope>__<name>` form used to fetch from the registry.
+
+## ALIAS SPECIFIERS
+
+Aliases install one package under a different name. Three prefixes are
+recognized, each resolving to a registry dependency:
+
+* `<alias>@npm:<name>[@<version>]` — aliases within the configured npm
+  registry. `npm-alias@npm:express@4` installs `express` as `npm-alias`.
+* `<alias>@jsr:@<scope>/<name>[@<version>]` — aliases a JSR package. The
+  scoped name is remapped to `@jsr/<scope>__<name>` to match JSR's npm
+  compatibility registry; the fetch is routed by the standard
+  `@jsr:registry=https://npm.jsr.io/` scope config.
+* `<alias>@github:@<owner>/<name>[@<version>]` — aliases a GitHub Packages
+  npm package. The scoped name is used as-is; the fetch is routed by the
+  standard `@<owner>:registry=https://npm.pkg.github.com/` scope config.
+
+For `jsr:` and `github:`, a bare-version form is also accepted when the
+alias name is itself a scoped package name — e.g.
+`@scope/foo@jsr:^1.0.0` uses `@scope/foo` as the JSR package name.
+
+### GitHub git-shortcut compatibility
+
+`github:<owner>/<repo>` is `hosted-git-info`'s long-standing shortcut for a
+GitHub git repository. It is **not** treated as an alias — it continues to
+resolve to `type: 'git'`. This applies to:
+
+* `github:owner/repo`
+* `github:owner/repo#<committish>`
+* `github:owner/repo#semver:<range>`
+* `foo@github:owner/repo` and variants above with an alias on the left
+
+The `github:` alias path is only taken when the body is unambiguously not a
+git shortcut: either a scoped package name (`github:@owner/pkg…`) or a bare
+version selector paired with a scoped alias (`@scope/pkg@github:…`).
 
 ## SAVE SPECS
 
