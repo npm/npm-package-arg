@@ -14,7 +14,7 @@
     "hosted-git-info": "^10.1.0",
     "proc-log": "^7.0.0",
     "semver": "^7.3.5",
-    "validate-npm-package-name": "^7.0.0"
+    "validate-npm-package-name": "^8.0.0"
   },
   "devDependencies": {
     "@npmcli/eslint-config": "^6.0.0",
