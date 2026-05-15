@@ -1,5 +1,21 @@
 # Changelog
 
+## [14.0.0](https://github.com/npm/npm-package-arg/compare/v13.0.2...v14.0.0) (2026-05-15)
+### ⚠️ BREAKING CHANGES
+* `npm-package-arg` now supports node `^22.22.2 || ^24.15.0 || >=26.0.0`
+* template-oss-apply
+### Features
+* [`0eade2f`](https://github.com/npm/npm-package-arg/commit/0eade2f66510626627ebf5218dbe7cafda6e27d7) [#228](https://github.com/npm/npm-package-arg/pull/228) bump to new node engine range (@owlstronaut)
+* [`245d29a`](https://github.com/npm/npm-package-arg/commit/245d29a45fc68efd0f60d0e32d235ef6e981b591) [#228](https://github.com/npm/npm-package-arg/pull/228) template-oss-apply (@owlstronaut)
+### Dependencies
+* [`362844d`](https://github.com/npm/npm-package-arg/commit/362844d0370a48d84398fbabf82b7abbef76517a) [#228](https://github.com/npm/npm-package-arg/pull/228) `validate-npm-package-name@8.0.0`
+* [`91cf06b`](https://github.com/npm/npm-package-arg/commit/91cf06beae95d75b7f9a61b5e6943d2b91e77f7e) [#228](https://github.com/npm/npm-package-arg/pull/228) `proc-log@7.0.0`
+* [`55409ca`](https://github.com/npm/npm-package-arg/commit/55409caca9b42c48d73437a700d02dc482d173aa) [#228](https://github.com/npm/npm-package-arg/pull/228) `hosted-git-info@10.1.0`
+### Chores
+* [`a6794f1`](https://github.com/npm/npm-package-arg/commit/a6794f1c9e87124eef4c1827036aff4201f2ae37) [#228](https://github.com/npm/npm-package-arg/pull/228) template-oss-apply (@owlstronaut)
+* [`bfb6066`](https://github.com/npm/npm-package-arg/commit/bfb60663747651573ab9992a42cc39ab9b2eefbf) [#228](https://github.com/npm/npm-package-arg/pull/228) bumping @npmcli/template-oss from 4.28.0 to 5.1.0 (@owlstronaut)
+* [`c9bff6d`](https://github.com/npm/npm-package-arg/commit/c9bff6dc3bb41cf3d409909ad0c3653e53b8e743) [#220](https://github.com/npm/npm-package-arg/pull/220) explicit sha1 / sha256 git committish tests (#220) (@wraithgar)
+
 ## [13.0.2](https://github.com/npm/npm-package-arg/compare/v13.0.1...v13.0.2) (2025-11-13)
 ### Dependencies
 * [`34eddcb`](https://github.com/npm/npm-package-arg/commit/34eddcbb7598db1b025c683d7fb7807e92b055bd) [#216](https://github.com/npm/npm-package-arg/pull/216) `validate-npm-package-name@7.0.0`
