@@ -13,6 +13,25 @@ const normalizePaths = spec => {
 const t = require('tap')
 const npa = t.mock('..', { path })
 
+t.test('skips hosted git parsing for registry specs', t => {
+  const calls = []
+  const mockedNpa = t.mock('..', {
+    path,
+    'hosted-git-info': {
+      fromUrl: spec => {
+        calls.push(spec)
+        return null
+      },
+    },
+  })
+
+  mockedNpa('foo')
+  mockedNpa('foo@^1.2.3')
+  mockedNpa('foo@latest')
+  t.strictSame(calls, [])
+  t.end()
+})
+
 t.test('basic', function (t) {
   const tests = {
     'foo@1.2': {
