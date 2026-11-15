@@ -108,3 +108,17 @@ t.test('parse a windows path', function (t) {
   })
   t.end()
 })
+
+t.test('file scheme is case insensitive', t => {
+  for (const rawSpec of ['FILE:///C:\\Packages\\Package', 'FiLe://C:\\Packages\\Package']) {
+    t.hasStrict(npa.resolve('foo', rawSpec, 'C:\\test\\path'), {
+      raw: `foo@${rawSpec}`,
+      rawSpec,
+      name: 'foo',
+      type: 'directory',
+      fetchSpec: 'C:\\Packages\\Package',
+      saveSpec: 'file:C:/Packages/Package',
+    }, rawSpec)
+  }
+  t.end()
+})
