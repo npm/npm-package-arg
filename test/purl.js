@@ -26,6 +26,30 @@ test('toPurl - valid', function (t) {
   t.end()
 })
 
+test('toPurl - normalized versions', function (t) {
+  const cases = [
+    ['foo@v1.2.3', 'pkg:npm/foo@1.2.3'],
+    ['foo@=1.2.3', 'pkg:npm/foo@1.2.3'],
+    ['foo@ 1.2.3 ', 'pkg:npm/foo@1.2.3'],
+    ['foo@01.02.03', 'pkg:npm/foo@1.2.3'],
+    ['foo@1.2.3beta', 'pkg:npm/foo@1.2.3-beta'],
+    ['foo@1.2.3+build.1', 'pkg:npm/foo@1.2.3+build.1'],
+    ['@foo/bar@v1.2.3-alpha.1+build.1', 'pkg:npm/%40foo/bar@1.2.3-alpha.1+build.1'],
+  ]
+
+  for (const [spec, expected] of cases) {
+    t.equal(npa.toPurl(spec), expected, spec)
+    t.equal(npa.toPurl(npa(spec)), expected, `parsed ${spec}`)
+  }
+
+  t.equal(
+    npa.toPurl({ name: '@foo/bar', rawSpec: 'v1.2.3+build.1' }),
+    'pkg:npm/%40foo/bar@1.2.3+build.1'
+  )
+
+  t.end()
+})
+
 test('toPurl - invalid', function (t) {
   // Invalid version
   t.throws(() => npa.toPurl({ name: 'foo/bar', rawSpec: '1.0.0' }), {
