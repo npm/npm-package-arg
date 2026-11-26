@@ -846,6 +846,36 @@ t.test('error message', t => {
   t.end()
 })
 
+t.test('named SCP-style Git dependencies retain their package names', t => {
+  for (const host of ['github.com', 'gitlab.com', 'bitbucket.org']) {
+    for (const user of ['git', 'git.user']) {
+      const spec = `${user}@${host}:npm/node-semver.git#v7.7.2`
+      for (const name of ['my-semver', '@myorg/my-semver']) {
+        const input = `${name}@${spec}`
+        const res = npa(input)
+        t.same({
+          name: res.name,
+          type: res.type,
+          raw: res.raw,
+          rawSpec: res.rawSpec,
+          saveSpec: res.saveSpec,
+          fetchSpec: res.fetchSpec,
+          gitCommittish: res.gitCommittish,
+        }, {
+          name,
+          type: 'git',
+          raw: input,
+          rawSpec: spec,
+          saveSpec: `git+ssh://git@${host}/npm/node-semver.git#v7.7.2`,
+          fetchSpec: `ssh://git@${host}/npm/node-semver.git`,
+          gitCommittish: 'v7.7.2',
+        }, input)
+      }
+    }
+  }
+  t.end()
+})
+
 t.test('tarball regex should only match literal dots', t => {
   // Valid tarball extensions - should match
   t.has(normalizePaths(npa('/path/to/package.tar.gz')), {
