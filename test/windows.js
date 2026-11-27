@@ -108,3 +108,32 @@ t.test('parse a windows path', function (t) {
   })
   t.end()
 })
+
+t.test('Git file protocol prefixes are case-insensitive', t => {
+  for (const scheme of ['git+file:', 'GIT+FILE:', 'git+FILE:']) {
+    for (const location of ['C:\\Owner\\Repo', 'C:/Owner/Repo']) {
+      const spec = `${scheme}//${location}#Release`
+      const input = `fixture@${spec}`
+      t.test(input, t => {
+        const res = npa(input)
+        t.same({
+          name: res.name,
+          type: res.type,
+          rawSpec: res.rawSpec,
+          saveSpec: res.saveSpec,
+          fetchSpec: res.fetchSpec,
+          gitCommittish: res.gitCommittish,
+        }, {
+          name: 'fixture',
+          type: 'git',
+          rawSpec: spec,
+          saveSpec: spec,
+          fetchSpec: 'file://c:/Owner/Repo',
+          gitCommittish: 'Release',
+        })
+        t.end()
+      })
+    }
+  }
+  t.end()
+})
