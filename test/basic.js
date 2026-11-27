@@ -812,6 +812,40 @@ t.test('invalid url', t => {
   t.end()
 })
 
+t.test('Git subdirectory values retain single colons', t => {
+  const cases = [
+    ['path:packages:ui', '/packages:ui', undefined, undefined],
+    ['path:packages:ui:core', '/packages:ui:core', undefined, undefined],
+    ['Main::path:packages:ui', '/packages:ui', 'Main', undefined],
+    ['path:packages:ui::Main', '/packages:ui', 'Main', undefined],
+    ['semver:%5E1.2.3::path:packages:ui', '/packages:ui', undefined, '^1.2.3'],
+    ['path:packages:ui::semver:%5E1.2.3', '/packages:ui', undefined, '^1.2.3'],
+    ['path:packages/ui', '/packages/ui', undefined, undefined],
+    ['path:', '/', undefined, undefined],
+  ]
+  for (const repo of ['user/foo', 'git+https://example.test/repo.git']) {
+    for (const [fragment, gitSubdir, gitCommittish, gitRange] of cases) {
+      const input = `${repo}#${fragment}`
+      const res = npa(input)
+      t.same({
+        type: res.type,
+        gitSubdir: res.gitSubdir,
+        gitCommittish: res.gitCommittish,
+        gitRange: res.gitRange,
+      }, {
+        type: 'git',
+        gitSubdir,
+        gitCommittish,
+        gitRange,
+      }, input)
+    }
+    t.throws(() => npa(`${repo}#path:packages:ui::path:other`), {
+      message: 'cannot override existing path with a second path',
+    }, `${repo} still rejects duplicate path attributes`)
+  }
+  t.end()
+})
+
 t.test('error message', t => {
   t.throws(() => npa('lodash.has@>=^4'), {
     // eslint-disable-next-line max-len
