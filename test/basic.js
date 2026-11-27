@@ -882,3 +882,37 @@ t.test('tarball regex should only match literal dots', t => {
 
   t.end()
 })
+
+t.test('SSH Git protocol prefixes are case-insensitive', t => {
+  const cases = [
+    ['GitUser@git.example.test:Owner/Repo.git', 'GitUser@git.example.test:Owner/Repo.git'],
+    ['GitUser@git.example.test/Owner/Repo.git', 'ssh://GitUser@git.example.test/Owner/Repo.git'],
+    ['GitUser@git.example.test:2222/Owner/Repo.git', 'ssh://GitUser@git.example.test:2222/Owner/Repo.git'],
+  ]
+  for (const scheme of ['git+ssh:', 'GIT+SSH:', 'git+SSH:']) {
+    for (const [location, fetchSpec] of cases) {
+      const spec = `${scheme}//${location}#Release`
+      const input = `fixture@${spec}`
+      t.test(input, t => {
+        const res = npa(input)
+        t.same({
+          name: res.name,
+          type: res.type,
+          rawSpec: res.rawSpec,
+          saveSpec: res.saveSpec,
+          fetchSpec: res.fetchSpec,
+          gitCommittish: res.gitCommittish,
+        }, {
+          name: 'fixture',
+          type: 'git',
+          rawSpec: spec,
+          saveSpec: spec,
+          fetchSpec,
+          gitCommittish: 'Release',
+        })
+        t.end()
+      })
+    }
+  }
+  t.end()
+})
