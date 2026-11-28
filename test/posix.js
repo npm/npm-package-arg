@@ -3,7 +3,7 @@ const { platform } = process
 Object.defineProperty(process, 'platform', { value: 'linux' })
 
 const t = require('tap')
-const npa = require('..')
+const npa = t.mock('..', { 'node:path': require('node:path/posix') })
 
 t.teardown(() => {
   Object.defineProperty(process, 'platform', { value: platform })
@@ -20,7 +20,23 @@ t.test('file spec', t => {
 })
 
 t.test('encoded path', t => {
-  const actual = npa('./path\\backslash')
-  t.equal(actual.rawSpec, './path\\backslash')
+  const where = '/fixture/root'
+  for (const [spec, saveSpec, fetchSpec, type] of [
+    ['./path\\backslash', 'file:path\\backslash', '/fixture/root/path\\backslash', 'directory'],
+    ['file:./path\\backslash', 'file:path\\backslash', '/fixture/root/path\\backslash', 'directory'],
+    ['/fixture/path\\backslash', 'file:/fixture/path\\backslash', '/fixture/path\\backslash', 'directory'],
+    ['./path\\one\\two.tgz', 'file:path\\one\\two.tgz', '/fixture/root/path\\one\\two.tgz', 'file'],
+    ['./path\\one/two', 'file:path\\one/two', '/fixture/root/path\\one/two', 'directory'],
+    ['./path/backslash', 'file:path/backslash', '/fixture/root/path/backslash', 'directory'],
+  ]) {
+    const actual = npa(spec, where)
+    t.same({
+      rawSpec: actual.rawSpec,
+      saveSpec: actual.saveSpec,
+      fetchSpec: actual.fetchSpec,
+      type: actual.type,
+    }, { rawSpec: spec, saveSpec, fetchSpec, type }, spec)
+    t.match(npa(actual.saveSpec, where), { type, fetchSpec }, `round trip ${spec}`)
+  }
   t.end()
 })
