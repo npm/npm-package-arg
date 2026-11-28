@@ -796,6 +796,41 @@ t.test('directory cwd has non URI compatible components', t => {
   t.end()
 })
 
+t.test('IPv6 SSH URLs and SCP-style specifiers', t => {
+  for (const [authority, fetchAuthority] of [
+    ['git@[2001:db8::1]', 'ssh://git@[2001:db8::1]'],
+    ['[::1]', 'ssh://[::1]'],
+    ['git@[::ffff:192.0.2.1]', 'ssh://git@[::ffff:c000:201]'],
+    ['git@[2001:db8::1]:2222', 'ssh://git@[2001:db8::1]:2222'],
+    ['[::1]:2222', 'ssh://[::1]:2222'],
+  ]) {
+    for (const [fragment, attrs] of [
+      ['main', { gitCommittish: 'main' }],
+      ['semver:%5E1.0.0', { gitRange: '^1.0.0' }],
+    ]) {
+      const spec = `git+ssh://${authority}/owner/repo.git#${fragment}`
+      t.match(npa(spec), {
+        type: 'git',
+        rawSpec: spec,
+        saveSpec: spec,
+        fetchSpec: `${fetchAuthority}/owner/repo.git`,
+        ...attrs,
+      }, spec)
+    }
+  }
+  for (const authority of ['git@[2001:db8::1]', '[::1]']) {
+    const spec = `git+ssh://${authority}:owner/repo.git#main`
+    t.match(npa(spec), {
+      type: 'git',
+      rawSpec: spec,
+      saveSpec: spec,
+      fetchSpec: `${authority}:owner/repo.git`,
+      gitCommittish: 'main',
+    }, spec)
+  }
+  t.end()
+})
+
 t.test('invalid url', t => {
   const broken = t.mock('..', {
     'node:url': {
